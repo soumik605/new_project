@@ -20,7 +20,7 @@ async function posts() {
     p.innerText = `title: ${user.title}\n
     body: ${user.body}\n
     tags: ${user.tags}\n
-    likes: ${user.likes} dislikes: ${user.dislikes}
+    likes: ${user.reactions.likes} dislikes: ${user.reactions.dislikes}
     `;
   });
 }
