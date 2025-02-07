@@ -14,13 +14,44 @@ async function posts() {
     let userDiv = document.createElement("div");
     userDiv.classList.add("userDiv");
     container.appendChild(userDiv);
-    let p = document.createElement("p");
-    userDiv.appendChild(p);
 
-    p.innerText = `title: ${user.title}\n
-    body: ${user.body}\n
-    tags: ${user.tags}\n
-    likes: ${user.reactions.likes} dislikes: ${user.reactions.dislikes}
-    `;
+    let title = user.title;
+    let body = user.body;
+    let tags = user.tags;
+    let likes = user.reactions.likes;
+    let dislikes = user.reactions.dislikes;
+
+    let titleDiv = document.createElement("div");
+    titleDiv.classList.add("titlediv");
+    userDiv.appendChild(titleDiv);
+    titleDiv.innerText = `Title: ${title}`;
+
+    let bodyDiv = document.createElement("div");
+    bodyDiv.classList.add("bodydiv");
+    userDiv.appendChild(bodyDiv);
+    bodyDiv.innerText = ` ${body}`;
+    const words = bodyDiv.innerText.split(" ");
+    const first20Words = words.slice(0, 20).join(" ");
+
+    bodyDiv.innerText = first20Words + "...";
+
+    let reaction = document.createElement("div");
+    reaction.classList.add("reaction");
+    userDiv.appendChild(reaction);
+
+    let likesDiv = document.createElement("div");
+    likesDiv.classList.add("likesdiv");
+    reaction.appendChild(likesDiv);
+    likesDiv.innerText = `Likes:${likes}`;
+
+    let dislikesDiv = document.createElement("div");
+    dislikesDiv.classList.add("dislikesdiv");
+    reaction.appendChild(dislikesDiv);
+    dislikesDiv.innerText = `dislikes:${dislikes}`;
+
+    let tagsDiv = document.createElement("div");
+    tagsDiv.classList.add("tagsdiv");
+    userDiv.appendChild(tagsDiv);
+    tagsDiv.innerText = `tags:${tags}`;
   });
 }
