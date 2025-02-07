@@ -18,9 +18,41 @@
   width: 300px;
   background-color: grey;
   padding: 10px;
-  border: solid dotted;
   margin: 10px;
   border-radius: 10px;
   margin: 10px;
   box-shadow: 2px 4px rgb(53, 53, 53);
+  text-align: center;
+}
+.titlediv {
+  width: 280px;
+  font-size: 25px;
+
+  margin-left: 10px;
+}
+.bodydiv {
+  width: 280px;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+}
+.reaction {
+  width: 280px;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.likesdiv {
+  width: 100px;
+  background-color: green;
+  border-radius: 20px;
+}
+.dislikesdiv {
+  width: 100px;
+  background-color: red;
+  border-radius: 20px;
 }
