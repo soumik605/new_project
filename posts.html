@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script src="posts.js"></script>
-    <script>
-      (function(){
-          $("#container").load("sidebar.html"); 
-        });
-      </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>posts details</title>
     <link rel="stylesheet" href="posts.css" />
   </head>
   <body>
+    <div id="sidebar-cont"></div>
+    <script>
+      fetch("sidebar.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("sidebar-cont").innerHTML = data;
+        });
+    </script>
     <div id="container"></div>
-
-    
+    <script src="posts.js"></script>
   </body>
 </html>
