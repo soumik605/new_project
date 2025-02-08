@@ -23,7 +23,10 @@
   margin: 10px;
   box-shadow: 2px 4px rgb(53, 53, 53);
   text-align: center;
+  cursor:pointer
+  
 }
+
 .titlediv {
   width: 280px;
   font-size: 25px;
@@ -55,4 +58,13 @@
   width: 100px;
   background-color: red;
   border-radius: 20px;
+}
+.namediv{
+  width: 280px;
+  text-align: center;
+  font-size: 18px;
+  padding: 5px,0px;
+
+margin-top: 10px;
+margin-bottom: 10px;
 }
