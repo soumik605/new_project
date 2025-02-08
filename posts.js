@@ -16,7 +16,6 @@ async function posts() {
     container.appendChild(userDiv);
 
     let userName = await infos(user.id);
-    // console.log(userName);
 
     let title = user.title;
     let body = user.body;
@@ -70,15 +69,10 @@ async function infos(user_id) {
     .then((response) => response.json())
     .then((json) => (user_info = json));
 
-  // console.log(user_info);
-
-  // console.log(user_info.firstName);
   let firstName = user_info.firstName;
-  let lastName = user_info.lastName
+  let lastName = user_info.lastName;
   console.log(user_info);
   console.log(firstName);
-  
-  
 
   return `${firstName} ${lastName}`;
 }
