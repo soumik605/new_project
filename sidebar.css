@@ -1,6 +1,5 @@
 #body{
     display: flex;
-
 }
 
 
@@ -29,9 +28,10 @@
 }
 
 #maindiv{
-
+    position: fixed;
+    left: 0px;
+    top: 0px;
      width: 200px;
-     height: 1000px;
+     height: 100vh;
      background-color: aqua;
-
 }

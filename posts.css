@@ -1,12 +1,13 @@
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 #container {
   width: 100%;
   min-height: 100vh;
-  padding: 0%;
+  padding-left: 200px;
   margin: 0%;
   background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
   display: flex;
@@ -68,3 +69,4 @@
 margin-top: 10px;
 margin-bottom: 10px;
 }
+
