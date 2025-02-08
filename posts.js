@@ -10,10 +10,12 @@ async function posts() {
     .then((response) => response.json())
     .then((json) => (users = json.posts));
 
-  users.forEach((user) => {
+  users.forEach(async (user) => {
     let userDiv = document.createElement("div");
     userDiv.classList.add("userDiv");
     container.appendChild(userDiv);
+
+    let userName = await infos(user.id);
 
     let title = user.title;
     let body = user.body;
@@ -35,6 +37,11 @@ async function posts() {
 
     bodyDiv.innerText = first20Words + "...";
 
+    let namediv = document.createElement("div");
+    namediv.classList.add("namediv");
+    namediv.innerText = `${userName}`;
+    userDiv.appendChild(namediv);
+
     let reaction = document.createElement("div");
     reaction.classList.add("reaction");
     userDiv.appendChild(reaction);
@@ -54,4 +61,18 @@ async function posts() {
     userDiv.appendChild(tagsDiv);
     tagsDiv.innerText = `tags:${tags}`;
   });
+}
+
+async function infos(user_id) {
+  let user_info = [];
+  await fetch(`https://dummyjson.com/users/${user_id}`)
+    .then((response) => response.json())
+    .then((json) => (user_info = json));
+
+  let firstName = user_info.firstName;
+  let lastName = user_info.lastName;
+  console.log(user_info);
+  console.log(firstName);
+
+  return `${firstName} ${lastName}`;
 }
