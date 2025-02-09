@@ -7,3 +7,8 @@
 #container{
     padding-left: 200px;
 }
+#sidebar-cont {
+    position: fixed;
+    height: -webkit-fill-available;
+    width: fit-content;
+  }
