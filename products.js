@@ -5,7 +5,7 @@ window.onload = () => {
         let productsData = obj.products
 
 
-        let container = document.getElementsByClassName("container")[0];
+        let container = document.getElementsByClassName("container")[0];    
 
         
         productsData.forEach((prod, idx) => {
@@ -31,14 +31,7 @@ window.onload = () => {
             <b>warranty_Information</b>: ${warrantyInformation}</br></br>
             <b>Return_Policy</b>: ${returnPolicy}</br>
             `
-            container.appendChild(pdct);
+                
         });
-
-        
-
-
-
-
-    
     })
-}
+}   
