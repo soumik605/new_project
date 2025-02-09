@@ -41,3 +41,9 @@
     height: 150px;
     width: 150px;
 }
+
+#sidebar-cont {
+    position: fixed;
+    height: -webkit-fill-available;
+    width: fit-content;
+  }
