@@ -28,7 +28,7 @@ window.onload = () => {
             <b>warranty_Information</b>: ${warrantyInformation}</br></br>
             <b>Return_Policy</b>: ${returnPolicy}</br>
             `;
-            
+
             container.appendChild(pdct);
         });
     });
