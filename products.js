@@ -27,8 +27,7 @@ window.onload = () => {
             <b>Price</b>: ${price}</br></br>
             <b>warranty_Information</b>: ${warrantyInformation}</br></br>
             <b>Return_Policy</b>: ${returnPolicy}</br>
-            `;
-            
+            `
             container.appendChild(pdct);
         });
     });
