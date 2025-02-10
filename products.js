@@ -21,7 +21,7 @@ window.onload = () => {
             pdct.innerHTML = `
             <h2>${title}</h2> </br>
             <hr id="hr">
-            <pre><b>Rating</b>: ${rating}<t>               <b>Stock</b>: ${stock}</pre></br>
+            <div id="RtSt"><div><b>Rating</b>: ${rating}</div>    <div><b>Stock</b>: ${stock}</div></div></br>
             <b>Tags</b>: ${tags}</br>
             <img id="prdctimg" src="${thumbnail}"></br>
             <b>Price</b>: ${price}</br></br>
