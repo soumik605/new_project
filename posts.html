@@ -7,15 +7,13 @@
     <link rel="stylesheet" href="posts.css" />
   </head>
   <body>
+    
+    <div id="sidebar-cont">
+      <object type="text/html" data="sidebar.html" width="100%" height="100%"></object>
+    </div>
+
     <div id="container"></div>
-    <div id="sidebar-cont"></div>
-    <script>
-      fetch("sidebar.html")
-        .then((response) => response.text())
-        .then((data) => {
-          document.getElementById("sidebar-cont").innerHTML = data;
-        });
-    </script>
+    
     <script src="posts.js"></script>
   </body>
 </html>

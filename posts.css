@@ -57,3 +57,18 @@
   background-color: red;
   border-radius: 20px;
 }
+.namediv{
+  width: 280px;
+  text-align: center;
+  font-size: 18px;
+  padding: 5px,0px;
+
+margin-top: 10px;
+margin-bottom: 10px;
+}
+
+#sidebar-cont {
+  position: fixed;
+  height: -webkit-fill-available;
+  width: fit-content;
+}

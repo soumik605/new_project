@@ -13,7 +13,7 @@ async function posts() {
   users.forEach(async (user) => {
     let userDiv = document.createElement("div");
     userDiv.classList.add("userDiv");
-    container.appendChild(userDiv);
+    container.appendChild(userDiv); 
 
     let userName = await infos(user.id);
 
