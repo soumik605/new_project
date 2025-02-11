@@ -7,7 +7,9 @@
 .container{
     padding-left: 200px;
     width: 100%;
-    background-color: #b39999;
+    background: #b39999;
+  background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(50, auto);
@@ -18,13 +20,13 @@
     margin: 10px;
     padding: 5px;
     width: 96%;
-    height: 355px;
+    min-height: 326px;
     background-color: rgb(176, 178, 179);
     border-radius: 20px;
     box-shadow: 5px 3px 10px;
-    word-wrap: break-word;  
     text-align: center;
     cursor: pointer;    
+
 }
 #RtSt{
     display: flex;
@@ -47,5 +49,35 @@
 #sidebar-cont {
     position: fixed;
     height: -webkit-fill-available;
-    width: fit-content;
   }
+
+
+
+  .load{
+    height: 100px;
+    width: 100px;
+    border: 10px solid rgb(243, 243, 243);
+    border-top: 10px solid rgb(86, 186, 249);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(50px, -50px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation-name: loadingAnimation;
+    animation-duration: 2s;
+    animation-delay: .5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes loadingAnimation {
+    from{
+        transform: translate(50px, -50px) rotate(0deg);
+    }
+    to{
+        transform: translate(50px, -50px) rotate(360deg);
+    }
+}

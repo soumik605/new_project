@@ -1,25 +1,32 @@
 window.onload = () => {
-    fetch("https://dummyjson.com/products").then((res) => {
-        return res.json();
-    }).then((obj) => {
-        let productsData = obj.products;
-        let container = document.getElementsByClassName("container")[0];
+  let container = document.getElementsByClassName("container")[0];
+  let load = document.createElement("div");
+  load.classList.add("load");
+  container.appendChild(load);
 
-        productsData.forEach((prod, idx) => {
-            let title = prod.title;
-            let price = prod.price;
-            let rating = prod.rating;
-            let stock = prod.stock;
-            let tags = prod.tags;
-            let warrantyInformation = prod.warrantyInformation;
-            let returnPolicy = prod.returnPolicy;
-            let thumbnail = prod.thumbnail;
+  fetch("https://dummyjson.com/products")
+    .then((res) => {
+      return res.json();
+    })
+    .then((obj) => {
+      container.innerHTML = "";
+      let productsData = obj.products;
 
-            let pdct = document.createElement("div");
-            pdct.classList.add("pdct");
+      productsData.forEach((prod, idx) => {
+        let title = prod.title;
+        let price = prod.price;
+        let rating = prod.rating;
+        let stock = prod.stock;
+        let tags = prod.tags;
+        let warrantyInformation = prod.warrantyInformation;
+        let returnPolicy = prod.returnPolicy;
+        let thumbnail = prod.thumbnail;
 
-            pdct.innerHTML = `
-            <h2>${title}</h2> </br>
+        let pdct = document.createElement("div");
+        pdct.classList.add("pdct");
+
+        pdct.innerHTML = `
+            <h3 id="h22">${title}</h3> </br>
             <hr id="hr">
             <div id="RtSt"><div><b>Rating</b>: ${rating}</div>    <div><b>Stock</b>: ${stock}</div></div></br>
             <b>Tags</b>: ${tags}</br>
@@ -27,8 +34,8 @@ window.onload = () => {
             <b>Price</b>: ${price}</br></br>
             <b>warranty_Information</b>: ${warrantyInformation}</br></br>
             <b>Return_Policy</b>: ${returnPolicy}</br>
-
-            container.appendChild(pdct);
-        });
+            `;
+        container.appendChild(pdct);
+      });
     });
-}
+};
