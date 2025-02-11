@@ -71,3 +71,8 @@ margin-bottom: 10px;
 }
 
 
+#sidebar-cont {
+  position: fixed;
+  height: -webkit-fill-available;
+  width: fit-content;
+}
