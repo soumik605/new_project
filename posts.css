@@ -24,6 +24,7 @@
   margin: 10px;
   box-shadow: 2px 4px rgb(53, 53, 53);
   text-align: center;
+  display: none;
 }
 .titlediv {
   width: 280px;
@@ -57,14 +58,14 @@
   background-color: red;
   border-radius: 20px;
 }
-.namediv{
+.namediv {
   width: 280px;
   text-align: center;
   font-size: 18px;
-  padding: 5px,0px;
+  padding: 5px, 0px;
 
-margin-top: 10px;
-margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 #sidebar-cont {
@@ -73,10 +74,7 @@ margin-bottom: 10px;
   width: fit-content;
 }
 
-
-
-
-.load{
+.load {
   height: 100px;
   width: 100px;
   border: 10px solid transparent;
@@ -91,16 +89,27 @@ margin-bottom: 10px;
   align-items: center;
   animation-name: loadingAnimation;
   animation-duration: 2s;
-  animation-delay: .5s;
+  animation-delay: 0.5s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
 
 @keyframes loadingAnimation {
-  from{
-      transform: translate(-50px, -100px) rotate(0deg);
+  from {
+    transform: translate(-50px, -100px) rotate(0deg);
   }
-  to{
-      transform: translate(-50px, -100px) rotate(360deg);
+  to {
+    transform: translate(-50px, -100px) rotate(360deg);
   }
+}
+
+.loadButton {
+  height: 30px;
+  width: 100px;
+  background-color: #c5c5c5;
+  margin-left: 800px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: blue;
+  border-radius: 10px;
 }

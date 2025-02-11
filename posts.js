@@ -6,17 +6,18 @@ window.onload = function () {
   posts();
 };
 
-
 async function posts() {
   let users = [];
   await fetch("https://dummyjson.com/posts")
     .then((response) => response.json())
     .then((json) => (users = json.posts));
-    container.innerHTML = "";
-  users.forEach(async (user) => {
+  container.innerHTML = "";
+  let div10 = 1;
+  users.forEach(async (user, idx) => {
     let userDiv = document.createElement("div");
+    userDiv.id = `user_index-${idx}`;
     userDiv.classList.add("userDiv");
-    container.appendChild(userDiv); 
+    container.appendChild(userDiv);
 
     let userName = await infos(user.id);
 
@@ -63,6 +64,27 @@ async function posts() {
     tagsDiv.classList.add("tagsdiv");
     userDiv.appendChild(tagsDiv);
     tagsDiv.innerText = `tags:${tags}`;
+  });
+  let loadButton = document.createElement("button");
+  loadButton.textContent = "Load more...";
+  loadButton.classList.add("loadButton");
+  container.appendChild(loadButton);
+
+  for (let i = 0; i < 10; i++) {
+    let userr = document.getElementById(`user_index-${i}`);
+    userr.style.display = "block";
+  }
+  let user_index = 10;
+  loadButton.addEventListener("click", () => {
+    for (let i = user_index; i < `${user_index + 10}`; i++) {
+      let userr = document.getElementById(`user_index-${i}`);
+      if (userr) {
+        userr.style.display = "block";
+      }
+    }
+    user_index += 10;
+    let userr = document.getElementById("user_index-11");
+    userr.style.display = "block";
   });
 }
 
