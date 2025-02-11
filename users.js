@@ -1,8 +1,13 @@
 window.onload = function(){
+        let container = document.getElementById("container");         
+        let load = document.createElement("div");
+        load.classList.add("load");
+        container.appendChild(load);
         fetch("https://dummyjson.com/users").then (function(call){
             return call.json()
         })
         .then(function(object){
+            container.innerHTML = "";
             let userlist = object.users
             let a =0;
             for (let a = 0;  a < userlist.length; a++) {
@@ -13,7 +18,6 @@ window.onload = function(){
                     let username = userlist[a].username
                     let image = userlist[a].image
                     let role = userlist[a].role
-                  let container = document.getElementById("container");         
                   let userdata = document.createElement("div")           
                     userdata.classList.add("userdata")
 
