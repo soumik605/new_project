@@ -5,6 +5,7 @@ button{
     margin: 10px;
     padding: 5px;
     border-radius: 20px;
+    cursor: pointer;
 }
 button:hover{
 
@@ -13,4 +14,7 @@ button:hover{
    
   
   
+  }
+  .dark-mode {
+    background: linear-gradient(to right, #200122, #6f0000);
   }

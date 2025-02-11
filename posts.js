@@ -13,28 +13,21 @@ async function posts() {
   users.forEach(async (user) => {
     let userDiv = document.createElement("div");
     userDiv.classList.add("userDiv");
-    container.appendChild(userDiv); 
+    container.appendChild(userDiv);
 
-    userDiv.addEventListener('click',()=>{
-      userDiv.classList.add("overlay")
-      let close_btn= document.createElement("div")
-      close_btn.classList.add("close_btn")
-      close_btn.innerText=`close`
-      userDiv.appendChild(close_btn)
-
-
-    })
+    userDiv.addEventListener("click", () => {
+      userDiv.classList.add("overlay");
+      let close_btn = document.createElement("div");
+      close_btn.classList.add("close_btn");
+      close_btn.innerText = `close`;
+      userDiv.appendChild(close_btn);
+    });
 
     // close_btn.addEventListener('click',()=>{
     //   userDiv.classList.remove("overlay")
     //   window.onload
     // })
 
-
-
-
-    
-     
     let userName = await infos(user.id);
 
     let title = user.title;
@@ -81,7 +74,13 @@ async function posts() {
     userDiv.appendChild(tagsDiv);
     tagsDiv.innerText = `tags:${tags}`;
   });
+
 }
+
+
+
+
+
 
 async function infos(user_id) {
   let user_info = [];
