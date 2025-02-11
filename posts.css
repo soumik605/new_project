@@ -24,8 +24,16 @@
   margin: 10px;
   box-shadow: 2px 4px rgb(53, 53, 53);
   text-align: center;
-  cursor:pointer
+  cursor: pointer;
   
+}
+.userDiv:hover{
+
+  box-shadow: 2px 3px 3px;
+  transform: scale(1.03);
+ 
+
+
 }
 
 .titlediv {
@@ -60,19 +68,49 @@
   background-color: red;
   border-radius: 20px;
 }
-.namediv{
+.namediv {
   width: 280px;
   text-align: center;
   font-size: 18px;
-  padding: 5px,0px;
+  padding: 5px, 0px;
 
-margin-top: 10px;
-margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
-
+.tagsdiv{
+  text-align: center;
+}
 
 #sidebar-cont {
   position: fixed;
   height: -webkit-fill-available;
   width: fit-content;
+}
+
+.overlay {
+  position: fixed;
+
+  text-align: center; 
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(3px);
+  z-index: 2;
+  color: white;
+  
+}
+
+.close_btn{
+  height: 30px;
+  width: 100px;
+  border-radius: 20px;
+  background-color: #f64f59;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -15,6 +15,21 @@ async function posts() {
     userDiv.classList.add("userDiv");
     container.appendChild(userDiv); 
 
+    userDiv.addEventListener('click',()=>{
+      userDiv.classList.add("overlay")
+      let close_btn= document.createElement("div")
+      close_btn.classList.add("close_btn")
+      close_btn.innerText=`close`
+      userDiv.appendChild(close_btn)
+
+
+    })
+
+    // close_btn.addEventListener('click',()=>{
+    //   userDiv.classList.remove("overlay")
+    //   window.onload
+    // })
+
 
 
 
