@@ -67,7 +67,7 @@ function exportToCSV(data) {
 
   const csvHeaders = ["Title", "price", "rating", "warrantyInformation", "tags"];
   const csvRows = data.map(item => {
-    return `${item.title},${item.price},${item.rating},${item.warrantyInformation},${item.tags}`;
+    return `${item.title},${item.price} ,${item.rating},${item.warrantyInformation},${item.tags}`;
   });
 
  
