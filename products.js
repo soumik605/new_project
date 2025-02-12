@@ -4,14 +4,27 @@ window.onload = () => {
   load.classList.add("load");
   container.appendChild(load);
 
+
+
   fetch("https://dummyjson.com/products")
     .then((res) => {
       return res.json();
     })
     .then((obj) => {
       container.innerHTML = "";
+
       let productsData = obj.products;
       let productData = [];
+      
+      
+      // let exportButton = document.createElement("button");
+      // exportButton.id="exportButton"
+      // exportButton.innerText = "Export to CSV";
+      // container.appendChild(exportButton);
+      // exportButton.addEventListener("click", () => {
+      //   exportToCSV(usersData);
+      // });
+      
       productsData.forEach((prod, idx) => {
         let title = prod.title;
         let price = prod.price;

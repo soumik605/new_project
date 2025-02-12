@@ -6,6 +6,7 @@ button{
     padding: 5px;
     border-radius: 20px;
     cursor: pointer;
+  
 }
 button:hover{
 
@@ -18,3 +19,8 @@ button:hover{
   .dark-mode {
     background: linear-gradient(to right, #200122, #6f0000);
   }
+
+ #exportButton{
+  margin-left: 1140px;
+}
+  
