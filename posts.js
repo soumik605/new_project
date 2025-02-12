@@ -15,7 +15,19 @@ async function posts() {
     container.innerHTML = "";
 
     let postsData = [];
+
+
+    let exportButton = document.createElement("button");
+    exportButton.id="exportButton"
+    exportButton.innerText = "Export to CSV";
+    container.appendChild(exportButton);
+    exportButton.addEventListener("click", () => {
+      exportToCSV(postsData);
+    });
+
+
   users.forEach(async (user) => {
+
     let userDiv = document.createElement("div");
     userDiv.classList.add("userDiv");
     container.appendChild(userDiv);
@@ -34,10 +46,7 @@ async function posts() {
       });
     });
 
-    // close_btn.addEventListener('click',()=>{
-    //   userDiv.classList.remove("overlay")
-    //   window.onload
-    // })
+    
 
     let userName = await infos(user.id);
 
@@ -95,12 +104,12 @@ async function posts() {
     });
   });
 
-  let exportButton = document.createElement("button");
-  exportButton.innerText = "Export to CSV";
-  container.appendChild(exportButton);
-  exportButton.addEventListener("click", () => {
-    exportToCSV(postsData);
-  });
+  // let exportButton = document.createElement("button");
+  // exportButton.innerText = "Export to CSV";
+  // container.appendChild(exportButton);
+  // exportButton.addEventListener("click", () => {
+  //   exportToCSV(postsData);
+  // });
 
 }
 
@@ -123,7 +132,7 @@ async function infos(user_id) {
   return `${firstName} ${lastName}`;
 }
 
-
+//function for export data to xl sheed
 function exportToCSV(data) {
 
   const csvHeaders = ["Title", "User Name", "Body", "Likes", "Dislikes", "Tags"];

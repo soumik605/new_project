@@ -121,3 +121,16 @@
       transform: translate(-50px, -100px) rotate(360deg);
   }
 }
+
+
+.overlay .userDiv {
+  background-color: #fff;
+  color: #333;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%; /* Control the width of the overlay content */
+  max-width: 800px;
+  max-height: 90%; /* Prevent the content from overflowing the screen */
+  overflow-y: auto; /* Allow scrolling if the content overflows */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}

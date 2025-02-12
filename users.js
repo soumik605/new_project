@@ -12,6 +12,15 @@ window.onload = function () {
       let userlist = object.users;
       let a = 0;
       let usersData = [];
+
+      let exportButton = document.createElement("button");
+      exportButton.id="exportButton"
+      exportButton.innerText = "Export to CSV";
+      container.appendChild(exportButton);
+      exportButton.addEventListener("click", () => {
+        exportToCSV(usersData);
+      });
+
       for (let a = 0; a < userlist.length; a++) {
         let fullname = `${userlist[a].firstName} ${userlist[a].maidenName} ${userlist[a].lastName}`;
         let age = userlist[a].age;
@@ -43,12 +52,12 @@ window.onload = function () {
           role: role,
         });
       }
-      let exportButton = document.createElement("button");
-      exportButton.innerText = "Export to CSV";
-      container.appendChild(exportButton);
-      exportButton.addEventListener("click", () => {
-        exportToCSV(usersData);
-      });
+      // let exportButton = document.createElement("button");
+      // exportButton.innerText = "Export to CSV";
+      // container.appendChild(exportButton);
+      // exportButton.addEventListener("click", () => {
+      //   exportToCSV(usersData);
+      // });
 
     });
 };
