@@ -1,15 +1,18 @@
 window.onload = function () {
+  let container = document.getElementById("container");
+  let load = document.createElement("div");
+  load.classList.add("load");
+  container.appendChild(load);
   posts();
 };
 
-let container = document.getElementById("container");
 
 async function posts() {
   let users = [];
   await fetch("https://dummyjson.com/posts")
     .then((response) => response.json())
     .then((json) => (users = json.posts));
-
+    container.innerHTML = "";
   users.forEach(async (user) => {
     let userDiv = document.createElement("div");
     userDiv.classList.add("userDiv");
