@@ -9,7 +9,6 @@
     height: 30px;
     margin-bottom: 30px;
     padding: 5px;
-    text-align: left;
     border-radius: 20px;
     position: relative;
     
@@ -19,15 +18,24 @@
     position: fixed;
     left: 0;
     top: 0;
-    width: 200px;
+    width: 50px;
     height: 100vh;
     background-color: aqua;
 }
 
+
+#maindiv:hover{
+      width: 120px;
+
+}
+
+#maindiv:hover .icons{
+    margin-left: 30px;
+
+}
 .icons {
     width: 40px;
     height: 40px;
-    margin-left: 50px;
     cursor: pointer;
 }
 
@@ -42,10 +50,10 @@
     transition: opacity 0.3s;
     position: absolute;
     top: 50%;
-    left: 100%; 
+    left: 80%; 
 }
 
-.button:hover .tooltip {
+#maindiv:hover .tooltip {
     opacity: 1; 
     pointer-events: auto;
 }
@@ -58,6 +66,7 @@
     opacity: 85%;
     box-shadow: 2px 3px 3px;
     transform: scale(1.03);
+    
 }
 
 .tooltip::before {
