@@ -25,7 +25,17 @@
   box-shadow: 2px 4px rgb(53, 53, 53);
   text-align: center;
   display: none;
+  cursor: pointer;
+  
 }
+.userDiv:hover{
+
+  box-shadow: 2px 3px 3px;
+  transform: scale(1.03);
+ 
+}
+
+
 .titlediv {
   width: 280px;
   font-size: 25px;
@@ -46,7 +56,8 @@
   justify-content: space-between;
   margin-left: 10px;
   margin-bottom: 10px;
-  font-size: 14px;
+  font-size: 14px; 
+  margin-right: 10px;
 }
 .likesdiv {
   width: 100px;
@@ -57,6 +68,7 @@
   width: 100px;
   background-color: red;
   border-radius: 20px;
+  
 }
 .namediv {
   width: 280px;
@@ -66,6 +78,9 @@
 
   margin-top: 10px;
   margin-bottom: 10px;
+}
+.tagsdiv{
+  text-align: center;
 }
 
 #sidebar-cont {
@@ -112,4 +127,16 @@
   font-weight: bold;
   color: blue;
   border-radius: 10px;
+}
+
+.overlay .userDiv {
+  background-color: #fff;
+  color: #333;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%; /* Control the width of the overlay content */
+  max-width: 800px;
+  max-height: 90%; /* Prevent the content from overflowing the screen */
+  overflow-y: auto; /* Allow scrolling if the content overflows */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
