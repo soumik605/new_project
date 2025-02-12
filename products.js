@@ -34,13 +34,49 @@ window.onload = () => {
             <b>Price</b>: ${price}</br></br>
             <b>warranty_Information</b>: ${warrantyInformation}</br></br>
             <b>Return_Policy</b>: ${returnPolicy}</br>
-<<<<<<<<< Temporary merge branch 1
-            `
-=========
             `;
+        container.appendChild(pdct);
 
->>>>>>>>> Temporary merge branch 2
-            container.appendChild(pdct);
+        productData.push({
+          title: title,
+          price: price,
+          rating: rating,
+          warrantyInformation: warrantyInformation,
+          
+          tags: tags.join(", "),
         });
+
+      });
+
+      let exportButton = document.createElement("button");
+      exportButton.innerText = "Export to CSV";
+      container.appendChild(exportButton);
+      exportButton.addEventListener("click", () => {
+        exportToCSV(productData);
+      });
+      
+
+
     });
+
+  
+};
+
+
+function exportToCSV(data) {
+
+  const csvHeaders = ["Title", "price", "rating", "warrantyInformation", "tags"];
+  const csvRows = data.map(item => {
+    return `${item.title},${item.price} ,${item.rating},${item.warrantyInformation},${item.tags}`;
+  });
+
+ 
+  const csvContent = [csvHeaders.join(","), ...csvRows].join("\n");
+
+  
+  const blob = new Blob([csvContent], { type: "text/csv" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "posts_data.csv";
+  link.click();
 }
