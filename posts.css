@@ -4,12 +4,12 @@
 }
 
 #container {
-  width: 10;
+  /* width: 100%; */
   min-height: 100vh;
   padding: 0%;
   margin: 0%;
   background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
-  /* transform: translate(175px); */
+  /* transform: translate(75px); */
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -24,6 +24,7 @@
   margin: 10px;
   box-shadow: 2px 4px rgb(53, 53, 53);
   text-align: center;
+  display: none;
   cursor: pointer;
   
 }
@@ -90,10 +91,7 @@
   width: fit-content;
 }
 
-
-
-
-.load{
+.load {
   height: 100px;
   width: 100px;
   border: 10px solid transparent;
@@ -108,16 +106,40 @@
   align-items: center;
   animation-name: loadingAnimation;
   animation-duration: 2s;
-  animation-delay: .5s;
+  animation-delay: 0.5s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
 
 @keyframes loadingAnimation {
-  from{
-      transform: translate(-50px, -100px) rotate(0deg);
+  from {
+    transform: translate(-50px, -100px) rotate(0deg);
   }
-  to{
-      transform: translate(-50px, -100px) rotate(360deg);
+  to {
+    transform: translate(-50px, -100px) rotate(360deg);
   }
 }
+
+.loadButton {
+  height: 30px;
+  width: 100px;
+  background-color: #c5c5c5;
+  margin-left: 800px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: blue;
+  border-radius: 10px;
+}
+
+.overlay .userDiv {
+  background-color: #fff;
+  color: #333;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%; /* Control the width of the overlay content */
+  max-width: 800px;
+  max-height: 90%; /* Prevent the content from overflowing the screen */
+  overflow-y: auto; /* Allow scrolling if the content overflows */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
