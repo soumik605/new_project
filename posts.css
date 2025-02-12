@@ -24,7 +24,19 @@
   margin: 10px;
   box-shadow: 2px 4px rgb(53, 53, 53);
   text-align: center;
+  cursor: pointer;
+  
 }
+.userDiv:hover{
+
+  box-shadow: 2px 3px 3px;
+  transform: scale(1.03);
+ 
+
+
+}
+
+
 .titlediv {
   width: 280px;
   font-size: 25px;
@@ -45,7 +57,8 @@
   justify-content: space-between;
   margin-left: 10px;
   margin-bottom: 10px;
-  font-size: 14px;
+  font-size: 14px; 
+  margin-right: 10px;
 }
 .likesdiv {
   width: 100px;
@@ -56,19 +69,55 @@
   width: 100px;
   background-color: red;
   border-radius: 20px;
+  
 }
-.namediv{
+.namediv {
   width: 280px;
   text-align: center;
   font-size: 18px;
-  padding: 5px,0px;
+  padding: 5px, 0px;
 
-margin-top: 10px;
-margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.tagsdiv{
+  text-align: center;
 }
 
 #sidebar-cont {
   position: fixed;
   height: -webkit-fill-available;
   width: fit-content;
+}
+
+
+
+
+.load{
+  height: 100px;
+  width: 100px;
+  border: 10px solid transparent;
+  border-top: 10px solid rgb(86, 186, 249);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50px, -100px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation-name: loadingAnimation;
+  animation-duration: 2s;
+  animation-delay: .5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes loadingAnimation {
+  from{
+      transform: translate(-50px, -100px) rotate(0deg);
+  }
+  to{
+      transform: translate(-50px, -100px) rotate(360deg);
+  }
 }
