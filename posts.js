@@ -13,6 +13,8 @@ async function posts() {
     .then((response) => response.json())
     .then((json) => (users = json.posts));
     container.innerHTML = "";
+
+    let postsData = [];
   users.forEach(async (user) => {
     let userDiv = document.createElement("div");
     userDiv.classList.add("userDiv");
@@ -24,6 +26,12 @@ async function posts() {
       close_btn.classList.add("close_btn");
       close_btn.innerText = `close`;
       userDiv.appendChild(close_btn);
+
+      close_btn.addEventListener("click", (e) => {
+        e.stopPropagation(); 
+        userDiv.classList.remove("overlay");
+        close_btn.remove(); 
+      });
     });
 
     // close_btn.addEventListener('click',()=>{
@@ -76,6 +84,22 @@ async function posts() {
     tagsDiv.classList.add("tagsdiv");
     userDiv.appendChild(tagsDiv);
     tagsDiv.innerText = `tags:${tags}`;
+
+    postsData.push({
+      title: title,
+      userName: userName,
+      bodyPreview: first20Words + "...",
+      likes: likes,
+      dislikes: dislikes,
+      tags: tags.join(", "),
+    });
+  });
+
+  let exportButton = document.createElement("button");
+  exportButton.innerText = "Export to CSV";
+  container.appendChild(exportButton);
+  exportButton.addEventListener("click", () => {
+    exportToCSV(postsData);
   });
 
 }
@@ -97,4 +121,23 @@ async function infos(user_id) {
   console.log(firstName);
 
   return `${firstName} ${lastName}`;
+}
+
+
+function exportToCSV(data) {
+
+  const csvHeaders = ["Title", "User Name", "Body", "Likes", "Dislikes", "Tags"];
+  const csvRows = data.map(item => {
+    return `${item.title},${item.userName},${item.bodyPreview},${item.likes},${item.dislikes},${item.tags}`;
+  });
+
+ 
+  const csvContent = [csvHeaders.join(","), ...csvRows].join("\n");
+
+  
+  const blob = new Blob([csvContent], { type: "text/csv" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "posts_data.csv";
+  link.click();
 }
