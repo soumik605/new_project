@@ -9,9 +9,7 @@ button{
     
 }
 
-#maindiv:hover button{
-  margin-left: 28px;
-}
+
 button:hover{
     box-shadow: 2px 3px 3px;
     transform: scale(1.03);
