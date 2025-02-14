@@ -99,7 +99,7 @@ async function posts() {
       }
     }
     user_index += 10;
-    if (user_index >= users.length) {
+    if (user_index === users.length) {
       loadButton.style.display = "none";
     }
   }
