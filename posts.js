@@ -1,19 +1,34 @@
 window.onload = function () {
-  let container = document.getElementById("container");
+  // let container = document.getElementById("container");
+  let maincont= document.getElementById("maincont")
   let load = document.createElement("div");
   load.classList.add("load");
-  container.appendChild(load);
+  maincont.appendChild(load);
   posts();
 };
 
 async function posts() {
-  let container = document.getElementById("container"); 
+  let maincont= document.getElementById("maincont")
+ 
   let users = [];
-
+  let exportButton = document.createElement("button");
+    exportButton.id = "exportButton";
+    exportButton.innerText = "Export to CSV";
+    maincont.appendChild(exportButton);
+    exportButton.addEventListener("click", () => {
+      exportToCSV(postsData);
+    });
+    let container = document.createElement("div");
+    container.id="container"
+    container.className="dark-mode"
+    maincont.appendChild(container)
   await fetch("https://dummyjson.com/posts")
     .then((response) => response.json())
     .then((json) => (users = json.posts));
     container.innerHTML = "";
+
+    
+    
   users.forEach(async (user,idx) => {   
     let mainUserdiv=document.createElement("div");
     mainUserdiv.classList.add("mainUserdiv")
@@ -23,13 +38,7 @@ async function posts() {
   container.innerHTML = "";
   let postsData = [];
 
-  let exportButton = document.createElement("button");
-  exportButton.id = "exportButton";
-  exportButton.innerText = "Export to CSV";
-  container.appendChild(exportButton);
-  exportButton.addEventListener("click", () => {
-    exportToCSV(postsData);
-  });
+
 
   users.forEach(async (user, idx) => {
     let userDiv = document.createElement("div");
@@ -91,6 +100,7 @@ async function posts() {
       likes: likes,
       dislikes: dislikes,
       tags: tags.join(", "),
+    
     });
   });
 
@@ -116,7 +126,7 @@ async function posts() {
   showMoreUsers(); 
 
   loadButton.addEventListener("click", showMoreUsers);
-}
+})}
 
 async function infos(user_id) {
   let user_info = await fetch(`https://dummyjson.com/users/${user_id}`)

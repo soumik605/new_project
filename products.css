@@ -10,7 +10,7 @@
   background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
 
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(50, auto);
 
 }
@@ -19,29 +19,18 @@
   padding: 5px;
   width: 96%;   
   height: 360px;
+  position: relative;
 }
 
 
 
-.pdct{
-    margin: 10px;
-    padding: 5px;
-    width: 94%;
-    min-height: 326px;
-    background-color: rgb(176, 178, 179);
-    border-radius: 20px;
-    box-shadow: 3px 4px 8px  rgb(50, 50, 50);
-    text-align: center;
-    cursor: pointer;    
 
-}
 #RtSt{
     display: flex;
     justify-content: space-between;
 }
 .pdct:hover{
     opacity: 85%;
-    box-shadow: 2px 3px 3px 3px rgb(218, 218, 218);
     transform: scale(1.03);
 
 }
@@ -50,35 +39,63 @@
 }
 
 .pdct {
-  min-height: 326px;
-  background-color: rgb(176, 178, 179);
-  border-radius: 20px;
-  box-shadow: 5px 3px 10px;
-  text-align: center;
+  min-height: 20%;
+  text-align:left;
   cursor: pointer;
   display: block;
-  opacity: 1;
+  opacity: 0;
   transition: 0.2s ease;
   padding: 10px;
+  margin-top: 67%;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); 
+  color: white;
+  border-radius: 0px 0px 10px 10px;
 }
+
+.hiddenDiv {
+  transition: 0.5s ease;
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: rgb(111, 120, 124);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center; 
+  min-height: 326px;
+  min-width: 100%;
+  border-radius: 10px;
+  align-items: center;
+  padding: 10px;
+
+}
+
+.main_pdct:hover .pdct {
+  opacity:1;
+}
+.main_pdct:hover .hiddenDiv {
+  opacity:1;
+}
+
+
 #RtSt {
   display: flex;
   justify-content: space-between;
 }
 .main_pdct:hover .pdct {
-  opacity: 85%;
-  box-shadow: 2px 3px 3px;
+  opacity:1;
   transform: scale(1.03);
-  opacity: 0.2;
+  opacity:1;
 }
 #hr {
   border: 2px solid;
 }
 
-#prdctimg {
-  height: 100px;
-  width: 100px;
-}
+
 #sidebar-cont {
   position: fixed;
   height: -webkit-fill-available;
@@ -111,24 +128,4 @@
   to {
     transform: translate(50px, -50px) rotate(360deg);
   }
-}
-
-.hiddenDiv {
-  transition: 0.5s ease;
-  opacity: 0;
-
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.main_pdct:hover .hiddenDiv {
-  opacity: 1;
-}
-
-.middleDiv {
-  background-color: #04aa6d;
-  margin-left: 200px;
 }

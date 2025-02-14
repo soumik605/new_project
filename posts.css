@@ -3,7 +3,11 @@
   padding: 0%;
   margin: 0%;
 }
+#maincont{
+  width: 100%;
+  background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
 
+}
 #container {
   padding-left: 120px;
   width: 100%;
@@ -11,7 +15,7 @@
   display: grid;
   grid-template-columns: 33% 33% 33%;
   justify-items: center;
-
+  padding-top: 10px;
 }
 
 .mainUserdiv {
@@ -25,7 +29,7 @@
 .userDiv {
   background-color: grey;
   padding: 10px;
-  margin: 10px;
+  margin: 20px;
   min-height: 326px;
   border-radius: 20px;
   box-shadow: 5px 3px 10px;
@@ -37,7 +41,7 @@
 }
 .userDiv:hover {
   box-shadow: 2px 3px 3px;
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 .titlediv {
