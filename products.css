@@ -1,40 +1,36 @@
 * {
-    box-sizing: border-box;
-    margin: 0%;
-    padding: 0%;
+  box-sizing: border-box;
+  margin: 0%;
+  padding: 0%;
 }
 
-.container{
-    padding-left: 120px;
-    width: 100%;
-    background: #b39999;
+.container {
+  padding-left: 100px;
+  width: 100%;
   background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
 
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(50, auto);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(50, auto);
+
+}
+.main_pdct {
+  margin: 10px;
+  padding: 5px;
+  width: 96%;   
+  height: 360px;
+  position: relative;
 }
 
 
-.pdct{
-    margin: 10px;
-    padding: 5px;
-    width: 94%;
-    min-height: 326px;
-    background-color: rgb(176, 178, 179);
-    border-radius: 20px;
-    box-shadow: 3px 4px 8px  rgb(50, 50, 50);
-    text-align: center;
-    cursor: pointer;    
 
-}
+
 #RtSt{
     display: flex;
     justify-content: space-between;
 }
 .pdct:hover{
     opacity: 85%;
-    box-shadow: 2px 3px 3px 3px rgb(218, 218, 218);
     transform: scale(1.03);
 
 }
@@ -42,42 +38,94 @@
     border: 2px solid;
 }
 
-#prdctimg{
-    height: 100px;
-    width: 100px;
+.pdct {
+  min-height: 20%;
+  text-align:left;
+  cursor: pointer;
+  display: block;
+  opacity: 0;
+  transition: 0.2s ease;
+  padding: 10px;
+  margin-top: 67%;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); 
+  color: white;
+  border-radius: 0px 0px 10px 10px;
 }
+
+.hiddenDiv {
+  transition: 0.5s ease;
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: rgb(111, 120, 124);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center; 
+  min-height: 326px;
+  min-width: 100%;
+  border-radius: 10px;
+  align-items: center;
+  padding: 10px;
+
+}
+
+.main_pdct:hover .pdct {
+  opacity:1;
+}
+.main_pdct:hover .hiddenDiv {
+  opacity:1;
+}
+
+
+#RtSt {
+  display: flex;
+  justify-content: space-between;
+}
+.main_pdct:hover .pdct {
+  opacity:1;
+  transform: scale(1.03);
+  opacity:1;
+}
+#hr {
+  border: 2px solid;
+}
+
+
 #sidebar-cont {
-    position: fixed;
-    height: -webkit-fill-available;
-  }
+  position: fixed;
+  height: -webkit-fill-available;
+}
 
-
-
-  .load{
-    height: 100px;
-    width: 100px;
-    border: 10px solid rgb(243, 243, 243);
-    border-top: 10px solid rgb(86, 186, 249);
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(50px, -50px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation-name: loadingAnimation;
-    animation-duration: 2s;
-    animation-delay: .5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+.load {
+  height: 100px;
+  width: 100px;
+  border: 10px solid rgb(243, 243, 243);
+  border-top: 10px solid rgb(86, 186, 249);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(50px, -50px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation-name: loadingAnimation;
+  animation-duration: 2s;
+  animation-delay: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
 @keyframes loadingAnimation {
-    from{
-        transform: translate(50px, -50px) rotate(0deg);
-    }
-    to{
-        transform: translate(50px, -50px) rotate(360deg);
-    }
+  from {
+    transform: translate(50px, -50px) rotate(0deg);
+  }
+  to {
+    transform: translate(50px, -50px) rotate(360deg);
+  }
 }

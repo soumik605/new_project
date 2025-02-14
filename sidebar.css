@@ -52,3 +52,23 @@
 }
 
 
+.tooltip::before {
+    height: 15px;
+    width: 15px;
+    background: blueviolet;
+    top: 50%;
+    left: -4px; 
+    transform: translateY(-50%) rotate(45deg);
+    position: absolute;
+    content: "";
+}
+#mode{
+    background-color: orangered;
+    height: 30px;
+    width: 50px;
+    border-radius: 20px;
+    padding: 5px;
+    margin-right: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+}   
