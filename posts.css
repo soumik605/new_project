@@ -1,87 +1,92 @@
 * {
-  padding: 0;
-  margin: 0;
+  box-sizing: border-box;
+  padding: 0%;
+  margin: 0%;
 }
 
 #container {
-  /* width: 100%; */
-  min-height: 100vh;
-  padding: 0%;
-  margin: 0%;
+  padding-left: 120px;
+  width: 100%;
   background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
-  /* transform: translate(75px); */
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  justify-items: center;
+
 }
+
+.mainUserdiv {
+  margin: 10px;
+  padding: 5px;
+  width: 95%;
+  /* height: 360px; */
+
+}
+
 .userDiv {
-  
   background-color: grey;
   padding: 10px;
   margin: 10px;
-  border-radius: 10px;
-  margin: 10px;
-  box-shadow: 2px 4px rgb(53, 53, 53);
+  min-height: 326px;
+  border-radius: 20px;
+  box-shadow: 5px 3px 10px;
   text-align: center;
-  display: none;
   cursor: pointer;
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.userDiv:hover{
-
+.userDiv:hover {
   box-shadow: 2px 3px 3px;
-  transform: scale(1.03);
- 
-
-
+  transform: scale(1.05);
 }
-
 
 .titlediv {
-  width: 280px;
+  /* width: 280px; */
   font-size: 25px;
-
+  margin-bottom: 20px;
   margin-left: 10px;
 }
 .bodydiv {
-  width: 280px;
+  /* width: 280px; */
   font-size: 14px;
   margin-top: 10px;
   margin-left: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   word-wrap: break-word;
 }
 .reaction {
-  width: 280px;
+  /* width: 280px; */
   display: flex;
   justify-content: space-between;
   margin-left: 10px;
-  margin-bottom: 10px;
-  font-size: 14px; 
+  margin-bottom: 20px;
+  font-size: 14px;
   margin-right: 10px;
 }
 .likesdiv {
   width: 100px;
   background-color: green;
   border-radius: 20px;
+  width: 30%;
+  padding: 10px;
 }
 .dislikesdiv {
   width: 100px;
   background-color: red;
   border-radius: 20px;
-  
+  width: 30%;
+  padding: 10px;
 }
 .namediv {
-  width: 280px;
+  /* width: 280px; */
   text-align: center;
-  font-size: 18px;
+  font-size: 20px;
   padding: 5px, 0px;
 
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
-.tagsdiv{
+.tagsdiv {
   text-align: center;
 }
 
@@ -130,16 +135,3 @@
   color: blue;
   border-radius: 10px;
 }
-
-.overlay .userDiv {
-  background-color: #fff;
-  color: #333;
-  padding: 20px;
-  border-radius: 8px;
-  width: 80%; /* Control the width of the overlay content */
-  max-width: 800px;
-  max-height: 90%; /* Prevent the content from overflowing the screen */
-  overflow-y: auto; /* Allow scrolling if the content overflows */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-

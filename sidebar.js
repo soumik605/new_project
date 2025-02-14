@@ -2,7 +2,7 @@ let mode = document.getElementById("mode");
 let maindiv = document.getElementById("maindiv")
 let container= document.getElementById("container")
 
-  mode.addEventListener("click",  () => {
+  mode.addEventListener("click",  async () => {
 
     if (maindiv.classList.contains("dark-mode")) {
 

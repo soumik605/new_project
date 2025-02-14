@@ -12,11 +12,15 @@ async function posts() {
     .then((response) => response.json())
     .then((json) => (users = json.posts));
     container.innerHTML = "";
-  users.forEach(async (user,idx) => {    
+  users.forEach(async (user,idx) => {   
+    let mainUserdiv=document.createElement("div");
+    mainUserdiv.classList.add("mainUserdiv")
+    container.appendChild(mainUserdiv);
+    
     let userDiv = document.createElement("div");
     userDiv.id=  `user_index-${idx}`
     userDiv.classList.add("userDiv");
-    container.appendChild(userDiv); 
+    mainUserdiv.appendChild(userDiv); 
 
     let userName = await infos(user.id);
 
@@ -52,12 +56,12 @@ async function posts() {
     let likesDiv = document.createElement("div");
     likesDiv.classList.add("likesdiv");
     reaction.appendChild(likesDiv);
-    likesDiv.innerText = `Likes:${likes}`;
+    likesDiv.innerText = `Likes: ${likes}`;
 
     let dislikesDiv = document.createElement("div");
     dislikesDiv.classList.add("dislikesdiv");
     reaction.appendChild(dislikesDiv);
-    dislikesDiv.innerText = `dislikes:${dislikes}`;
+    dislikesDiv.innerText = `dislikes: ${dislikes}`;
 
     let tagsDiv = document.createElement("div");
     tagsDiv.classList.add("tagsdiv");
@@ -96,8 +100,6 @@ async function infos(user_id) {
 
   let firstName = user_info.firstName;
   let lastName = user_info.lastName;
-  console.log(user_info);
-  console.log(firstName);
 
   return `${firstName} ${lastName}`;
 }
