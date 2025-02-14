@@ -31,6 +31,7 @@
   display: block;
   opacity: 1;
   transition: 0.2s ease;
+  padding: 10px;
 }
 #RtSt {
   display: flex;
