@@ -21,6 +21,34 @@
   height: 360px;
 }
 
+
+
+.pdct{
+    margin: 10px;
+    padding: 5px;
+    width: 94%;
+    min-height: 326px;
+    background-color: rgb(176, 178, 179);
+    border-radius: 20px;
+    box-shadow: 3px 4px 8px  rgb(50, 50, 50);
+    text-align: center;
+    cursor: pointer;    
+
+}
+#RtSt{
+    display: flex;
+    justify-content: space-between;
+}
+.pdct:hover{
+    opacity: 85%;
+    box-shadow: 2px 3px 3px 3px rgb(218, 218, 218);
+    transform: scale(1.03);
+
+}
+#hr{
+    border: 2px solid;
+}
+
 .pdct {
   min-height: 326px;
   background-color: rgb(176, 178, 179);

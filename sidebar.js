@@ -15,10 +15,20 @@ mode.addEventListener("click", async () => {
     maindiv.style.background = "linear-gradient(to right, #200122, #6f0000)";
   }
 
-  
-
-
-
-
-
 });
+
+
+  // mode.addEventListener("click",  () => {
+
+  //   if (maindiv.classList.contains("dark-mode")) {
+
+  //     maindiv.classList.remove("dark-mode");
+  //     container.classList.remove("dark-mode");
+  //     maindiv.style.background = ''; 
+     
+  //   } else {
+      
+  //     maindiv.classList.add("dark-mode");
+  //     maindiv.style.background = "linear-gradient(to right, #200122, #6f0000)";
+  //   }
+  // });   
