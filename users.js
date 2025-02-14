@@ -60,7 +60,7 @@ window.onload = function () {
       // });
 
     });
-};
+  };
 
 function exportToCSV(data) {
 
@@ -68,14 +68,15 @@ function exportToCSV(data) {
   const csvRows = data.map(item => {
     return `${item.Name},${item.email},${item.username},${item.gender},${item.role}`;
   });
-
+  
  
   const csvContent = [csvHeaders.join(","), ...csvRows].join("\n");
-
+  
   
   const blob = new Blob([csvContent], { type: "text/csv" });
   const link = document.createElement("a");
   link.href = URL.createObjectURL(blob);
   link.download = "posts_data.csv";
   link.click();
+
 }
