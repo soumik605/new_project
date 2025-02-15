@@ -13,6 +13,13 @@ window.onload = function () {
       let a = 0;
       let usersData = [];
 
+      let searchUser  = document.createElement("div")
+      let searchInput = document.createElement("input")
+
+
+
+      
+
       let exportButton = document.createElement("button");
       exportButton.id="exportButton"
       exportButton.innerText = "Export to CSV";
@@ -52,12 +59,7 @@ window.onload = function () {
           role: role,
         });
       }
-      // let exportButton = document.createElement("button");
-      // exportButton.innerText = "Export to CSV";
-      // container.appendChild(exportButton);
-      // exportButton.addEventListener("click", () => {
-      //   exportToCSV(usersData);
-      // });
+
 
     });
   };
