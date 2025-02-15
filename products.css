@@ -5,7 +5,7 @@
 }
 
 .container {
-  padding-left: 100px;
+  padding-left: 150px;
   width: 100%;
   background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
 
@@ -46,7 +46,7 @@
   opacity: 0;
   transition: 0.2s ease;
   padding: 10px;
-  margin-top: 67%;
+  margin-top: 69%;
   background: rgb(0, 0, 0);
   background: rgba(0, 0, 0, 0.5); 
   color: white;
