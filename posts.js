@@ -21,11 +21,11 @@ async function posts() {
     let container = document.createElement("div");
     container.id="container"
     container.className="dark-mode"
-    maincont.appendChild(container)
-  await fetch("https://dummyjson.com/posts")
+    await fetch("https://dummyjson.com/posts")
     .then((response) => response.json())
     .then((json) => (users = json.posts));
-    container.innerHTML = "";
+    maincont.innerHTML = "";
+    maincont.appendChild(container)
 
     
     
