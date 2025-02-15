@@ -14,11 +14,17 @@ window.onload = function () {
       let usersData = [];
 
       let searchUser  = document.createElement("div")
+      searchUser.classList.add("searchUser")
+      let searchIcon = document.createElement("div")
+      searchUser.classList.add("searchUser")
+      searchIcon.innerHTML=""
       let searchInput = document.createElement("input")
+      searchInput.classList.add("searchInput")
+      searchUser.appendChild(searchInput)
+      container.appendChild(searchUser)
 
 
 
-      
 
       let exportButton = document.createElement("button");
       exportButton.id="exportButton"

@@ -11,6 +11,13 @@ async function posts() {
   let maincont= document.getElementById("maincont")
  
   let users = [];
+  let container = document.createElement("div");
+  container.id="container"
+  container.className="dark-mode"
+  await fetch("https://dummyjson.com/posts")
+  .then((response) => response.json())
+  .then((json) => (users = json.posts));
+  maincont.innerHTML = "";
   let exportButton = document.createElement("button");
     exportButton.id = "exportButton";
     exportButton.innerText = "Export to CSV";
@@ -18,14 +25,7 @@ async function posts() {
     exportButton.addEventListener("click", () => {
       exportToCSV(postsData);
     });
-    let container = document.createElement("div");
-    container.id="container"
-    container.className="dark-mode"
-    await fetch("https://dummyjson.com/posts")
-    .then((response) => response.json())
-    .then((json) => (users = json.posts));
-    maincont.innerHTML = "";
-    maincont.appendChild(container)
+  maincont.appendChild(container)
 
     
     
