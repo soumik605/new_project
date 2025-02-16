@@ -28,12 +28,13 @@ async function posts() {
   loadButton.textContent = "Load more...";
   loadButton.classList.add("loadButton");
   maincont.appendChild(loadButton);
-
+  
   loadButton.addEventListener("click", () => {
     loadMorePosts();
   });
-
+  
   await loadMorePosts();
+  container.innerHTML = "";
 }
 
 async function loadMorePosts() {
@@ -42,7 +43,6 @@ async function loadMorePosts() {
   let response = await fetch(`https://dummyjson.com/posts?limit=${limit}&skip=${(currentPage - 1) * limit}`);
   let data = await response.json();
   let users = data.posts;
-  container.innerHTML = "";
 
   if (users.length === 0) {
     document.querySelector(".loadButton").style.display = "none"; 
