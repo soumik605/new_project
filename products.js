@@ -1,10 +1,18 @@
-window.onload = () => {
+window.onload = async function () {
+  await fetchAllUsers();
+  await pdctDetails();
+};
+
+async function fetchAllUsers() {
   let container = document.getElementsByClassName("container")[0];
+  let container2 = document.getElementById("container2");
+  let pdctInfo = document.getElementById("pdctInfo");
+
   let load = document.createElement("div");
   load.classList.add("load");
   container.appendChild(load);
 
-  fetch("https://dummyjson.com/products")
+  await fetch("https://dummyjson.com/products")
     .then((res) => {
       return res.json();
     })
@@ -14,15 +22,7 @@ window.onload = () => {
       let productsData = obj.products;
       let productData = [];
 
-
-
-      // let exportButton = document.createElement("button");
-      // exportButton.id="exportButton"
-      // exportButton.innerText = "Export to CSV";
-      // container.appendChild(exportButton);
-      // exportButton.addEventListener("click", () => {
-      //   exportToCSV(usersData);
-      // });
+      console.log(productData);
 
       productsData.forEach((prod, idx) => {
         let title = prod.title;
@@ -33,21 +33,17 @@ window.onload = () => {
         let warrantyInformation = prod.warrantyInformation;
         let returnPolicy = prod.returnPolicy;
         let thumbnail = prod.thumbnail;
-        let  main_pdct = document.createElement("div");
-        main_pdct.classList.add("main_pdct")
-
-        let hiddenDiv= document.createElement("div")
-        hiddenDiv.classList.add("hiddenDiv")
-        main_pdct.appendChild(hiddenDiv)
-        hiddenDiv.innerHTML=`<img id="prdctimg" src="${thumbnail}"></img>`
+        let main_pdct = document.createElement("div");
+        main_pdct.classList.add("main_pdct");
+        main_pdct.setAttribute("product_id", prod.id);
+        let hiddenDiv = document.createElement("div");
+        hiddenDiv.classList.add("hiddenDiv");
+        main_pdct.appendChild(hiddenDiv);
+        hiddenDiv.innerHTML = `<img id="prdctimg" src="${thumbnail}"></img>`;
 
         let pdct = document.createElement("div");
         pdct.classList.add("pdct");
-        main_pdct.appendChild(pdct)
-
- 
-       
-
+        main_pdct.appendChild(pdct);
 
         pdct.innerHTML = `
             <h3 id="h22">${title}</h3> </br>
@@ -61,19 +57,15 @@ window.onload = () => {
           price: price,
           rating: rating,
           warrantyInformation: warrantyInformation,
-
           tags: tags.join(", "),
         });
       });
-
-      let exportButton = document.createElement("button");
-      exportButton.innerText = "Export to CSV";
-      container.appendChild(exportButton);
+      let exportButton = document.getElementById("pdct_exportButton");
       exportButton.addEventListener("click", () => {
         exportToCSV(productData);
       });
     });
-};
+}
 
 function exportToCSV(data) {
   const csvHeaders = [
@@ -94,4 +86,43 @@ function exportToCSV(data) {
   link.href = URL.createObjectURL(blob);
   link.download = "posts_data.csv";
   link.click();
+}
+
+function pdctDetails() {
+  let pdctInfo = document.getElementById("pdctInfo");
+  let pdctDivs = document.getElementsByClassName("main_pdct");
+  
+  console.log(pdctDivs);
+
+  if (pdctDivs) {
+    Array.from(pdctDivs).forEach((div) => {
+      div.addEventListener("click", async function () {
+        console.log(div);
+        
+      
+
+        pdctInfo.innerHTML = "";
+        pdctInfo.style.display="block"
+        let product = [];
+        let pdct_id = div.getAttribute("product_id");
+
+        await fetch(`https://dummyjson.com/products/${pdct_id}`)
+          .then((response) => response.json())
+          .then((data) => (product = data));
+
+        let p = document.createElement("p");
+        p.id="infoP"
+        pdctInfo.innerHTML=`<img id="prdctInfoimg" src="${product.thumbnail}"></img>`
+        p.innerText = `
+        \nTitle : ${product.title}
+        \nPrice : ${product.price} $
+        \nstock : ${product.stock}
+        \nRating : ${product.rating}
+        \nWarranty : ${product.warrantyInformation}
+        \n Return POlicy : ${product.returnPolicy}
+        \nTags: ${product.tags}`;
+        pdctInfo.appendChild(p);
+      });
+    });
+  }
 }
