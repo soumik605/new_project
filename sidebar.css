@@ -5,11 +5,11 @@
 }
 
 .button {
-    width: 110px;
-    height: 30px;
+    /* width: 110px; */
+    /* height: 30px; */
     margin-bottom: 30px;
     padding: 5px;
-    border-radius: 20px;
+    /* border-radius: 20px; */
     position: relative;
     
 }
@@ -20,7 +20,7 @@
     top: 0;
     width: 50px;
     height: 100vh;
-    background-color: aqua;
+    background-color: rgb(10, 255, 255);
 }
 
 
@@ -33,15 +33,17 @@
     width: 40px;
     height: 40px;
     cursor: pointer;
+    color: rgb(0, 136, 255);
 }
 
 .tooltip {
     font-size: 15px;
-    padding: 10px 25px;
+    padding: 10px 0px;
     border-radius: 25px;
     opacity: 0; 
     pointer-events: none;
     position: absolute;
+    color: rgb(115, 199, 143);
     top: 9px;
     left: 40%; 
 }
@@ -50,7 +52,6 @@
     opacity: 1; 
     pointer-events: auto;
 }
-
 
 #mode{
     background-color: orangered;
@@ -62,3 +63,15 @@
     margin-top: 10px;
     cursor: pointer;
 }   
+
+.seidtabIndicator{
+    height: 50px;
+    width: 100%;
+    background-color: red;
+    position: absolute;
+}
+
+
+.active {
+    background-color: #732e09;
+}
