@@ -1,5 +1,4 @@
 window.onload = function () {
-  // let container = document.getElementById("container");
   let maincont = document.getElementById("maincont");
   let load = document.createElement("div");
   load.classList.add("load");
@@ -10,6 +9,7 @@ let currentPage = 1;
 const limit = 10;
 
 async function posts() {
+
   let maincont = document.getElementById("maincont");
   let users = [];
   let exportButton = document.createElement("button");
@@ -153,7 +153,7 @@ async function loadMorePosts() {
     showMoreUsers();
 
     loadButton.addEventListener("click", showMoreUsers);
-  // });
+  //  });
 }
 
 async function infos(user_id) {
