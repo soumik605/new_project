@@ -13,6 +13,11 @@
     position: relative;
     
 }
+.button:hover{
+    cursor: pointer;
+    background: linear-gradient(to right, #9b06a6, #ba2626);
+    opacity: 80%;
+}
 
 #maindiv {
     position: fixed;
