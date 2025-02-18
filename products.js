@@ -13,18 +13,16 @@ window.onload = () => {
 
       let productsData = obj.products;
       let productData = [];
+      let productTitles = [];
+      productsData.forEach((dataa)=>{
+        productTitles.push(dataa.title)
+      })
+      productTitles.sort()
+      let productsData2 = productTitles.map((title) => 
+        productsData.find((prod) => prod.title === title)
+      );
 
-
-
-      // let exportButton = document.createElement("button");
-      // exportButton.id="exportButton"
-      // exportButton.innerText = "Export to CSV";
-      // container.appendChild(exportButton);
-      // exportButton.addEventListener("click", () => {
-      //   exportToCSV(usersData);
-      // });
-
-      productsData.forEach((prod, idx) => {
+      productsData2.forEach((prod, idx) => {
         let title = prod.title;
         let price = prod.price;
         let rating = prod.rating;

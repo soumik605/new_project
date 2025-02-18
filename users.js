@@ -1,84 +1,112 @@
 window.onload = function () {
   let container = document.getElementById("container");
+
   let load = document.createElement("div");
   load.classList.add("load");
   container.appendChild(load);
+
   fetch("https://dummyjson.com/users")
-    .then(function (call) {
-      return call.json();
-    })
-    .then(function (object) {
-      container.innerHTML = "";
+    .then((call) => call.json())
+    .then((object) => {
+      container.innerHTML = ""; 
       let userlist = object.users;
-      let a = 0;
       let usersData = [];
+      let isFirstRender = true;
+      function userbodyfunc(userlist_2) {
+        container.innerHTML = "";
 
-      let searchUser  = document.createElement("div")
-      let searchInput = document.createElement("input")
+        let searchUser = document.createElement("div");
+        searchUser.classList.add("searchUser");
 
+        let searchIcon = document.createElement("div");
+        searchIcon.classList.add("searchIcon");
+        searchIcon.innerHTML = `<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={1.5} stroke='currentColor' className='size-6'>
+                                  <path strokeLinecap='round' strokeLinejoin='round' d='m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z' />
+                                </svg>`;
 
+        let searchInput = document.createElement("input");
+        searchInput.placeholder = "Search User";
+        searchInput.spellcheck=false;
+        searchInput.classList.add("searchInput");
 
-      
+        if (userbodyfunc.searchValue) {
+          searchInput.value = userbodyfunc.searchValue;
+        }
+        
+        searchUser.appendChild(searchIcon);
+        searchUser.appendChild(searchInput);
+        container.appendChild(searchUser);
+        
+        if (!isFirstRender) {
+          searchInput.focus();
+        }
+        isFirstRender = false;
+        let exportButton = document.createElement("button");
+        exportButton.id = "exportButton";
+        exportButton.innerText = "Export to CSV";
+        container.appendChild(exportButton);
 
-      let exportButton = document.createElement("button");
-      exportButton.id="exportButton"
-      exportButton.innerText = "Export to CSV";
-      container.appendChild(exportButton);
-      exportButton.addEventListener("click", () => {
-        exportToCSV(usersData);
-      });
+        exportButton.addEventListener("click", () => {
+          exportToCSV(usersData);
+        });
 
-      for (let a = 0; a < userlist.length; a++) {
-        let fullname = `${userlist[a].firstName} ${userlist[a].maidenName} ${userlist[a].lastName}`;
-        let age = userlist[a].age;
-        let gender = userlist[a].gender;
-        let email = userlist[a].email;
-        let username = userlist[a].username;
-        let image = userlist[a].image;
-        let role = userlist[a].role;
-        let userdata = document.createElement("div");
-        userdata.classList.add("userdata");
+        userlist_2.forEach((user) => {
+          let fullname = `${user.firstName} ${user.maidenName} ${user.lastName}`;
+          let age = user.age;
+          let gender = user.gender;
+          let email = user.email;
+          let username = user.username;
+          let image = user.image;
+          let role = user.role;
 
-        userdata.innerHTML = `
-                    <h2>${fullname}</h2> </br>
-                    <hr id = "hr">
-                    <pre><b>Age</b>: ${age}<t>              <b>Gender</b>: ${gender}</br></pre>
-                    <b>Email</b>: ${email}</br></br>
-                    <b>Username</b>: ${username}</br></br>
-                    <b>Role</b>: ${role}</br>
-                    <img id= "image" src= "${image}"></br>  
-                    `;
-        container.appendChild(userdata);
-        ////ekhane user er sob data array te push ho66e
-        usersData.push({
-          Name: fullname,
-          email: email,
-          username:username,
-       
-          gender: gender,
-          role: role,
+          let userdata = document.createElement("div");
+          userdata.classList.add("userdata");
+          userdata.innerHTML = `
+            <h2>${fullname}</h2><br>
+            <hr id="hr">
+            <pre><b>Age</b>: ${age} <t> <b>Gender</b>: ${gender}</pre>
+            <b>Email</b>: ${email}<br><br>
+            <b>Username</b>: ${username}<br><br>
+            <b>Role</b>: ${role}<br>
+            <img id="image" src="${image}"><br>  
+          `;
+
+          container.appendChild(userdata);
+
+          usersData.push({
+            Name: fullname,
+            email: email,
+            username: username,
+            gender: gender,
+            role: role,
+          });
+        });
+
+        searchInput.addEventListener("input", () => {
+          let searchText = searchInput.value.toLowerCase();
+          userbodyfunc.searchValue = searchText;
+
+          let userlist_2 = userlist.filter((user) =>
+            `${user.firstName} ${user.lastName}`.toLowerCase().includes(searchText)
+          );
+          userbodyfunc(userlist_2);
         });
       }
 
-
+      userbodyfunc(userlist);
     });
-  };
+};
 
 function exportToCSV(data) {
-
-  const csvHeaders = ["Name", "email", "username", "gender", "role"];
-  const csvRows = data.map(item => {
+  const csvHeaders = ["Name", "Email", "Username", "Gender", "Role"];
+  const csvRows = data.map((item) => {
     return `${item.Name},${item.email},${item.username},${item.gender},${item.role}`;
   });
-  
- 
+
   const csvContent = [csvHeaders.join(","), ...csvRows].join("\n");
-  
-  
   const blob = new Blob([csvContent], { type: "text/csv" });
   const link = document.createElement("a");
   link.href = URL.createObjectURL(blob);
-  link.download = "posts_data.csv";
+  link.download = "users_data.csv";
   link.click();
-
 }

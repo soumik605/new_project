@@ -1,53 +1,62 @@
 window.onload = function () {
-  // let container = document.getElementById("container");
-  let maincont= document.getElementById("maincont")
-  let load = document.createElement("div");
-  load.classList.add("load");
-  maincont.appendChild(load);
   posts();
 };
+let currentPage = 1;
+const limit = 10;
 
 async function posts() {
-  let maincont= document.getElementById("maincont")
- 
-  let users = [];
+  let maincont = document.getElementById("maincont");
+  let container = document.createElement("div");
+    let load = document.createElement("div");
+  load.classList.add("load");
+  container.appendChild(load);
+  container.id = "container";
+  container.className = "dark-mode";
+  
   let exportButton = document.createElement("button");
-    exportButton.id = "exportButton";
-    exportButton.innerText = "Export to CSV";
-    maincont.appendChild(exportButton);
-    exportButton.addEventListener("click", () => {
-      exportToCSV(postsData);
-    });
-    let container = document.createElement("div");
-    container.id="container"
-    container.className="dark-mode"
-    await fetch("https://dummyjson.com/posts")
-    .then((response) => response.json())
-    .then((json) => (users = json.posts));
-    maincont.innerHTML = "";
-    maincont.appendChild(container)
+  exportButton.id = "exportButton";
+  exportButton.innerText = "Export to CSV";
+  // maincont.appendChild(exportButton);
+  
+  exportButton.addEventListener("click", () => {
+    exportToCSV(postsData);
+  });
 
-    
-    
-  users.forEach(async (user,idx) => {   
-    let mainUserdiv=document.createElement("div");
-    mainUserdiv.classList.add("mainUserdiv")
-    container.appendChild(mainUserdiv);
-    
-
+  maincont.appendChild(container);
+  
+  let loadButton = document.createElement("button");
+  loadButton.textContent = "Load more...";
+  loadButton.classList.add("loadButton");
+  // maincont.appendChild(loadButton);
+  
+  loadButton.addEventListener("click", () => {
+    loadMorePosts();
+  });
+  
+  await loadMorePosts();
+  maincont.prepend(exportButton);
   container.innerHTML = "";
-  let postsData = [];
+  maincont.appendChild(loadButton);
 
+}
 
+async function loadMorePosts() {
+  let container = document.getElementById("container");
+  
+  let response = await fetch(`https://dummyjson.com/posts?limit=${limit}&skip=${(currentPage - 1) * limit}`);
+  let data = await response.json();
+  let users = data.posts;
+
+  if (users.length === 0) {
+    document.querySelector(".loadButton").style.display = "none"; 
+    return;
+  }
 
   users.forEach(async (user, idx) => {
     let userDiv = document.createElement("div");
-    userDiv.id = `user_index-${idx}`;
+    userDiv.id = `user_index-${(currentPage - 1) * limit + idx}`;
     userDiv.classList.add("userDiv");
-    mainUserdiv.appendChild(userDiv); 
-    userDiv.style.display = "none";
-    container.appendChild(userDiv);
-
+    
     let userName = await infos(user.id);
     let title = user.title;
     let body = user.body;
@@ -80,53 +89,23 @@ async function posts() {
     likesDiv.classList.add("likesdiv");
     likesDiv.innerText = `Likes: ${likes}`;
     reaction.appendChild(likesDiv);
-    likesDiv.innerText = `Likes: ${likes}`;
 
     let dislikesDiv = document.createElement("div");
     dislikesDiv.classList.add("dislikesdiv");
     dislikesDiv.innerText = `Dislikes: ${dislikes}`;
     reaction.appendChild(dislikesDiv);
-    dislikesDiv.innerText = `dislikes: ${dislikes}`;
 
     let tagsDiv = document.createElement("div");
     tagsDiv.classList.add("tagsdiv");
     tagsDiv.innerText = `Tags: ${tags.join(", ")}`;
     userDiv.appendChild(tagsDiv);
 
-    postsData.push({
-      title: title,
-      userName: userName,
-      bodyPreview: first20Words + "...",
-      likes: likes,
-      dislikes: dislikes,
-      tags: tags.join(", "),
-    
-    });
+    container.appendChild(userDiv);
   });
 
-  let loadButton = document.createElement("button");
-  loadButton.textContent = "Load more...";
-  loadButton.classList.add("loadButton");
-  container.appendChild(loadButton);
+  currentPage++; 
+}
 
-  let user_index = 0;
-  function showMoreUsers() {
-    for (let i = user_index; i < user_index + 10 && i < users.length; i++) {
-      let userr = document.getElementById(`user_index-${i}`);
-      if (userr) {
-        userr.style.display = "block";
-      }
-    }
-    user_index += 10;
-    if (user_index === users.length) {
-      loadButton.style.display = "none";
-    }
-  }
-
-  showMoreUsers(); 
-
-  loadButton.addEventListener("click", showMoreUsers);
-})}
 
 async function infos(user_id) {
   let user_info = await fetch(`https://dummyjson.com/users/${user_id}`)

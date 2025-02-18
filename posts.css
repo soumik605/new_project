@@ -15,7 +15,7 @@
   display: grid;
   grid-template-columns: 33% 33% 33%;
   justify-items: center;
-  padding-top: 10px;
+  /* padding-top: 10px; */
 }
 
 .mainUserdiv {
