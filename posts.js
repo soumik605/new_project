@@ -16,7 +16,7 @@ async function posts() {
   let exportButton = document.createElement("button");
   exportButton.id = "exportButton";
   exportButton.innerText = "Export to CSV";
-  maincont.appendChild(exportButton);
+  // maincont.appendChild(exportButton);
   
   exportButton.addEventListener("click", () => {
     exportToCSV(postsData);
@@ -27,14 +27,17 @@ async function posts() {
   let loadButton = document.createElement("button");
   loadButton.textContent = "Load more...";
   loadButton.classList.add("loadButton");
-  maincont.appendChild(loadButton);
+  // maincont.appendChild(loadButton);
   
   loadButton.addEventListener("click", () => {
     loadMorePosts();
   });
   
   await loadMorePosts();
+  maincont.prepend(exportButton);
   container.innerHTML = "";
+  maincont.appendChild(loadButton);
+
 }
 
 async function loadMorePosts() {

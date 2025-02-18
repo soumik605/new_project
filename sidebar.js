@@ -32,3 +32,27 @@ let dark_mode = document.getElementsByClassName("dark-mode")
   //     maindiv.style.background = "linear-gradient(to right, #200122, #6f0000)";
   //   }
   // });   
+
+
+
+
+
+
+let links = document.querySelectorAll(".button a");
+let currentPage = window.top.location.pathname.split("/").pop();
+console.log(currentPage);
+document.querySelectorAll(".button").forEach(button => {
+  let link = button.querySelector("a");
+    let linkPage = link.getAttribute("href").split("/").pop();
+    if (currentPage === linkPage) {
+      button.classList.add("active");
+    } else {
+        button.classList.remove("active");
+    }
+});
+
+
+
+
+
+
