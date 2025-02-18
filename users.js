@@ -49,7 +49,7 @@ window.onload = function () {
                     <img id= "image" src= "${image}"></br>  
                     `;
         container.appendChild(userdata);
-        ////ekhane user er sob data arrey te push ho66e
+        ////ekhane user er sob data array te push ho66e
         usersData.push({
           Name: fullname,
           email: email,
