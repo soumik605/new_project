@@ -6,6 +6,8 @@ window.onload = function () {
   maincont.appendChild(load);
   posts();
 };
+let currentPage = 1;
+const limit = 10;
 
 async function posts() {
   let maincont = document.getElementById("maincont");
@@ -45,7 +47,19 @@ async function posts() {
 
     
 
+}
 
+async function loadMorePosts() {
+  let container = document.getElementById("container");
+  
+  let response = await fetch(`https://dummyjson.com/posts?limit=${limit}&skip=${(currentPage - 1) * limit}`);
+  let data = await response.json();
+  let users = data.posts;
+
+  if (users.length === 0) {
+    document.querySelector(".loadButton").style.display = "none"; 
+    return;
+  }
 
 
     users.forEach(async (user, idx) => {
