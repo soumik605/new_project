@@ -117,13 +117,19 @@ async function loadMorePosts() {
 }
 
 async function infos(user_id) {
-  let user_info = await fetch(`https://dummyjson.com/users/${user_id}`)
-    .then((response) => response.json());
-  return `${user_info.firstName} ${user_info.lastName}`;
+  let user_info = await fetch(`https://dummyjson.com/users/${user_id}`).then(response => response.json());
+  
+  return {
+    fullname: `${user_info.firstName} ${user_info.lastName}`,
+    email: user_info.email,
+    username: user_info.username,
+    gender: user_info.gender,
+    role: user_info.role,
+  };
 }
 
 function exportToCSV(data) {
-  const csvHeaders = ["Title", "User Name", "Body", "Likes", "Dislikes", "Tags"];
+  const csvHeaders = ["Title", "User Name", "Body Preview", "Likes", "Dislikes", "Tags"];
   const csvRows = data.map(item => {
     return `"${item.title}","${item.userName}","${item.bodyPreview}","${item.likes}","${item.dislikes}","${item.tags}"`;
   });
