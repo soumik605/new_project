@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>settings page</title>
+    <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+    <div id="sidebar-cont">
+        <object
+          type="text/html"
+          data="sidebar.html"
+          width="100%"
+          height="100%"
+        ></object>
+      </div>
+
+    <div class="setcont">
+        <h1><span>S</span>ettings....</h1>
+        <div class="setoptionDiv">
+            <div class="themeDiv">
+           Select theme : <select id="theme">
+            <option value="light-mode">Light Mode</option>
+            <option value="dark-mode">Dark Mode</option>
+           </select>
+
+            </div>
+            <div class="sidebarsetDiv">
+                Sidebar type :  <select  id="sidebar_type" >
+                    <option value="expande">expande</option>
+                    <option value="expand_onhover">expand_onhover</option>
+                    <option value="wrap">wrap</option>
+                </select>
+            </div>
+
+            <button id="back">back</button>
+        </div>
+    </div>
+    <script src="settings.js"></script>
+</body>
+</html>

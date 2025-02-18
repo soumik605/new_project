@@ -17,8 +17,11 @@ button:hover{
     transform: scale(1.03);
   
   }
+  .light-mode{
+    background:  linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+  }
   .dark-mode {
-    background: linear-gradient(to right, #200122, #6f0000);
+    background: linear-gradient(to right, #8e0e00, #1f1c18);
   }
 
   #modal{

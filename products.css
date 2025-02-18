@@ -13,7 +13,6 @@ body {
 .container {
   display: grid;
   grid-template-columns: 30% 30% 30%;
-  /* background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59); */
   gap: 20px;
   height: 100vh;
   padding-left: 160px;
@@ -24,7 +23,6 @@ body {
   display: none;
 }
 #container2 {
-  /* background-color: #fff; */
  
   height: 100vh;
   padding: 10px;

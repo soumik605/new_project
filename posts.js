@@ -30,7 +30,7 @@ async function posts() {
   });
   let container = document.createElement("div");
   container.id = "container";
-  container.className = "dark-mode";
+ 
   await fetch("https://dummyjson.com/posts")
     .then((response) => response.json())
     .then((json) => (users = json.posts));
