@@ -1,43 +1,45 @@
 window.onload = function () {
   posts();
 };
+
 let currentPage = 1;
 const limit = 10;
+let postsData = []; 
 
 async function posts() {
   let maincont = document.getElementById("maincont");
+
   let container = document.createElement("div");
-    let load = document.createElement("div");
-  load.classList.add("load");
-  container.appendChild(load);
   container.id = "container";
   container.className = "dark-mode";
+  
+  let load = document.createElement("div");
+  load.classList.add("load");
+  container.appendChild(load);
+
   
   let exportButton = document.createElement("button");
   exportButton.id = "exportButton";
   exportButton.innerText = "Export to CSV";
-  // maincont.appendChild(exportButton);
+  maincont.appendChild(exportButton);
   
   exportButton.addEventListener("click", () => {
     exportToCSV(postsData);
   });
 
   maincont.appendChild(container);
-  
+
   let loadButton = document.createElement("button");
   loadButton.textContent = "Load more...";
   loadButton.classList.add("loadButton");
-  // maincont.appendChild(loadButton);
+  maincont.appendChild(loadButton);
   
   loadButton.addEventListener("click", () => {
     loadMorePosts();
   });
-  
-  await loadMorePosts();
-  maincont.prepend(exportButton);
-  container.innerHTML = "";
-  maincont.appendChild(loadButton);
 
+  container.innerHTML = ""; 
+  await loadMorePosts(); 
 }
 
 async function loadMorePosts() {
@@ -45,19 +47,18 @@ async function loadMorePosts() {
   
   let response = await fetch(`https://dummyjson.com/posts?limit=${limit}&skip=${(currentPage - 1) * limit}`);
   let data = await response.json();
-  let users = data.posts;
 
-  if (users.length === 0) {
+  if (!data.posts || data.posts.length === 0) {
     document.querySelector(".loadButton").style.display = "none"; 
     return;
   }
 
-  users.forEach(async (user, idx) => {
+  for (const user of data.posts) {
     let userDiv = document.createElement("div");
-    userDiv.id = `user_index-${(currentPage - 1) * limit + idx}`;
     userDiv.classList.add("userDiv");
-    
-    let userName = await infos(user.id);
+
+    let userInfo = await infos(user.userId);
+
     let title = user.title;
     let body = user.body;
     let tags = user.tags;
@@ -78,7 +79,7 @@ async function loadMorePosts() {
 
     let namediv = document.createElement("div");
     namediv.classList.add("namediv");
-    namediv.innerText = `${userName}`;
+    namediv.innerText = `${userInfo.fullname}`;
     userDiv.appendChild(namediv);
 
     let reaction = document.createElement("div");
@@ -101,20 +102,34 @@ async function loadMorePosts() {
     userDiv.appendChild(tagsDiv);
 
     container.appendChild(userDiv);
-  });
+
+    postsData.push({
+      title: title,
+      userName: userInfo.fullname,
+      bodyPreview: first20Words + "...",
+      likes: likes,
+      dislikes: dislikes,
+      tags: tags.join(", "),
+    });
+  }
 
   currentPage++; 
 }
 
-
 async function infos(user_id) {
-  let user_info = await fetch(`https://dummyjson.com/users/${user_id}`)
-    .then((response) => response.json());
-  return `${user_info.firstName} ${user_info.lastName}`;
+  let user_info = await fetch(`https://dummyjson.com/users/${user_id}`).then(response => response.json());
+  
+  return {
+    fullname: `${user_info.firstName} ${user_info.lastName}`,
+    email: user_info.email,
+    username: user_info.username,
+    gender: user_info.gender,
+    role: user_info.role,
+  };
 }
 
 function exportToCSV(data) {
-  const csvHeaders = ["Title", "User Name", "Body", "Likes", "Dislikes", "Tags"];
+  const csvHeaders = ["Title", "User Name", "Body Preview", "Likes", "Dislikes", "Tags"];
   const csvRows = data.map(item => {
     return `"${item.title}","${item.userName}","${item.bodyPreview}","${item.likes}","${item.dislikes}","${item.tags}"`;
   });
