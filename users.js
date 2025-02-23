@@ -1,4 +1,8 @@
 window.onload = function () {
+  
+if(localStorage.getItem("darkMode") === "enabled"){
+  document.body.classList.add("dark-mode")
+}
   let container = document.getElementById("container");
 
   let load = document.createElement("div");
@@ -111,6 +115,3 @@ function exportToCSV(data) {
   link.click();
 }
 
-if(localStorage.getItem("darkMode") === "enabled"){
-  document.body.classList.toggle("inner_dark_mode");
-}
