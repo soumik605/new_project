@@ -1,4 +1,8 @@
 window.onload = function () {
+  let maincont = document.getElementById("maincont");
+  let load = document.createElement("div");
+  load.classList.add("load");
+  maincont.appendChild(load);
   posts();
 };
 
@@ -7,11 +11,28 @@ const limit = 10;
 let postsData = []; 
 
 async function posts() {
-  let maincont = document.getElementById("maincont");
 
-  let container = document.createElement("div");
-  container.id = "container";
-  container.className = "dark-mode";
+  let maincont = document.getElementById("maincont");
+  let users = [];
+  // let exportButton = document.createElement("button");
+  // exportButton.id = "exportButton";
+  // exportButton.innerText = "Export to CSV";
+
+  let overlay= document.createElement("div")
+  overlay.id="overlay"
+  overlay.classList.add("hide")
+  let modal = document.createElement("div");
+  modal.id="modal"
+  modal.classList.add("hide")
+  let closeBtn= document.createElement("button")
+  closeBtn.id="closeBtn"
+  modal.appendChild(closeBtn)
+  closeBtn.innerHTML=`X`
+
+
+  // let container = document.createElement("div");
+  // container.id = "container";
+  // container.className = "dark-mode";
   
   let load = document.createElement("div");
   load.classList.add("load");
@@ -26,9 +47,22 @@ async function posts() {
   exportButton.addEventListener("click", () => {
     exportToCSV(postsData);
   });
+  let container = document.createElement("div");
+  container.id = "container";
+ 
+  await fetch("https://dummyjson.com/posts")
+    .then((response) => response.json())
+    .then((json) => (users = json.posts));
+  maincont.innerHTML = "";
+  maincont.appendChild(exportButton);
+  maincont.appendChild(modal);
+  maincont.appendChild(overlay);
 
   maincont.appendChild(container);
 
+    let postsData = [];
+
+    
   let loadButton = document.createElement("button");
   loadButton.textContent = "Load more...";
   loadButton.classList.add("loadButton");
@@ -51,7 +85,7 @@ async function loadMorePosts() {
   if (!data.posts || data.posts.length === 0) {
     document.querySelector(".loadButton").style.display = "none"; 
     return;
-  }
+  }}
 
   for (const user of data.posts) {
     let userDiv = document.createElement("div");
@@ -65,55 +99,113 @@ async function loadMorePosts() {
     let likes = user.reactions.likes;
     let dislikes = user.reactions.dislikes;
 
-    let titleDiv = document.createElement("div");
-    titleDiv.classList.add("titlediv");
-    titleDiv.innerText = `Title: ${title}`;
-    userDiv.appendChild(titleDiv);
+    users.forEach(async (user, idx) => {
+      let mainUserdiv = document.createElement("div");
+      mainUserdiv.classList.add("mainUserdiv");
+      container.appendChild(mainUserdiv);
+      let userDiv = document.createElement("div");
+      userDiv.id = `user_index-${idx}`;
+      userDiv.classList.add("userDiv");
+      mainUserdiv.appendChild(userDiv);
+     
 
-    let bodyDiv = document.createElement("div");
-    bodyDiv.classList.add("bodydiv");
-    const words = body.split(" ");
-    const first20Words = words.slice(0, 20).join(" ");
-    bodyDiv.innerText = first20Words + "...";
-    userDiv.appendChild(bodyDiv);
+      let userName = await infos(user.id);
+      let title = user.title;
+      let body = user.body;
+      let tags = user.tags;
+      let likes = user.reactions.likes;
+      let dislikes = user.reactions.dislikes;
 
+      userDiv.addEventListener("click", openModal, container.style.cursor="none",);
+      overlay.addEventListener("click", closeModal);
+      closeBtn.addEventListener("click", closeModal);
     let namediv = document.createElement("div");
     namediv.classList.add("namediv");
     namediv.innerText = `${userInfo.fullname}`;
     userDiv.appendChild(namediv);
 
-    let reaction = document.createElement("div");
-    reaction.classList.add("reaction");
-    userDiv.appendChild(reaction);
 
-    let likesDiv = document.createElement("div");
-    likesDiv.classList.add("likesdiv");
-    likesDiv.innerText = `Likes: ${likes}`;
-    reaction.appendChild(likesDiv);
+      let titleDiv = document.createElement("div");
+      titleDiv.classList.add("titlediv");
+      titleDiv.innerText = `Title: ${title}`;
+      userDiv.appendChild(titleDiv);
 
-    let dislikesDiv = document.createElement("div");
-    dislikesDiv.classList.add("dislikesdiv");
-    dislikesDiv.innerText = `Dislikes: ${dislikes}`;
-    reaction.appendChild(dislikesDiv);
+      let bodyDiv = document.createElement("div");
+      bodyDiv.classList.add("bodydiv");
+      const words = body.split(" ");
+      const first20Words = words.slice(0, 20).join(" ");
+      bodyDiv.innerText = first20Words + "...";
+      userDiv.appendChild(bodyDiv);
 
-    let tagsDiv = document.createElement("div");
-    tagsDiv.classList.add("tagsdiv");
-    tagsDiv.innerText = `Tags: ${tags.join(", ")}`;
-    userDiv.appendChild(tagsDiv);
+      // let namediv = document.createElement("div");
+      // namediv.classList.add("namediv");
+      // namediv.innerText = `${userName}`;
+      // userDiv.appendChild(namediv);
 
+      let reaction = document.createElement("div");
+      reaction.classList.add("reaction");
+      userDiv.appendChild(reaction);
     container.appendChild(userDiv);
 
-    postsData.push({
-      title: title,
-      userName: userInfo.fullname,
-      bodyPreview: first20Words + "...",
-      likes: likes,
-      dislikes: dislikes,
-      tags: tags.join(", "),
-    });
-  }
+  //   postsData.push({
+  //     title: title,
+  //     userName: userInfo.fullname,
+  //     bodyPreview: first20Words + "...",
+  //     likes: likes,
+  //     dislikes: dislikes,
+  //     tags: tags.join(", "),
+  //   });
+  // })
 
-  currentPage++; 
+      let likesDiv = document.createElement("div");
+      likesDiv.classList.add("likesdiv");
+      likesDiv.innerText = `Likes: ${likes}`;
+      reaction.appendChild(likesDiv);
+      likesDiv.innerText = `Likes: ${likes}`;
+
+      let dislikesDiv = document.createElement("div");
+      dislikesDiv.classList.add("dislikesdiv");
+      dislikesDiv.innerText = `Dislikes: ${dislikes}`;
+      reaction.appendChild(dislikesDiv);
+      dislikesDiv.innerText = `dislikes: ${dislikes}`;
+
+      let tagsDiv = document.createElement("div");
+      tagsDiv.classList.add("tagsdiv");
+      tagsDiv.innerText = `Tags: ${tags.join(", ")}`;
+      userDiv.appendChild(tagsDiv);
+
+      postsData.push({
+        title: title,
+        userName: userName,
+        bodyPreview: first20Words + "...",
+        likes: likes,
+        dislikes: dislikes,
+        tags: tags.join(", "),
+      });
+    });
+    let loadButton = document.createElement("button");
+    loadButton.textContent = "Load more...";
+    loadButton.classList.add("loadButton");
+    container.appendChild(loadButton);
+
+    let user_index = 0;
+    function showMoreUsers() {
+      for (let i = user_index; i < user_index + 10 && i < users.length; i++) {
+        let userr = document.getElementById(`user_index-${i}`);
+        if (userr) {
+          userr.style.display = "block";
+        }
+      }
+      user_index += 10;
+      if (user_index === users.length) {
+        loadButton.style.display = "none";
+      }
+    }
+
+    showMoreUsers();
+
+    loadButton.addEventListener("click", showMoreUsers);
+  
 }
 
 async function infos(user_id) {
@@ -141,3 +233,20 @@ function exportToCSV(data) {
   link.download = "posts_data.csv";
   link.click();
 }
+
+const openModal = function () {
+  modal.classList.remove("hide");
+  overlay.classList.remove("hide");
+};
+
+const closeModal = function () {
+  modal.classList.add("hide");
+  overlay.classList.add("hide");
+};
+
+
+if(localStorage.getItem("darkMode") === "enabled"){
+  document.body.classList.add("dark-mode")
+}
+
+

@@ -3,33 +3,40 @@
   padding: 0%;
   margin: 0%;
 }
+body{
+  background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+}
 #maincont{
   width: 100%;
-  background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+  min-height: 100vh;
+  /* background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59); */
 
 }
 #container {
-  padding-left: 120px;
   width: 100%;
-  background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+  height: 100%;
+  padding-left: 150px;
+  /* background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59); */
   display: grid;
-  grid-template-columns: 33% 33% 33%;
+  /* grid-template-columns: 33% 33% 33%; */
+  grid-template-columns: 25% 25% 25% 25%;
+
   justify-items: center;
-  /* padding-top: 10px; */
+  opacity: 1;
+
 }
 
 .mainUserdiv {
   margin: 10px;
   padding: 5px;
   width: 95%;
-  /* height: 360px; */
+  cursor: pointer;
 
 }
 
 .userDiv {
   background-color: grey;
   padding: 10px;
-  margin: 20px;
   min-height: 326px;
   border-radius: 20px;
   box-shadow: 5px 3px 10px;
@@ -38,6 +45,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
 }
 .userDiv:hover {
   box-shadow: 2px 3px 3px;
@@ -68,17 +76,17 @@
   margin-right: 10px;
 }
 .likesdiv {
-  width: 100px;
+  width: 200px;
   background-color: green;
   border-radius: 20px;
-  width: 30%;
+  width: 40%;
   padding: 10px;
 }
 .dislikesdiv {
   width: 100px;
   background-color: red;
   border-radius: 20px;
-  width: 30%;
+  width: 40%;
   padding: 10px;
 }
 .namediv {
