@@ -21,7 +21,12 @@ button:hover{
     background:  linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
   }
   .dark-mode {
-    background: linear-gradient(to right, #8e0e00, #1f1c18);
+    background:linear-gradient(to right, #000000, #434343);
+    color: white;
+  }
+  .inner_dark_mode{
+    background: linear-gradient(to right, #403a3e, #be5869);
+    color: white;
   }
 
   #modal{

@@ -13,10 +13,26 @@ let postsData = [];
 async function posts() {
 
   let maincont = document.getElementById("maincont");
+  let users = [];
+  // let exportButton = document.createElement("button");
+  // exportButton.id = "exportButton";
+  // exportButton.innerText = "Export to CSV";
 
-  let container = document.createElement("div");
-  container.id = "container";
-  container.className = "dark-mode";
+  let overlay= document.createElement("div")
+  overlay.id="overlay"
+  overlay.classList.add("hide")
+  let modal = document.createElement("div");
+  modal.id="modal"
+  modal.classList.add("hide")
+  let closeBtn= document.createElement("button")
+  closeBtn.id="closeBtn"
+  modal.appendChild(closeBtn)
+  closeBtn.innerHTML=`X`
+
+
+  // let container = document.createElement("div");
+  // container.id = "container";
+  // container.className = "dark-mode";
   
   let load = document.createElement("div");
   load.classList.add("load");
@@ -44,6 +60,9 @@ async function posts() {
 
   maincont.appendChild(container);
 
+    let postsData = [];
+
+    
   let loadButton = document.createElement("button");
   loadButton.textContent = "Load more...";
   loadButton.classList.add("loadButton");
@@ -66,7 +85,7 @@ async function loadMorePosts() {
   if (!data.posts || data.posts.length === 0) {
     document.querySelector(".loadButton").style.display = "none"; 
     return;
-  }
+  }}
 
   for (const user of data.posts) {
     let userDiv = document.createElement("div");
@@ -97,6 +116,9 @@ async function loadMorePosts() {
       let likes = user.reactions.likes;
       let dislikes = user.reactions.dislikes;
 
+      userDiv.addEventListener("click", openModal, container.style.cursor="none",);
+      overlay.addEventListener("click", closeModal);
+      closeBtn.addEventListener("click", closeModal);
     let namediv = document.createElement("div");
     namediv.classList.add("namediv");
     namediv.innerText = `${userInfo.fullname}`;
@@ -115,22 +137,25 @@ async function loadMorePosts() {
       bodyDiv.innerText = first20Words + "...";
       userDiv.appendChild(bodyDiv);
 
-      let namediv = document.createElement("div");
-      namediv.classList.add("namediv");
-      namediv.innerText = `${userName}`;
-      userDiv.appendChild(namediv);
+      // let namediv = document.createElement("div");
+      // namediv.classList.add("namediv");
+      // namediv.innerText = `${userName}`;
+      // userDiv.appendChild(namediv);
 
+      let reaction = document.createElement("div");
+      reaction.classList.add("reaction");
+      userDiv.appendChild(reaction);
     container.appendChild(userDiv);
 
-    postsData.push({
-      title: title,
-      userName: userInfo.fullname,
-      bodyPreview: first20Words + "...",
-      likes: likes,
-      dislikes: dislikes,
-      tags: tags.join(", "),
-    });
-  }
+  //   postsData.push({
+  //     title: title,
+  //     userName: userInfo.fullname,
+  //     bodyPreview: first20Words + "...",
+  //     likes: likes,
+  //     dislikes: dislikes,
+  //     tags: tags.join(", "),
+  //   });
+  // })
 
       let likesDiv = document.createElement("div");
       likesDiv.classList.add("likesdiv");
@@ -180,7 +205,7 @@ async function loadMorePosts() {
     showMoreUsers();
 
     loadButton.addEventListener("click", showMoreUsers);
-  //  });
+  
 }
 
 async function infos(user_id) {
@@ -210,3 +235,20 @@ function exportToCSV(data) {
   link.download = "posts_data.csv";
   link.click();
 }
+
+const openModal = function () {
+  modal.classList.remove("hide");
+  overlay.classList.remove("hide");
+};
+
+const closeModal = function () {
+  modal.classList.add("hide");
+  overlay.classList.add("hide");
+};
+
+
+if(localStorage.getItem("darkMode") === "enabled"){
+  document.body.classList.add("dark-mode")
+}
+
+

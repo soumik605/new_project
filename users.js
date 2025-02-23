@@ -110,3 +110,7 @@ function exportToCSV(data) {
   link.download = "users_data.csv";
   link.click();
 }
+
+if(localStorage.getItem("darkMode") === "enabled"){
+  document.body.classList.toggle("inner_dark_mode");
+}

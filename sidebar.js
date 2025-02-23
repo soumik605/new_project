@@ -23,5 +23,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+    if(localStorage.getItem("darkMode") === "enabled"){
+        maindiv.classList.toggle("inner_dark_mode")
+      }
+
 
 
