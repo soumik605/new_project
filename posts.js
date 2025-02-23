@@ -5,28 +5,29 @@ window.onload = function () {
   maincont.appendChild(load);
   posts();
 };
+
 let currentPage = 1;
 const limit = 10;
+let postsData = []; 
 
 async function posts() {
 
   let maincont = document.getElementById("maincont");
-  let users = [];
+
+  let container = document.createElement("div");
+  container.id = "container";
+  container.className = "dark-mode";
+  
+  let load = document.createElement("div");
+  load.classList.add("load");
+  container.appendChild(load);
+
+  
   let exportButton = document.createElement("button");
   exportButton.id = "exportButton";
   exportButton.innerText = "Export to CSV";
-
-  let overlay= document.createElement("div")
-  overlay.id="overlay"
-  overlay.classList.add("hide")
-  let modal = document.createElement("div");
-  modal.id="modal"
-  modal.classList.add("hide")
-  let closeBtn= document.createElement("button")
-  closeBtn.id="closeBtn"
-  modal.appendChild(closeBtn)
-  closeBtn.innerHTML=`X`
-
+  maincont.appendChild(exportButton);
+  
   exportButton.addEventListener("click", () => {
     exportToCSV(postsData);
   });
@@ -43,10 +44,17 @@ async function posts() {
 
   maincont.appendChild(container);
 
-    let postsData = [];
+  let loadButton = document.createElement("button");
+  loadButton.textContent = "Load more...";
+  loadButton.classList.add("loadButton");
+  maincont.appendChild(loadButton);
+  
+  loadButton.addEventListener("click", () => {
+    loadMorePosts();
+  });
 
-    
-
+  container.innerHTML = ""; 
+  await loadMorePosts(); 
 }
 
 async function loadMorePosts() {
@@ -54,13 +62,23 @@ async function loadMorePosts() {
   
   let response = await fetch(`https://dummyjson.com/posts?limit=${limit}&skip=${(currentPage - 1) * limit}`);
   let data = await response.json();
-  let users = data.posts;
 
-  if (users.length === 0) {
+  if (!data.posts || data.posts.length === 0) {
     document.querySelector(".loadButton").style.display = "none"; 
     return;
   }
 
+  for (const user of data.posts) {
+    let userDiv = document.createElement("div");
+    userDiv.classList.add("userDiv");
+
+    let userInfo = await infos(user.userId);
+
+    let title = user.title;
+    let body = user.body;
+    let tags = user.tags;
+    let likes = user.reactions.likes;
+    let dislikes = user.reactions.dislikes;
 
     users.forEach(async (user, idx) => {
       let mainUserdiv = document.createElement("div");
@@ -79,9 +97,10 @@ async function loadMorePosts() {
       let likes = user.reactions.likes;
       let dislikes = user.reactions.dislikes;
 
-      userDiv.addEventListener("click", openModal, container.style.cursor="none",);
-      overlay.addEventListener("click", closeModal);
-      closeBtn.addEventListener("click", closeModal);
+    let namediv = document.createElement("div");
+    namediv.classList.add("namediv");
+    namediv.innerText = `${userInfo.fullname}`;
+    userDiv.appendChild(namediv);
 
 
       let titleDiv = document.createElement("div");
@@ -101,9 +120,17 @@ async function loadMorePosts() {
       namediv.innerText = `${userName}`;
       userDiv.appendChild(namediv);
 
-      let reaction = document.createElement("div");
-      reaction.classList.add("reaction");
-      userDiv.appendChild(reaction);
+    container.appendChild(userDiv);
+
+    postsData.push({
+      title: title,
+      userName: userInfo.fullname,
+      bodyPreview: first20Words + "...",
+      likes: likes,
+      dislikes: dislikes,
+      tags: tags.join(", "),
+    });
+  }
 
       let likesDiv = document.createElement("div");
       likesDiv.classList.add("likesdiv");
@@ -183,13 +210,3 @@ function exportToCSV(data) {
   link.download = "posts_data.csv";
   link.click();
 }
-
-const openModal = function () {
-  modal.classList.remove("hide");
-  overlay.classList.remove("hide");
-};
-
-const closeModal = function () {
-  modal.classList.add("hide");
-  overlay.classList.add("hide");
-};
