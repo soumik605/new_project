@@ -25,14 +25,20 @@ async function posts() {
   let overlay = document.createElement("div");
   overlay.id = "overlay";
   overlay.classList.add("hide");
+
   let modal = document.createElement("div");
   modal.id = "modal";
   modal.classList.add("hide");
+
   let closeBtn = document.createElement("button");
   closeBtn.id = "closeBtn";
   closeBtn.innerHTML = `X`;
   modal.appendChild(closeBtn);
 
+  let commentbox = document.createElement("div");
+  commentbox.id = "commentbox"; 
+  modal.appendChild(commentbox);
+  
   let exportButton = document.createElement("button");
   exportButton.id = "exportButton";
   exportButton.innerText = "Export to CSV";
@@ -41,9 +47,9 @@ async function posts() {
   let container = document.createElement("div");
   container.id = "container";
 
-  await fetch(`https://dummyjson.com/posts?limit=${limit}&skip=${(currentPage - 1) * limit}`)
-    .then((response) => response.json())
-    .then((json) => (users = json.posts));
+  let response = await fetch(`https://dummyjson.com/posts?limit=${limit}&skip=${(currentPage - 1) * limit}`);
+  let json = await response.json();
+  users = json.posts;
 
   // Hide loading animation
   maincont.innerHTML = "";
@@ -63,6 +69,9 @@ async function posts() {
 
 function displayPosts(postsArray) {
   let container = document.getElementById("container");
+  container.innerHTML = ""; 
+  postsData = [];
+
   postsArray.forEach(async (user) => {
     let mainUserdiv = document.createElement("div");
     mainUserdiv.classList.add("mainUserdiv");
@@ -79,10 +88,15 @@ function displayPosts(postsArray) {
     let likes = user.reactions.likes;
     let dislikes = user.reactions.dislikes;
 
-    userDiv.addEventListener("click", openModal);
+    userDiv.addEventListener("click", async () => {
+      openModal();
+      let comments = await ShowPostComment(user.id);
+      document.getElementById("commentbox").innerHTML = comments;
+    });
     overlay.addEventListener("click", closeModal);
     closeBtn.addEventListener("click", closeModal);
 
+    
     let titleDiv = document.createElement("div");
     titleDiv.classList.add("titlediv");
     titleDiv.innerText = `Title: ${title}`;
@@ -124,7 +138,8 @@ function displayPosts(postsArray) {
 }
 
 async function infos(user_id) {
-  let user_info = await fetch(`https://dummyjson.com/users/${user_id}`).then((response) => response.json());
+  let response = await fetch(`https://dummyjson.com/users/${user_id}`);
+  let user_info = await response.json();
   return `${user_info.firstName} ${user_info.lastName}`;
 }
 
@@ -153,9 +168,15 @@ const closeModal = () => {
 
 async function loadMorePosts() {
   currentPage++;
-  let morePosts = [];
-  await fetch(`https://dummyjson.com/posts?limit=${limit}&skip=${(currentPage - 1) * limit}`)
-    .then((response) => response.json())
-    .then((json) => (morePosts = json.posts));
-  displayPosts(morePosts);
+  let response = await fetch(`https://dummyjson.com/posts?limit=${limit}&skip=${(currentPage - 1) * limit}`);
+  let json = await response.json();
+  displayPosts(json.posts);
+}
+
+async function ShowPostComment(postId) {
+  commentbox.innerText="comment getting..."
+  let response = await fetch(`https://dummyjson.com/posts/${postId}/comments`);
+  let data = await response.json();
+  
+  return data.comments.map(comment => `<p><b><i class="fa-regular fa-user"></i> ${comment.user.username}</b><br><i class="fa-regular fa-comment"></i> ${comment.body}  </p><br>`).join("");
 }

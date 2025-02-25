@@ -178,3 +178,14 @@ body {
   margin-top: 0;
   padding-top: 0%;
 }
+
+.sortpdctB{
+  background-color: #c33838;
+  color: #e5ff00;
+  height: 30px;
+  width: 130px;
+  border-radius: 10px;
+  position: absolute;
+  margin-left: 65%;
+  margin-top: 10px;
+}
