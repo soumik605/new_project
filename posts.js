@@ -12,7 +12,7 @@ async function posts() {
   let maincont = document.getElementById("maincont");
   let users = [];
 
-  // Modal / overlay
+  //modal / overlay
   let overlay = document.createElement("div");
   overlay.id = "overlay";
   overlay.classList.add("hide");
@@ -21,8 +21,9 @@ async function posts() {
   modal.classList.add("hide");
   let closeBtn = document.createElement("button");
   closeBtn.id = "closeBtn";
-  closeBtn.innerHTML = "X";
+  closeBtn.innerHTML = `X`;
   modal.appendChild(closeBtn);
+
 
   let exportButton = document.createElement("button");
   exportButton.id = "exportButton";
@@ -46,15 +47,20 @@ async function posts() {
   maincont.appendChild(overlay);
   maincont.appendChild(container);
 
+
+
+
   users.forEach(async (user, idx) => {
     let mainUserdiv = document.createElement("div");
     mainUserdiv.classList.add("mainUserdiv");
+    container.appendChild(mainUserdiv);
     let userDiv = document.createElement("div");
     userDiv.classList.add("userDiv");
-    container.appendChild(mainUserdiv);
     mainUserdiv.appendChild(userDiv);
 
-    let userInfo = await infos(user.id);
+   
+
+    let userName = await infos(user.id);
     let title = user.title;
     let body = user.body;
     let tags = user.tags;
@@ -64,6 +70,11 @@ async function posts() {
     userDiv.addEventListener("click", openModal);
     overlay.addEventListener("click", closeModal);
     closeBtn.addEventListener("click", closeModal);
+
+    userDiv.addEventListener("click", openModal);
+    overlay.addEventListener("click", closeModal);
+    closeBtn.addEventListener("click", closeModal);
+   
 
     let titleDiv = document.createElement("div");
     titleDiv.classList.add("titlediv");
@@ -85,11 +96,13 @@ async function posts() {
     likesDiv.classList.add("likesdiv");
     likesDiv.innerText = `Likes: ${likes}`;
     reaction.appendChild(likesDiv);
+    likesDiv.innerText = `Likes: ${likes}`;
 
     let dislikesDiv = document.createElement("div");
     dislikesDiv.classList.add("dislikesdiv");
     dislikesDiv.innerText = `Dislikes: ${dislikes}`;
     reaction.appendChild(dislikesDiv);
+    dislikesDiv.innerText = `dislikes: ${dislikes}`;
 
     let tagsDiv = document.createElement("div");
     tagsDiv.classList.add("tagsdiv");
@@ -98,16 +111,17 @@ async function posts() {
 
     postsData.push({
       title: title,
-      userName: userInfo.fullname,
+      userName: userName,
       bodyPreview: first20Words + "...",
       likes: likes,
       dislikes: dislikes,
       tags: tags.join(", "),
     });
   });
+
 }
 
-// User data from user id
+//user data from user id
 async function infos(user_id) {
   let user_info = await fetch(`https://dummyjson.com/users/${user_id}`).then(
     (response) => response.json()
@@ -122,7 +136,7 @@ async function infos(user_id) {
   };
 }
 
-// CSV data download
+//csv data download
 function exportToCSV(data) {
   const csvHeaders = [
     "Title",
@@ -143,8 +157,7 @@ function exportToCSV(data) {
   link.download = "posts_data.csv";
   link.click();
 }
-
-// Modal functions
+//modal portion
 const openModal = function () {
   document.getElementById("modal").classList.remove("hide");
   document.getElementById("overlay").classList.remove("hide");
@@ -155,7 +168,21 @@ const closeModal = function () {
   document.getElementById("overlay").classList.add("hide");
 };
 
-// Dark mode
+//dark mode
 if (localStorage.getItem("darkMode") === "enabled") {
   document.body.classList.add("dark-mode");
+}
+// show more user function
+let user_index = 0;
+function showMoreUsers() {
+  for (let i = user_index; i < user_index + 10 && i < users.length; i++) {
+    let userr = document.getElementById(`user_index-${i}`);
+    if (userr) {
+      userr.style.display = "block";
+    }
+  }
+  user_index += 10;
+  if (user_index === users.length) {
+    loadButton.style.display = "none";
+  }
 }
