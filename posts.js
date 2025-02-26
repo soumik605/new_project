@@ -69,7 +69,6 @@ async function posts() {
 
 function displayPosts(postsArray) {
   let container = document.getElementById("container");
-  container.innerHTML = ""; 
   postsData = [];
 
   postsArray.forEach(async (user) => {
