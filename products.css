@@ -132,7 +132,7 @@ body {
 .load {
   height: 100px;
   width: 100px;
-  border: 10px solid rgb(243, 243, 243);
+  border: 10px solid transparent;
   border-top: 10px solid rgb(86, 186, 249);
   border-radius: 50%;
   position: absolute;
