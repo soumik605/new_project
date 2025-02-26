@@ -40,6 +40,7 @@ async function posts() {
 
   container.innerHTML = ""; 
   await loadMorePosts(); 
+  
 }
 
 async function loadMorePosts() {
