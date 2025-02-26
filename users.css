@@ -3,14 +3,16 @@
   margin: 0%;
   padding: 0%;
 }
+body{
+     background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59); 
 
-#container {
-  padding-left: 190px;
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+}
+#container{
+    padding-left: 200px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 .userdata {
@@ -47,24 +49,28 @@
   width: fit-content;
 }
 
-.load {
-  height: 100px;
-  width: 100px;
-  border: 10px solid rgb(243, 243, 243);
-  border-top: 10px solid rgb(86, 186, 249);
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(50px, -50px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation-name: loadingAnimation;
-  animation-duration: 2s;
-  animation-delay: .5s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
+
+
+
+  
+  .load{
+    height: 100px;
+    width: 100px;
+    border: 10px solid transparent;
+    border-top: 10px solid rgb(86, 186, 249);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(50px, -50px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation-name: loadingAnimation;
+    animation-duration: 2s;
+    animation-delay: .5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
 }
 
 @keyframes loadingAnimation {

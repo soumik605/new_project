@@ -5,6 +5,10 @@ window.onload = function () {
   container.id = "container";
   body.appendChild(container);
 
+  if(localStorage.getItem("darkMode") === "enabled"){
+    document.body.classList.add("dark-mode");
+  }
+
   let load = document.createElement("div");
   load.classList.add("load");
   container.appendChild(load);
@@ -12,7 +16,7 @@ window.onload = function () {
   fetch("https://dummyjson.com/users")
     .then((call) => call.json())
     .then((object) => {
-      container.innerHTML = "";
+      container.innerHTML = ""; 
       let userlist = object.users;
       let usersData = [];
       let isFirstRender = true;
@@ -67,7 +71,6 @@ window.onload = function () {
         sortingButtons.appendChild(sortByAgeDesc);
 
         container.appendChild(sortingButtons);
-
         sortbyassending.addEventListener("click", () => {
           let sortedByName = [...userlist_2].sort((a, b) => a.firstName.localeCompare(b.firstName));
           userbodyfunc(sortedByName);
@@ -131,6 +134,20 @@ window.onload = function () {
         });
       }
 
-      userbodyfunc(userlist);
+      userbodyfunc(userlist); 
     });
 };
+
+function exportToCSV(data) {
+  const csvHeaders = ["Name", "Email", "Username", "Gender", "Role"];
+  const csvRows = data.map((item) => {
+    return `${item.Name},${item.email},${item.username},${item.gender},${item.role}`;
+  });
+
+  const csvContent = [csvHeaders.join(","), ...csvRows].join("\n");
+  const blob = new Blob([csvContent], { type: "text/csv" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "users_data.csv";
+  link.click();
+}
