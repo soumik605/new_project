@@ -161,7 +161,7 @@ function exportToCSV(data) {
 const openModal = () => {
   document.getElementById("modal").classList.remove("hide");
   document.getElementById("overlay").classList.remove("hide");
-};
+};  
 
 const closeModal = () => {
   document.getElementById("modal").classList.add("hide");
