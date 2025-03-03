@@ -51,6 +51,15 @@ window.onload = function () {
         }
         isFirstRender = false;
 
+        let exportButton = document.createElement("button");
+        exportButton.id = "exportButton";
+        exportButton.innerText = "Export to CSV";
+        container.appendChild(exportButton);
+
+        exportButton.addEventListener("click", () => {
+          exportToCSV(usersData);
+        });
+      
         let sortingButtons = document.createElement("div");
         sortingButtons.classList.add("sorting-buttons");
 
@@ -72,22 +81,22 @@ window.onload = function () {
 
         container.appendChild(sortingButtons);
         sortbyassending.addEventListener("click", () => {
-          let sortedByName = [...userlist_2].sort((a, b) => a.firstName.localeCompare(b.firstName));
+          let sortedByName = [userlist_2].sort((a, b) => a.firstName.localeCompare(b.firstName));
           userbodyfunc(sortedByName);
         });
 
         sortbydesending.addEventListener("click", () => {
-          let sortedByName = [...userlist_2].sort((a, b) => b.firstName.localeCompare(a.firstName));
+          let sortedByName = [userlist_2].sort((a, b) => b.firstName.localeCompare(a.firstName));
           userbodyfunc(sortedByName);
         });
 
         sortByAgeAsc.addEventListener("click", () => {
-          let sortedByAge = [...userlist_2].sort((a, b) => a.age - b.age);
+          let sortedByAge = [userlist_2].sort((a, b) => a.age - b.age);
           userbodyfunc(sortedByAge);
         });
 
         sortByAgeDesc.addEventListener("click", () => {
-          let sortedByAge = [...userlist_2].sort((a, b) => b.age - a.age);
+          let sortedByAge = [userlist_2].sort((a, b) => b.age - a.age);
           userbodyfunc(sortedByAge);
         });
 
