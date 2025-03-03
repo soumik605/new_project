@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <script defer src="login.js"></script>
+    <title>Login Page</title>
+</head>
+<body>
+    <div id="body_container">
+        <div id="login_cont2">
+            <div id="login_cont">
+                <form onsubmit="return false;">
+                    <div>
+                        <input  id="login_Email" class="inp" type="email" required placeholder="Email address" autocomplete="off">
+                    </div>
+                    <p id="login_Email_err"></p>
+                    <div>
+                        <input  id="login_pass"  class="inp"  type="Password" required placeholder="Password" autocomplete="off">
+                    </div>
+                    <p id="login_pass_err"></p>
+                    <div>
+                        <button id="login">
+                            <h2>Log in</h2>
+                        </button>
+                    </div>
+                    <div><a style="margin-left: 60%; font-size: larger; color: rgb(0, 138, 177);" href="users.html">As a guest?</a></div>
+                    <br>
+                    <hr>
+                </form>
+                <div>
+                    <a style="text-decoration: none;" href="register.html">
+                    <button id="register">
+                            <h2 style="color: white;">Register</h2>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

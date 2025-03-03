@@ -1,0 +1,111 @@
+*{
+    box-sizing: border-box;
+    margin: 0%;
+    padding: 0%;
+}
+::placeholder{
+    color: rgb(167, 167, 167);
+}
+#body_container{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(21, 219, 245);
+}
+#reg_cont{
+    background-color: #fff;
+    width: 500px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 6px rgb(185, 185, 185);
+
+}
+#head_reg{
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#register_cont2{
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;    
+    height: 450px;
+}
+
+.div1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.fst_name{
+    height: 40px;
+    width: 206px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: larger;
+}
+.sur_name{
+    height: 40px;
+    width: 206px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: larger;
+    
+}
+.div2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.birth_drop{
+    width: 30%;
+    height: 30px;
+}
+.sex{
+    width: 3px;    
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid rgb(158, 158, 158);
+}
+.div3{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.mb_Em{
+    width: 100%;
+    height: 50px;
+    border: 2px solid rgb(161, 161, 161);
+    border-radius: 5px;
+    font-size: larger;
+    padding: 10px;
+}
+#signup{
+    height: 35px;
+    background-color: #00801e;
+    width: 50%;
+    border-radius: 10px;
+    color: white;
+    font-size: larger;
+}
+#signup:hover{
+    background-color: #24bb47;
+    cursor: pointer;
+
+}
+.div6{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.div7{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

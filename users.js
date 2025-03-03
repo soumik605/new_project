@@ -12,8 +12,9 @@ window.onload = function () {
   let load = document.createElement("div");
   load.classList.add("load");
   container.appendChild(load);
-
-  fetch("https://dummyjson.com/users")
+  let user_list_count = localStorage.getItem("user_list_count")
+  let limit= user_list_count
+  fetch(`https://dummyjson.com/users?limit=${limit}`)
     .then((call) => call.json())
     .then((object) => {
       container.innerHTML = ""; 
@@ -51,6 +52,22 @@ window.onload = function () {
         }
         isFirstRender = false;
 
+        let users_num = document.createElement("input")
+        users_num.placeholder = "Number of users"
+        users_num.style.padding="10px"
+        users_num.style.transform="translateY(4px)"
+
+        users_num.type = "number"
+        users_num.id="user_nu"
+        container.appendChild(users_num)
+        users_num.onchange=()=>{
+          if (users_num.value) {
+            localStorage.setItem("user_list_count",users_num.value)
+            console.log("d");
+          }
+            window.location.href = "users.html";
+        }
+
         let exportButton = document.createElement("button");
         exportButton.id = "exportButton";
         exportButton.innerText = "Export to CSV";
@@ -81,22 +98,22 @@ window.onload = function () {
 
         container.appendChild(sortingButtons);
         sortbyassending.addEventListener("click", () => {
-          let sortedByName = [userlist_2].sort((a, b) => a.firstName.localeCompare(b.firstName));
+          let sortedByName = [...userlist_2].sort((a, b) => a.firstName.localeCompare(b.firstName));
           userbodyfunc(sortedByName);
         });
 
         sortbydesending.addEventListener("click", () => {
-          let sortedByName = [userlist_2].sort((a, b) => b.firstName.localeCompare(a.firstName));
+          let sortedByName = [...userlist_2].sort((a, b) => b.firstName.localeCompare(a.firstName));
           userbodyfunc(sortedByName);
         });
 
         sortByAgeAsc.addEventListener("click", () => {
-          let sortedByAge = [userlist_2].sort((a, b) => a.age - b.age);
+          let sortedByAge = [...userlist_2].sort((a, b) => a.age - b.age);
           userbodyfunc(sortedByAge);
         });
 
         sortByAgeDesc.addEventListener("click", () => {
-          let sortedByAge = [userlist_2].sort((a, b) => b.age - a.age);
+          let sortedByAge = [...userlist_2].sort((a, b) => b.age - a.age);
           userbodyfunc(sortedByAge);
         });
 
