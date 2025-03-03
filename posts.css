@@ -154,3 +154,9 @@ body{
 .fa-user{
   color: #12c2e9;
 }
+
+#load2{
+  height: 75px;
+  width: 75px;
+ margin-top: 50px;
+}

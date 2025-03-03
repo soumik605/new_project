@@ -158,7 +158,7 @@ function exportToCSV(data) {
 const openModal = () => {
   document.getElementById("modal").classList.remove("hide");
   document.getElementById("overlay").classList.remove("hide");
-};
+};  
 
 const closeModal = () => {
   document.getElementById("modal").classList.add("hide");
@@ -173,9 +173,15 @@ async function loadMorePosts() {
 }
 
 async function ShowPostComment(postId) {
-  commentbox.innerText="comment getting..."
+  let load = document.createElement("div");
+  commentbox.innerText=""
+  load.classList.add("load");
+  commentbox.appendChild(load);
+  load.id="load2"
   let response = await fetch(`https://dummyjson.com/posts/${postId}/comments`);
+  load.classList.remove("load");
   let data = await response.json();
   
   return data.comments.map(comment => `<p><b><i class="fa-regular fa-user"></i> ${comment.user.username}</b><br><i class="fa-regular fa-comment"></i> ${comment.body}  </p><br>`).join("");
 }
+	
