@@ -31,4 +31,9 @@ window.onload = function () {
   }
 };
 
+let userprofile = document.getElementById("userprofile");
+let profile = document.getElementById("profile");
 
+userprofile.onclick = function () {
+ profile.classList.toggle("hide")
+};
