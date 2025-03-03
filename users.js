@@ -1,14 +1,19 @@
 window.onload = function () {
-  
-if(localStorage.getItem("darkMode") === "enabled"){
-  document.body.classList.add("dark-mode")
-}
-  let container = document.getElementById("container");
+  let body = document.body;
+
+  let container = document.createElement("div");
+  container.id = "container";
+  body.appendChild(container);
+
+  if(localStorage.getItem("darkMode") === "enabled"){
+    document.body.classList.add("dark-mode");
+  }
 
   let load = document.createElement("div");
   load.classList.add("load");
   container.appendChild(load);
-  const limit = 10;
+  let user_list_count = localStorage.getItem("user_list_count") || 10
+  let limit= user_list_count
   fetch(`https://dummyjson.com/users?limit=${limit}`)
     .then((call) => call.json())
     .then((object) => {
@@ -16,6 +21,7 @@ if(localStorage.getItem("darkMode") === "enabled"){
       let userlist = object.users;
       let usersData = [];
       let isFirstRender = true;
+
       function userbodyfunc(userlist_2) {
         container.innerHTML = "";
 
@@ -30,17 +36,17 @@ if(localStorage.getItem("darkMode") === "enabled"){
 
         let searchInput = document.createElement("input");
         searchInput.placeholder = "Search User";
-        searchInput.spellcheck=false;
+        searchInput.spellcheck = false;
         searchInput.classList.add("searchInput");
 
         if (userbodyfunc.searchValue) {
           searchInput.value = userbodyfunc.searchValue;
         }
-        
+
         searchUser.appendChild(searchIcon);
         searchUser.appendChild(searchInput);
         container.appendChild(searchUser);
-        
+
         if (!isFirstRender) {
           searchInput.focus();
         }
@@ -48,7 +54,11 @@ if(localStorage.getItem("darkMode") === "enabled"){
 
         let users_num = document.createElement("input")
         users_num.type = "number"
+        let user_list_count = localStorage.setItem("user_list_count",users_num.value)
         container.appendChild(users_num)
+        users_num.onchange=()=>{
+          window.location.href = "users.html";
+        }
 
         let exportButton = document.createElement("button");
         exportButton.id = "exportButton";
@@ -57,6 +67,46 @@ if(localStorage.getItem("darkMode") === "enabled"){
 
         exportButton.addEventListener("click", () => {
           exportToCSV(usersData);
+        });
+      
+        let sortingButtons = document.createElement("div");
+        sortingButtons.classList.add("sorting-buttons");
+
+        let sortbyassending = document.createElement("button");
+        sortbyassending.innerText = "Sort by First Name Ascending";
+        sortingButtons.appendChild(sortbyassending);
+
+        let sortbydesending = document.createElement("button");
+        sortbydesending.innerText = "Sort by First Name Descending";
+        sortingButtons.appendChild(sortbydesending);
+
+        let sortByAgeAsc = document.createElement("button");
+        sortByAgeAsc.innerText = "Sort by Age Ascending";
+        sortingButtons.appendChild(sortByAgeAsc);
+
+        let sortByAgeDesc = document.createElement("button");
+        sortByAgeDesc.innerText = "Sort by Age Descending";
+        sortingButtons.appendChild(sortByAgeDesc);
+
+        container.appendChild(sortingButtons);
+        sortbyassending.addEventListener("click", () => {
+          let sortedByName = [...userlist_2].sort((a, b) => a.firstName.localeCompare(b.firstName));
+          userbodyfunc(sortedByName);
+        });
+
+        sortbydesending.addEventListener("click", () => {
+          let sortedByName = [...userlist_2].sort((a, b) => b.firstName.localeCompare(a.firstName));
+          userbodyfunc(sortedByName);
+        });
+
+        sortByAgeAsc.addEventListener("click", () => {
+          let sortedByAge = [...userlist_2].sort((a, b) => a.age - b.age);
+          userbodyfunc(sortedByAge);
+        });
+
+        sortByAgeDesc.addEventListener("click", () => {
+          let sortedByAge = [...userlist_2].sort((a, b) => b.age - a.age);
+          userbodyfunc(sortedByAge);
         });
 
         userlist_2.forEach((user) => {
@@ -70,7 +120,7 @@ if(localStorage.getItem("darkMode") === "enabled"){
 
           let userdata = document.createElement("div");
           userdata.classList.add("userdata");
-          userdata.innerHTML = `
+          userdata.innerHTML = ` 
             <h2>${fullname}</h2><br>
             <hr id="hr">
             <pre><b>Age</b>: ${age} <t> <b>Gender</b>: ${gender}</pre>
@@ -102,7 +152,7 @@ if(localStorage.getItem("darkMode") === "enabled"){
         });
       }
 
-      userbodyfunc(userlist);
+      userbodyfunc(userlist); 
     });
 };
 
@@ -119,4 +169,3 @@ function exportToCSV(data) {
   link.download = "users_data.csv";
   link.click();
 }
-

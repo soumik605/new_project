@@ -1,5 +1,6 @@
 let email_F = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 let m = localStorage.getItem("em")
+console.log(m);
 let mh = localStorage.getItem("ps")
 let login = document.getElementById("login")
 let login_Email = document.getElementById("login_Email")
