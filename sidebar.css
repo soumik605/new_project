@@ -25,16 +25,13 @@
     position: fixed;
     left: 0;
     top: 0;
-    width: 50px;
+    width: 150px;
+    transition: width 0.3s ease;
     height: 100vh;
     background-color: rgb(10, 255, 255);
 }
 
 
-#maindiv:hover{
-      width: 150px;
-
-}
 
 .icons {
     width: 40px;
@@ -47,7 +44,6 @@
     font-size: 15px;
     padding: 10px 0px;
     border-radius: 25px;
-    opacity: 0; 
     pointer-events: none;
     position: absolute;
     color: black;
@@ -55,18 +51,7 @@
     left: 40%; 
     
 }
-.dark_tooltip {
-    font-size: 15px;
-    padding: 10px 0px;
-    border-radius: 25px;
-    opacity: 0; 
-    pointer-events: none;
-    position: absolute;
-    color: white;
-    top: 9px;
-    left: 40%; 
-    
-}
+
 
 #maindiv:hover .tooltip {
     opacity: 1; 

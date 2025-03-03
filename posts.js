@@ -1,5 +1,8 @@
 // window onload function
 window.onload = function () {
+  if (localStorage.getItem("darkMode") === "enabled") {
+    document.body.classList.add("dark-mode");
+  }
   let maincont = document.getElementById("maincont");
   let load = document.createElement("div");
   load.classList.add("load");
@@ -36,9 +39,9 @@ async function posts() {
   modal.appendChild(closeBtn);
 
   let commentbox = document.createElement("div");
-  commentbox.id = "commentbox"; 
+  commentbox.id = "commentbox";
   modal.appendChild(commentbox);
-  
+
   let exportButton = document.createElement("button");
   exportButton.id = "exportButton";
   exportButton.innerText = "Export to CSV";
@@ -47,13 +50,36 @@ async function posts() {
   let container = document.createElement("div");
   container.id = "container";
 
-  let response = await fetch(`https://dummyjson.com/posts?limit=${limit}&skip=${(currentPage - 1) * limit}`);
+  let response = await fetch(
+    `https://dummyjson.com/posts?limit=${limit}&skip=${
+      (currentPage - 1) * limit
+    }`
+  );
   let json = await response.json();
   users = json.posts;
 
   // Hide loading animation
   maincont.innerHTML = "";
   maincont.appendChild(exportButton);
+  let searchUser = document.createElement("div");
+  searchUser.classList.add("searchUser");
+
+  let searchIcon = document.createElement("div");
+  searchIcon.classList.add("searchIcon");
+  searchIcon.innerHTML = `<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={1.5} stroke='currentColor' className='size-6'>
+                                  <path strokeLinecap='round' strokeLinejoin='round' d='m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z' />
+                                </svg>`;
+
+  let searchInput = document.createElement("input");
+  searchInput.placeholder = "Search User";
+  searchInput.spellcheck = false;
+  searchInput.classList.add("searchInput");
+
+  searchUser.appendChild(searchIcon);
+  searchUser.appendChild(searchInput);
+  maincont.appendChild(searchUser);
+  searchInput.addEventListener("input", search);
+
   maincont.appendChild(modal);
   maincont.appendChild(overlay);
   maincont.appendChild(container);
@@ -95,7 +121,6 @@ function displayPosts(postsArray) {
     overlay.addEventListener("click", closeModal);
     closeBtn.addEventListener("click", closeModal);
 
-    
     let titleDiv = document.createElement("div");
     titleDiv.classList.add("titlediv");
     titleDiv.innerText = `Title: ${title}`;
@@ -105,6 +130,11 @@ function displayPosts(postsArray) {
     bodyDiv.classList.add("bodydiv");
     bodyDiv.innerText = body.split(" ").slice(0, 20).join(" ") + "...";
     userDiv.appendChild(bodyDiv);
+
+    let name_div = document.createElement("div");
+    name_div.classList.add("name_div");
+    name_div.innerText = userName;
+    userDiv.appendChild(name_div);
 
     let reaction = document.createElement("div");
     reaction.classList.add("reaction");
@@ -143,7 +173,14 @@ async function infos(user_id) {
 }
 
 function exportToCSV(data) {
-  const csvHeaders = ["Title", "User Name", "Body Preview", "Likes", "Dislikes", "Tags"];
+  const csvHeaders = [
+    "Title",
+    "User Name",
+    "Body Preview",
+    "Likes",
+    "Dislikes",
+    "Tags",
+  ];
   const csvRows = data.map((item) => {
     return `"${item.title}","${item.userName}","${item.bodyPreview}","${item.likes}","${item.dislikes}","${item.tags}"`;
   });
@@ -167,15 +204,42 @@ const closeModal = () => {
 
 async function loadMorePosts() {
   currentPage++;
-  let response = await fetch(`https://dummyjson.com/posts?limit=${limit}&skip=${(currentPage - 1) * limit}`);
+  let response = await fetch(
+    `https://dummyjson.com/posts?limit=${limit}&skip=${
+      (currentPage - 1) * limit
+    }`
+  );
   let json = await response.json();
   displayPosts(json.posts);
 }
 
 async function ShowPostComment(postId) {
-  commentbox.innerText="comment getting..."
+  commentbox.innerText = "comment getting...";
   let response = await fetch(`https://dummyjson.com/posts/${postId}/comments`);
   let data = await response.json();
-  
-  return data.comments.map(comment => `<p><b><i class="fa-regular fa-user"></i> ${comment.user.username}</b><br><i class="fa-regular fa-comment"></i> ${comment.body}  </p><br>`).join("");
+
+  return data.comments
+    .map(
+      (comment) =>
+        `<p><b><i class="fa-regular fa-user"></i> ${comment.user.username}</b><br><i class="fa-regular fa-comment"></i> ${comment.body}  </p><br>`
+    )
+    .join("");
 }
+
+const search = () => {
+  const searchbox = document.querySelector(".searchInput").value.toUpperCase();
+  const allUserDiv = document.querySelectorAll(".mainUserdiv");
+  const uname = document.querySelectorAll(".name_div");
+
+  for (let i = 0; i < uname.length; i++) {
+    let match = allUserDiv[i].querySelector(".name_div");
+    if (match) {
+      let textvalue = match.textContent || match.innerHTML;
+      if (textvalue.toUpperCase().indexOf(searchbox) > -1) {
+        allUserDiv[i].style.display = "";
+      } else {
+        allUserDiv[i].style.display = "none";
+      }
+    }
+  }
+};
