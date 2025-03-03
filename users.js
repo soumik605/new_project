@@ -53,8 +53,11 @@ window.onload = function () {
         isFirstRender = false;
 
         let users_num = document.createElement("input")
-        users_num.placeholder = "Number of users"
+        users_num.placeholder = "Number of users           ↲"
+        users_num.id = "users_num"
         users_num.style.padding="10px"
+        users_num.style.borderRadius="10px"
+        users_num.style.fontSize="17px"
         users_num.style.transform="translateY(4px)"
 
         users_num.type = "number"

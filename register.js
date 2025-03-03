@@ -12,12 +12,10 @@ let signup = document.getElementById("signup");
 let login_Email = document.getElementById("login_Email");
 let login_pass = document.getElementById("login_pass");
 let m = localStorage.getItem("em")|| []
-console.log(m);
 let mh = localStorage.getItem("ps") || []
 signup.onclick = () => {
   if (email_F.test(login_Email.value) && login_pass.value.length >= 4) {
     if (!m.includes(login_Email.value)){
-      console.log("object");
         let em_list = JSON.parse(localStorage.getItem("em")) || [];
         let ps_list = JSON.parse(localStorage.getItem("ps")) || [];
         em_list.push(login_Email.value);
