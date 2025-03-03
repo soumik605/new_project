@@ -1,4 +1,4 @@
-// window onload function
+
 window.onload = function () {
   let maincont = document.getElementById("maincont");
   let load = document.createElement("div");
@@ -64,6 +64,9 @@ async function posts() {
   loadButton.addEventListener("click", loadMorePosts);
   maincont.appendChild(loadButton);
 
+  container.innerHTML = ""; 
+  await loadMorePosts(); 
+  
   displayPosts(users);
 }
 
