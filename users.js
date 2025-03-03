@@ -8,8 +8,8 @@ if(localStorage.getItem("darkMode") === "enabled"){
   let load = document.createElement("div");
   load.classList.add("load");
   container.appendChild(load);
-
-  fetch("https://dummyjson.com/users")
+  const limit = 10;
+  fetch(`https://dummyjson.com/users?limit=${limit}`)
     .then((call) => call.json())
     .then((object) => {
       container.innerHTML = ""; 
@@ -45,6 +45,11 @@ if(localStorage.getItem("darkMode") === "enabled"){
           searchInput.focus();
         }
         isFirstRender = false;
+
+        let users_num = document.createElement("input")
+        users_num.type = "number"
+        container.appendChild(users_num)
+
         let exportButton = document.createElement("button");
         exportButton.id = "exportButton";
         exportButton.innerText = "Export to CSV";
