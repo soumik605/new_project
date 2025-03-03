@@ -1,4 +1,4 @@
-// window onload function
+
 window.onload = function () {
   if (localStorage.getItem("darkMode") === "enabled") {
     document.body.classList.add("dark-mode");
@@ -90,6 +90,9 @@ async function posts() {
   loadButton.addEventListener("click", loadMorePosts);
   maincont.appendChild(loadButton);
 
+  container.innerHTML = ""; 
+  await loadMorePosts(); 
+  
   displayPosts(users);
 }
 
