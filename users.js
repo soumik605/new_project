@@ -51,6 +51,15 @@ window.onload = function () {
         }
         isFirstRender = false;
 
+        let exportButton = document.createElement("button");
+        exportButton.id = "exportButton";
+        exportButton.innerText = "Export to CSV";
+        container.appendChild(exportButton);
+
+        exportButton.addEventListener("click", () => {
+          exportToCSV(usersData);
+        });
+      
         let sortingButtons = document.createElement("div");
         sortingButtons.classList.add("sorting-buttons");
 
