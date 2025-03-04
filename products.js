@@ -19,6 +19,21 @@ async function fetchAllUsers() {
     .then((obj) => {
       container.innerHTML = "";
       productsData = obj.products;
+      
+      // console.log(productsData);
+      // function del_func(id) {
+      //   console.log("object");
+      //   productsData = productsData.filter(
+      //     function(itm) {
+      //         return itm.id !== id
+      //     }
+      // ) 
+      // }
+
+
+
+
+
       let productTitles = [];
       productsData.forEach((dataa)=>{
         productTitles.push(dataa.title)
@@ -54,6 +69,32 @@ function Sfunction(data) {
     let hiddenDiv = document.createElement("div");
     hiddenDiv.classList.add("hiddenDiv");
     hiddenDiv.innerHTML = `<img id="prdctimg" src="${prod.thumbnail}"></img>`;
+    let delete_btn = document.createElement("span")
+    delete_btn.innerHTML = `<i class="fa-solid fa-trash-can"></i>`
+    delete_btn.id = "delete_btn"
+    hiddenDiv.appendChild(delete_btn)
+
+    let prd_id_lis = []
+    prd_id_lis =JSON.parse( localStorage.getItem("prd_id_lis"))|| []
+    delete_btn.addEventListener("click", ()=>{
+      console.log(prd_id_lis);
+      // console.log(prod.id);
+      prd_id_lis.push(prod.id)
+      localStorage.setItem("prd_id_lis",JSON.stringify(prd_id_lis))
+      del_func(prod.id)
+    })
+    // function del_func(id) {
+    //   console.log("object");
+    // //   productsData = productsData.filter(
+    // //     function(itm) {
+    // //         return itm.id !== id
+    // //     }
+    // // ) 
+    // }
+
+
+
+
     main_pdct.appendChild(hiddenDiv);
 
     let pdct = document.createElement("div");
@@ -83,6 +124,18 @@ function Sfunction(data) {
   }
 }
 
+let prd_id_lis = localStorage.getItem("prd_id_lis")|| []
+console.log(prd_id_lis);
+function del_func(id) {
+  // console.log("object");
+  // console.log(prd_id_lis);
+  productsData = productsData.filter(
+    function(itm) {
+        return itm.id !== id
+    }
+) 
+Sfunction(productsData)
+}
 
 
 function exportToCSV(data) {
@@ -129,3 +182,5 @@ function pdctDetails() {
 if (localStorage.getItem("darkMode") === "enabled") {
   document.body.classList.add("dark-mode");
 }
+
+// localStorage.clear()
