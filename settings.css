@@ -6,7 +6,7 @@
 
 body {
   background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
-overflow: hidden;
+  overflow: hidden;
 }
 
 .setcont {
@@ -16,7 +16,7 @@ overflow: hidden;
 }
 h1 {
   padding: 10px;
-  font-size: 30px;
+  font-size: 40px;
 }
 span {
   color: red;
@@ -24,38 +24,35 @@ span {
 
 #setoptionDiv {
   height: 600px;
-  width: 500px;
+  width: 800px;
   padding: 10px;
   border-radius: 10px;
   margin-top: 10px;
   margin-left: 10%;
-  background-color:white ;
+  background-color: white;
 }
-
 
 .sidebarsetDiv {
   margin-bottom: 30px;
   font-size: 20px;
-
 }
 #sidebar_type {
   width: 200px;
   margin-top: 5px;
   height: 20px;
+  border-radius: 20px;
 }
-.themeDiv{
-    font-size: 20px;
-    margin-bottom: 20px;
-    
-    
+.themeDiv {
+  font-size: 20px;
+  margin-bottom: 20px;
 }
-#changethemebtn{
-    width: 100px;
-    height: 20px;
-    background-color: orangered;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: o.0s ease;
+#changethemebtn {
+  width: 100px;
+  height: 20px;
+  background-color: orangered;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: o.0s ease;
 }
 #back {
   background-color: rgba(161, 51, 239, 0.729);
@@ -70,3 +67,50 @@ span {
   position: fixed;
   height: -webkit-fill-available;
 }
+
+.logout {
+  font-size: 40px;
+
+  padding-top: 20px;
+}
+.fa {
+  color: white;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 30px;
+}
+.heading {
+  display: flex;
+}
+
+.far {
+  font-size: 30px;
+}
+#userprofile {
+  font-size: 40px;
+  margin-right: 40px;
+  background: none;
+  border: none;
+  padding-top: 20px;
+}
+.profile_icon {
+  display: flex;
+  margin-left: 70%;
+}
+
+#profile{
+  height: 400px;
+  width: 300px;
+  background-color: #fff;
+  margin-left: 120px;
+  border-radius: 20px;
+  margin-top: 10px;
+}
+.upperCont{
+  display: flex;
+}
+.hide{
+  display: none;
+}
+
