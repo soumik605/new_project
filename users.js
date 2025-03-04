@@ -12,9 +12,8 @@ window.onload = function () {
   let load = document.createElement("div");
   load.classList.add("load");
   container.appendChild(load);
-  let user_list_count = localStorage.getItem("user_list_count")
-  let limit= user_list_count
-  fetch(`https://dummyjson.com/users?limit=${limit}`)
+
+  fetch("https://dummyjson.com/users")
     .then((call) => call.json())
     .then((object) => {
       container.innerHTML = ""; 
@@ -51,26 +50,6 @@ window.onload = function () {
           searchInput.focus();
         }
         isFirstRender = false;
-
-        let users_num = document.createElement("input")
-        users_num.placeholder = "Number of users           ↲"
-        users_num.id = "users_num"
-        users_num.style.padding="10px"
-        users_num.style.borderRadius="10px"
-        users_num.style.fontSize="17px"
-        users_num.style.transform="translateY(4px)"
-
-        users_num.type = "number"
-        users_num.id="user_nu"
-        container.appendChild(users_num)
-        users_num.onchange=()=>{
-          if (users_num.value) {
-            localStorage.setItem("user_list_count",users_num.value)
-            console.log("d");
-          }
-            window.location.href = "users.html";
-        }
-
         let exportButton = document.createElement("button");
         exportButton.id = "exportButton";
         exportButton.innerText = "Export to CSV";
@@ -79,7 +58,6 @@ window.onload = function () {
         exportButton.addEventListener("click", () => {
           exportToCSV(usersData);
         });
-      
         let sortingButtons = document.createElement("div");
         sortingButtons.classList.add("sorting-buttons");
 
@@ -101,24 +79,52 @@ window.onload = function () {
 
         container.appendChild(sortingButtons);
         sortbyassending.addEventListener("click", () => {
-          let sortedByName = [...userlist_2].sort((a, b) => a.firstName.localeCompare(b.firstName));
+          let sortedByName = userlist_2.sort((a, b) => a.firstName.localeCompare(b.firstName));
           userbodyfunc(sortedByName);
         });
 
         sortbydesending.addEventListener("click", () => {
-          let sortedByName = [...userlist_2].sort((a, b) => b.firstName.localeCompare(a.firstName));
+          let sortedByName = userlist_2.sort((a, b) => b.firstName.localeCompare(a.firstName));
           userbodyfunc(sortedByName);
         });
 
         sortByAgeAsc.addEventListener("click", () => {
-          let sortedByAge = [...userlist_2].sort((a, b) => a.age - b.age);
+          let sortedByAge = userlist_2.sort((a, b) => a.age - b.age);
           userbodyfunc(sortedByAge);
         });
 
         sortByAgeDesc.addEventListener("click", () => {
-          let sortedByAge = [...userlist_2].sort((a, b) => b.age - a.age);
+          let sortedByAge = userlist_2.sort((a, b) => b.age - a.age);
           userbodyfunc(sortedByAge);
         });
+        let mainTable = document.createElement("div")
+        let table = document.createElement("table")
+        table.border="1";
+        table.id="table";
+        table.style.width="100%"
+        mainTable.id="mainTable"
+        let tr = document.createElement("tr")
+        let td1 = document.createElement("th")
+        td1.innerHTML=`Fullname`
+        let td2 = document.createElement("th")
+        td2.innerHTML=`Age`
+        let td3 = document.createElement("th")
+        td3.innerHTML=`Role`
+        let td4 = document.createElement("th")
+        td4.innerHTML=`Username`
+        let td5 = document.createElement("th")
+        td5.innerHTML=`Gender`
+        let td6 = document.createElement("th")
+        td6.innerHTML=`Email`
+  
+        tr.appendChild(td1)
+        tr.appendChild(td2)
+        tr.appendChild(td3)
+        tr.appendChild(td4)
+        tr.appendChild(td5)
+        tr.appendChild(td6)
+        table.appendChild(tr)
+
 
         userlist_2.forEach((user) => {
           let fullname = `${user.firstName} ${user.maidenName} ${user.lastName}`;
@@ -128,21 +134,43 @@ window.onload = function () {
           let username = user.username;
           let image = user.image;
           let role = user.role;
+          let tr = document.createElement("tr")
+          let td1 = document.createElement("td")
+          td1.innerHTML=`${fullname}`
+          let td2 = document.createElement("td")
+          td2.innerHTML=`${age}`
+          let td3 = document.createElement("td")
+          td3.innerHTML=`${role}`
+          let td4 = document.createElement("td")
+          td4.innerHTML=`${username}`
+          let td5 = document.createElement("td")
+          td5.innerHTML=`${gender}`
+          let td6 = document.createElement("td")
+          td6.innerHTML=`${email}`
 
-          let userdata = document.createElement("div");
-          userdata.classList.add("userdata");
-          userdata.innerHTML = ` 
-            <h2>${fullname}</h2><br>
-            <hr id="hr">
-            <pre><b>Age</b>: ${age} <t> <b>Gender</b>: ${gender}</pre>
-            <b>Email</b>: ${email}<br><br>
-            <b>Username</b>: ${username}<br><br>
-            <b>Role</b>: ${role}<br>
-            <img id="image" src="${image}"><br>  
-          `;
+          tr.appendChild(td1)
+          tr.appendChild(td2)
+          tr.appendChild(td3)
+          tr.appendChild(td4)
+          tr.appendChild(td5)
+          tr.appendChild(td6)
+          table.appendChild(tr)
+          mainTable.appendChild(table)
+          container.appendChild(mainTable)
 
-          container.appendChild(userdata);
-
+          table.style.marginTop="40px"
+          td1.style.height="30px"
+          td1.style.paddingLeft="50px"
+          td2.style.height="30px"
+          td2.style.textAlign="center"
+          td3.style.height="30px"
+          td3.style.paddingLeft="50px"
+          td4.style.height="30px"
+          td4.style.paddingLeft="50px"
+          td5.style.height="30px"
+          td5.style.paddingLeft="50px"
+          td6.style.height="30px"
+          td6.style.paddingLeft="50px"
           usersData.push({
             Name: fullname,
             email: email,
