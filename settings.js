@@ -1,6 +1,6 @@
 let back = document.getElementById("back");
 let sidebar_type = document.getElementById("sidebar_type");
-
+let setcont = document.getElementsByClassName("setcont");
 let changethemebtn = document.getElementById("changethemebtn");
 let setoptionDiv = document.getElementById("setoptionDiv");
 
@@ -32,8 +32,9 @@ window.onload = function () {
 };
 
 let userprofile = document.getElementById("userprofile");
-let profile = document.getElementById("profile");
+let profile = document.getElementById("profile"); 
 
 userprofile.onclick = function () {
  profile.classList.toggle("hide")
 };
+

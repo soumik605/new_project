@@ -10,7 +10,10 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
   </head>
   <body>
     <div id="sidebar-cont">
@@ -26,32 +29,29 @@
       <div class="heading">
         <h1><span>S</span>ettings</h1>
         <div class="profile_icon">
-            <button id="userprofile"><i class="fa fa-user"></i></button>
-            <div class="logout"><button class="fa fa-power-off"></button></div>
+          <button id="userprofile"><i class="fa fa-user"></i></button>
+          <div class="logout"><button class="fa fa-power-off"></button></div>
         </div>
-     
       </div>
 
       <div class="upperCont">
+        <div id="setoptionDiv">
+          <div class="themeDiv">
+            Change theme : <button id="changethemebtn"></button>
+          </div>
+          <div class="sidebarsetDiv">
+            Sidebar type :
+            <select id="sidebar_type">
+              <option value="expande">expande</option>
+              <option value="expand_onhover">expand_onhover</option>
+              <option value="wrap">wrap</option>
+            </select>
+          </div>
 
-      
-      <div id="setoptionDiv">
-        <div class="themeDiv">
-          Change theme : <button id="changethemebtn"></button>
+          <button id="back">back</button>
         </div>
-        <div class="sidebarsetDiv">
-          Sidebar type :
-          <select id="sidebar_type">
-            <option value="expande">expande</option>
-            <option value="expand_onhover">expand_onhover</option>
-            <option value="wrap">wrap</option>
-          </select>
-        </div>
-
-        <button id="back">back</button>
-      </div> 
-      <div  id="profile" class=" hide"></div>
-    </div>
+        <div id="profile" class="hide"></div>
+      </div>
     </div>
     <script src="settings.js"></script>
   </body>
