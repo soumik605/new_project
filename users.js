@@ -12,8 +12,9 @@ window.onload = function () {
   let load = document.createElement("div");
   load.classList.add("load");
   container.appendChild(load);
-
-  fetch("https://dummyjson.com/users")
+  let user_list_count = localStorage.getItem("user_list_count")
+  let limit= user_list_count
+  fetch(`https://dummyjson.com/users?limit=${limit}`)
     .then((call) => call.json())
     .then((object) => {
       container.innerHTML = ""; 
@@ -51,6 +52,34 @@ window.onload = function () {
         }
         isFirstRender = false;
 
+        let users_num = document.createElement("input")
+        users_num.placeholder = "Number of users           ↲"
+        users_num.id = "users_num"
+        users_num.style.padding="10px"
+        users_num.style.borderRadius="10px"
+        users_num.style.fontSize="17px"
+        users_num.style.transform="translateY(4px)"
+
+        users_num.type = "number"
+        users_num.id="user_nu"
+        container.appendChild(users_num)
+        users_num.onchange=()=>{
+          if (users_num.value) {
+            localStorage.setItem("user_list_count",users_num.value)
+            console.log("d");
+          }
+            window.location.href = "users.html";
+        }
+
+        let exportButton = document.createElement("button");
+        exportButton.id = "exportButton";
+        exportButton.innerText = "Export to CSV";
+        container.appendChild(exportButton);
+
+        exportButton.addEventListener("click", () => {
+          exportToCSV(usersData);
+        });
+      
         let sortingButtons = document.createElement("div");
         sortingButtons.classList.add("sorting-buttons");
 

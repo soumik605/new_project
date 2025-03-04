@@ -1,4 +1,4 @@
-
+// window onload function
 window.onload = function () {
   if (localStorage.getItem("darkMode") === "enabled") {
     document.body.classList.add("dark-mode");
@@ -90,9 +90,6 @@ async function posts() {
   loadButton.addEventListener("click", loadMorePosts);
   maincont.appendChild(loadButton);
 
-  container.innerHTML = ""; 
-  await loadMorePosts(); 
-  
   displayPosts(users);
 }
 
@@ -198,7 +195,7 @@ function exportToCSV(data) {
 const openModal = () => {
   document.getElementById("modal").classList.remove("hide");
   document.getElementById("overlay").classList.remove("hide");
-};
+};  
 
 const closeModal = () => {
   document.getElementById("modal").classList.add("hide");
@@ -218,7 +215,13 @@ async function loadMorePosts() {
 
 async function ShowPostComment(postId) {
   commentbox.innerText = "comment getting...";
+  let load = document.createElement("div");
+  commentbox.innerText=""
+  load.classList.add("load");
+  commentbox.appendChild(load);
+  load.id="load2"
   let response = await fetch(`https://dummyjson.com/posts/${postId}/comments`);
+  load.classList.remove("load");
   let data = await response.json();
 
   return data.comments
@@ -246,3 +249,4 @@ const search = () => {
     }
   }
 };
+	
