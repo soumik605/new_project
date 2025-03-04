@@ -3,6 +3,8 @@ let sidebar_type = document.getElementById("sidebar_type");
 let setcont = document.getElementsByClassName("setcont");
 let changethemebtn = document.getElementById("changethemebtn");
 let setoptionDiv = document.getElementById("setoptionDiv");
+let logout = document.getElementById("logout");
+let maindiv=document.getElementById("maindiv");
 
 back.onclick = function () {
   location.href = "sidebar.html";
@@ -37,4 +39,8 @@ let profile = document.getElementById("profile");
 userprofile.onclick = function () {
  profile.classList.toggle("hide")
 };
+
+logout.onclick= function(){
+    window.location.href="login.html"
+}
 
