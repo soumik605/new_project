@@ -5,7 +5,7 @@ window.onload = async function () {
 
 let productsData = [];
 let productsData2 = [];
-
+let prd_id_lis = JSON.parse(localStorage.getItem("prd_id_lis")) || [];
 async function fetchAllUsers() {
   let container = document.getElementsByClassName("container")[0];
   container.innerHTML = "";
@@ -19,19 +19,7 @@ async function fetchAllUsers() {
     .then((obj) => {
       container.innerHTML = "";
       productsData = obj.products;
-      
-      // console.log(productsData);
-      // function del_func(id) {
-      //   console.log("object");
-      //   productsData = productsData.filter(
-      //     function(itm) {
-      //         return itm.id !== id
-      //     }
-      // ) 
-      // }
-
-
-
+      productsData = obj.products.filter(prod => !prd_id_lis.includes(prod.id));
 
 
       let productTitles = [];
@@ -74,26 +62,13 @@ function Sfunction(data) {
     delete_btn.id = "delete_btn"
     hiddenDiv.appendChild(delete_btn)
 
-    let prd_id_lis = []
-    prd_id_lis =JSON.parse( localStorage.getItem("prd_id_lis"))|| []
-    delete_btn.addEventListener("click", ()=>{
-      console.log(prd_id_lis);
-      // console.log(prod.id);
+    delete_btn.addEventListener("click", (e)=>{
+      e.stopPropagation();
       prd_id_lis.push(prod.id)
       localStorage.setItem("prd_id_lis",JSON.stringify(prd_id_lis))
+      // console.log(prd_id_lis);
       del_func(prod.id)
     })
-    // function del_func(id) {
-    //   console.log("object");
-    // //   productsData = productsData.filter(
-    // //     function(itm) {
-    // //         return itm.id !== id
-    // //     }
-    // // ) 
-    // }
-
-
-
 
     main_pdct.appendChild(hiddenDiv);
 
@@ -124,17 +99,20 @@ function Sfunction(data) {
   }
 }
 
-let prd_id_lis = localStorage.getItem("prd_id_lis")|| []
-console.log(prd_id_lis);
+// console.log(prd_id_lis);
 function del_func(id) {
-  // console.log("object");
-  // console.log(prd_id_lis);
   productsData = productsData.filter(
     function(itm) {
         return itm.id !== id
     }
 ) 
+
 Sfunction(productsData)
+let pdctInfo = document.getElementById("pdctInfo");
+if (pdctInfo.style.display === "block") {
+  pdctInfo.style.display = "none";
+  pdctInfo.innerHTML = "";
+}
 }
 
 
@@ -183,4 +161,4 @@ if (localStorage.getItem("darkMode") === "enabled") {
   document.body.classList.add("dark-mode");
 }
 
-// localStorage.clear()
+///// localStorage.clear()      // don't touch it beacuse it re returns the deleted products.
