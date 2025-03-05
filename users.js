@@ -13,7 +13,7 @@ window.onload = function () {
   load.classList.add("load");
   container.appendChild(load);
 
-let user_list_count = localStorage.getItem("user_list_count")
+let user_list_count = localStorage.getItem("user_list_count")||[10]
   let limit= user_list_count
   fetch(`https://dummyjson.com/users?limit=${limit}`)
     .then((call) => call.json())
