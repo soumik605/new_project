@@ -8,7 +8,11 @@ login.onclick=()=>{
     if(email_F.test(login_Email.value)){
         if (m.includes(login_Email.value) && mh.includes(login_pass.value)) {
             window.location.href = "users.html";
+        }else{
+            alert("Invalied Email & Password")
         }
+    }else{
+        alert("Invalied Format")
     }
 }
 
