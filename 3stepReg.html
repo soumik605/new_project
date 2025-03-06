@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="3stepReg.css">
+    <title>Register step-1</title>
+</head>
+<body>
+    <div id="main_cont">
+        <div id="reg_cont">
+            <div id="head_reg">
+                <h1>Create a new account</h1>
+            </div>
+            <hr>
+            <div id="register_cont2">
+                <form onsubmit="return false">
+                    <h2 style="color: rgb(57, 57, 78);">New Email Address</h2>
+                    <br>
+                    <div class="div4">
+                        <input placeholder="Email address" type="text" name="mb_Em" required class="mb_Em" id="login_Email">
+                    </div>
+                    <br>
+                
+                </form>
+                
+            </div>
+        </div>
+        <div id="reg_cont">
+            <div id="head_reg">
+                <h1>Create a new account</h1>
+            </div>
+            <hr>
+            <div id="register_cont2">
+                <form onsubmit="return false">
+                    <div class="div1">
+                        <div>
+                            <input required class="fst_name" type="text" placeholder="First name">
+                        </div>
+                        <div>
+                            <input class="sur_name" type="text" placeholder="surname">
+                        </div>
+                    </div>
+                    <br>
+                    
+                    <br>
+                    <div class="div5">
+                        <input placeholder=" New Password" type="password" name="Pas" required class="mb_Em" id="login_pass">
+                    </div>
+                    <br>
+                </form>
+                
+            </div>
+        </div>
+
+            <div id="reg_cont">
+                <div id="head_reg">
+                    <h1>Create a new account</h1>
+                </div>
+                <hr>
+                <div id="register_cont2">
+                    <form onsubmit="return false">
+                        <br>
+                        <p>Gender</p>
+                        <div class="div3">
+                            <label for="female" class="sex" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 5px;">
+                                <span>Female</span>
+                                <input type="radio" name="sexx" id="female">
+                            </label>
+                        
+                            <label for="male" class="sex" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 5px;">
+                                <span>Male</span>
+                                <input required type="radio" name="sexx" id="male">
+                            </label>
+                        
+                            <label for="custom" class="sex" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 5px;">
+                                <span>Custom</span>
+                                <input type="radio" name="sexx" id="custom">
+                            </label>
+                        </div>
+                        
+                        <br>
+                        
+                        <div class="div5">
+                            <input placeholder=" New Password" type="number" name="Pas" required class="mb_Em" id="login_pass">
+                        </div>
+                        <br>
+                        <br>
+                        <div class="div6">
+                            <button type="submit" id="signup">Sign Up</button>
+                        </div>
+                        <br>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
