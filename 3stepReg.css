@@ -18,35 +18,30 @@ body{
     justify-content: center;
     align-items: center;
 }
-/* #body_container{
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
+
 #main_cont{
-    /* background-color: #fff; */
     width: 500px;
-    /* padding: 20px; */
-    /* border-radius: 10px; */
-    /* box-shadow: 10px 10px 6px 20px rgb(32, 17, 17); */
-    /* overflow: hidden;
-     */
      display: flex;
     overflow: auto;
     border-radius: 10px;
-
+    position: fixed;
+    background-color: #fff;
+}
+#main_cont2{
+    width: 500px;
+    display: flex;
+    overflow: auto;
+    border-radius: 10px;
+    overflow: hidden;
 }
 #reg_cont{
     background-color: #fff;
     width: 500px;
-    /* padding: 20px; */
-    /* margin: 10px; */
 }
 
 form{
     width: 100%;
-    padding: 50px;
+    padding: 30px;
 }
 
 #head_reg{
@@ -118,19 +113,6 @@ form{
     font-size: larger;
     padding: 10px;
 }
-#signup{
-    height: 35px;
-    background-color: #00801e;
-    width: 50%;
-    border-radius: 10px;
-    color: white;
-    font-size: larger;
-}
-#signup:hover{
-    background-color: #24bb47;
-    cursor: pointer;
-
-}
 .div6{
     display: flex;
     justify-content: center;
@@ -140,4 +122,28 @@ form{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+
+#next1,#next2, #back2, #back3,#finish{
+    display: flex;
+    gap: 15px;
+    margin-top: 100px;
+    background-color: #0048ff;
+    width: 100px;
+    padding: 5px  5px 5px 15px;
+    border-radius: 5px;
+    color: rgb(186, 226, 255);
+    cursor: pointer;
+}
+.fa-solid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
