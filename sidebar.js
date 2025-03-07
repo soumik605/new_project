@@ -9,6 +9,7 @@ let tooltip = document.getElementsByClassName("tooltip")
 
 document.addEventListener("DOMContentLoaded", function () {
     let currentPage = window.top.location.pathname.split("/").pop();
+    console.log(currentPage);
     document.querySelectorAll(".button").forEach(button => {
         let link = button.parentElement; 
         if (link && link.tagName === "A") { 
