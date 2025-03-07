@@ -13,6 +13,7 @@ login.onclick=()=>{
         }
     }else{
         alert("Invalied Format")
+        window.location.href = "login.html";
     }
 }
 
