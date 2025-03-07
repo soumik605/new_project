@@ -112,3 +112,9 @@ width: 100%;
   border-collapse: collapse;
   border: 2px solid black;
 }
+
+#users_num_select{
+  width: 100px;
+  border-radius: 10px;
+  padding: 5px;
+}
