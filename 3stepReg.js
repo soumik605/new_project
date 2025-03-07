@@ -85,7 +85,7 @@ function contfuncc2() {
     reg_cont3.style.transitionDuration=`2s`   
 }
 
-// 1111112222
+
 finish.addEventListener("click",()=>{
     if (phone_F.test(reg_ph.value)) {
         contfunc3() 
@@ -114,6 +114,14 @@ function contfunc3() {
     }, 2000);
     
 }
+document.getElementById("imageUpload").addEventListener("change", function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const imgElement = document.getElementById("profileImage");
+        imgElement.src = URL.createObjectURL(file);
+        imgElement.style.display = "block";
+    }
+});
 
 
 ///// localStorage.removeItem("em")
