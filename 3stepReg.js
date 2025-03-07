@@ -18,8 +18,6 @@ let reg_ph_err = document.getElementById("reg_ph_err")
 next1.addEventListener("click", ()=>{
     let m = localStorage.getItem("em")|| []
     let mh = JSON.parse(localStorage.getItem("ps")) || [];
-    console.log(m);
-    console.log(mh);
     if (login_Email.value!=="") {
         if (email_F.test(login_Email.value)) {
             if (!m.includes(login_Email.value)) {
