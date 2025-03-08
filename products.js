@@ -45,6 +45,7 @@ function Sfunction(data) {
   container.appendChild(sortpdctB);
 
   sortpdctB.addEventListener("click", () => {
+    productsData2 = productsData2.filter(prod => !prd_id_lis.includes(prod.id));
     Sfunction(productsData2)
   });
   let buttonTop = document.createElement("div");
@@ -172,4 +173,4 @@ if (localStorage.getItem("darkMode") === "enabled") {
   document.body.classList.add("dark-mode");
 }
 
-//  localStorage.clear()      // don't touch it beacuse it re returns the deleted products.
+////// localStorage.removeItem("prd_id_lis")      // don't touch it beacuse it re returns the deleted products.

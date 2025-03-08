@@ -128,3 +128,8 @@ width: 100%;
 .top-button:hover {
   background-color: darkblue;
 }
+#users_num_select{
+  width: 100px;
+  border-radius: 10px;
+  padding: 5px;
+}
