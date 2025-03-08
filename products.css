@@ -17,6 +17,7 @@ body {
   height: 100vh;
   padding-left: 160px;
   overflow: scroll;
+  scroll-behavior: smooth;
   scrollbar-width: 1px;
 }
 .container::-webkit-scrollbar {
@@ -109,10 +110,6 @@ padding-left: 10PX;
 .hiddenDiv:hover .pdct {
   opacity: 1;
 }
-/* .main_pdct:hover .hiddenDiv {
-  opacity: 1;
-} */
-
 #RtSt {
   display: flex;
   justify-content: space-between;
@@ -206,4 +203,25 @@ padding-left: 10PX;
 
 #delete_btn:hover{
   scale: 2;
+}
+
+.top-button {
+  width: 60px;
+  height: 60px;
+  background-color: blue;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  position: fixed;
+  bottom: 16px;
+  left: 60%;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.top-button:hover {
+  background-color: darkblue;
 }
