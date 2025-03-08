@@ -6,6 +6,10 @@
 body{
   background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
 }
+html {
+  scroll-behavior: smooth;
+}
+
 #maincont{
   width: 100%;
   min-height: 100vh;
@@ -198,4 +202,25 @@ body{
   height: 75px;
   width: 75px;
  margin-top: 50px;
+}
+
+.top-button {
+  width: 60px;
+  height: 60px;
+  background-color: blue;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.top-button:hover {
+  background-color: darkblue;
 }

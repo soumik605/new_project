@@ -6,6 +6,7 @@ window.onload = async function () {
 let productsData = [];
 let productsData2 = [];
 let prd_id_lis = JSON.parse(localStorage.getItem("prd_id_lis")) || [];
+
 async function fetchAllUsers() {
   let container = document.getElementsByClassName("container")[0];
   container.innerHTML = "";
@@ -21,15 +22,15 @@ async function fetchAllUsers() {
       productsData = obj.products;
       productsData = obj.products.filter(prod => !prd_id_lis.includes(prod.id));
 
-
+      
       let productTitles = [];
-      productsData.forEach((dataa)=>{
+      productsData.forEach((dataa) => {
         productTitles.push(dataa.title)
       })
       productTitles.sort()
       productsData2 = productTitles.map((title) => 
         productsData.find((prod) => prod.title === title)
-    );
+      );
       Sfunction(productsData);
     });
 }
@@ -42,12 +43,25 @@ function Sfunction(data) {
   sortpdctB.textContent = "Sort By Title";
   sortpdctB.classList.add("sortpdctB");
   container.appendChild(sortpdctB);
-  
+
   sortpdctB.addEventListener("click", () => {
     Sfunction(productsData2)
   });
-
+  let buttonTop = document.createElement("div");
+  buttonTop.classList.add("top-button");
+  buttonTop.innerHTML = "⬆️";
+  container.appendChild(buttonTop);
   let productData = [];
+  container.onscroll = () => {
+    if (container.scrollTop > 1) {
+        buttonTop.style.visibility = "visible";
+    } else {
+        buttonTop.style.visibility = "hidden";
+    }
+}
+buttonTop.onclick = () => {
+    container.scrollTop = 0;
+}
 
   data.forEach((prod) => {
     let main_pdct = document.createElement("div");
@@ -62,11 +76,10 @@ function Sfunction(data) {
     delete_btn.id = "delete_btn"
     hiddenDiv.appendChild(delete_btn)
 
-    delete_btn.addEventListener("click", (e)=>{
+    delete_btn.addEventListener("click", (e) => {
       e.stopPropagation();
       prd_id_lis.push(prod.id)
-      localStorage.setItem("prd_id_lis",JSON.stringify(prd_id_lis))
-      // console.log(prd_id_lis);
+      localStorage.setItem("prd_id_lis", JSON.stringify(prd_id_lis))
       del_func(prod.id)
     })
 
@@ -75,9 +88,9 @@ function Sfunction(data) {
     let pdct = document.createElement("div");
     pdct.classList.add("pdct");
     pdct.innerHTML = `
-        <h3 id="h22">${prod.title}</h3> </br>
-        <b>Price</b>: ${prod.price} $</br></br>
-        <b>Return Policy</b>: ${prod.returnPolicy}</br>
+      <h3 id="h22">${prod.title}</h3></br>
+      <b>Price</b>: ${prod.price} $</br></br>
+      <b>Return Policy</b>: ${prod.returnPolicy}</br>
     `;
     main_pdct.appendChild(pdct);
     container.appendChild(main_pdct);
@@ -99,22 +112,20 @@ function Sfunction(data) {
   }
 }
 
-// console.log(prd_id_lis);
 function del_func(id) {
   productsData = productsData.filter(
-    function(itm) {
-        return itm.id !== id
+    function (itm) {
+      return itm.id !== id
     }
-) 
+  )
 
-Sfunction(productsData)
-let pdctInfo = document.getElementById("pdctInfo");
-if (pdctInfo.style.display === "block") {
-  pdctInfo.style.display = "none";
-  pdctInfo.innerHTML = "";
+  Sfunction(productsData)
+  let pdctInfo = document.getElementById("pdctInfo");
+  if (pdctInfo.style.display === "block") {
+    pdctInfo.style.display = "none";
+    pdctInfo.innerHTML = "";
+  }
 }
-}
-
 
 function exportToCSV(data) {
   const csvHeaders = ["Title", "Price", "Rating", "Warranty Information", "Tags"];
@@ -145,13 +156,13 @@ function pdctDetails() {
       p.id = "infoP";
       pdctInfo.innerHTML = `<img id="prdctInfoimg" src="${product.thumbnail}"></img>`;
       p.innerText = `
-      Title : ${product.title}
-      Price : ${product.price} $
-      Stock : ${product.stock}
-      Rating : ${product.rating}
-      Warranty : ${product.warrantyInformation}
-      Return Policy : ${product.returnPolicy}
-      Tags: ${product.tags}`;
+        Title : ${product.title}
+        Price : ${product.price} $
+        Stock : ${product.stock}
+        Rating : ${product.rating}
+        Warranty : ${product.warrantyInformation}
+        Return Policy : ${product.returnPolicy}
+        Tags: ${product.tags}`;
       pdctInfo.appendChild(p);
     }
   });
@@ -161,4 +172,4 @@ if (localStorage.getItem("darkMode") === "enabled") {
   document.body.classList.add("dark-mode");
 }
 
-///// localStorage.clear()      // don't touch it beacuse it re returns the deleted products.
+//  localStorage.clear()      // don't touch it beacuse it re returns the deleted products.
