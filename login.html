@@ -13,26 +13,30 @@
             <div id="login_cont">
                 <form onsubmit="return false;">
                     <div>
-                        <input  id="login_Email" class="inp" type="email" placeholder="Email address" autocomplete="off">
+                        <input id="login_Email" class="inp" type="email" placeholder="Email address" autocomplete="off">
                     </div>
                     <p id="login_Email_err"></p>
                     <div>
-                        <input  id="login_pass"  class="inp"  type="Password" required placeholder="Password" autocomplete="off">
+                        <input id="login_pass" class="inp" type="password" required placeholder="Password" autocomplete="off">
                     </div>
                     <p id="login_pass_err"></p>
+                    <div id="captcha_section">
+                        <p id="captcha_text"></p>
+                        <input id="captcha_input" class="inp" type="text" placeholder="Enter CAPTCHA">
+                        <button type="button" id="refresh_captcha">↻</button>
+                    </div>
+                    <p id="captcha_err"></p>
                     <div>
                         <button id="login">
                             <h2>Log in</h2>
                         </button>
                     </div>
-                    <!-- <div><a style="margin-left: 60%; font-size: larger; color: rgb(0, 138, 177);" href="users.html">As a guest?</a></div> -->
                     <br>
                     <hr>
                 </form>
                 <div>
-                    <!-- <a style="text-decoration: none;" href="register.html"> -->
                     <a style="text-decoration: none;" href="3stepReg.html">
-                    <button id="register">
+                        <button id="register">
                             <h2 style="color: white;">Register</h2>
                         </button>
                     </a>

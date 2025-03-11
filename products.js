@@ -9,19 +9,50 @@ let prd_id_lis = JSON.parse(localStorage.getItem("prd_id_lis")) || [];
 
 async function fetchAllUsers() {
   let container = document.getElementsByClassName("container")[0];
+  // let bodyy = document.body;
   container.innerHTML = "";
 
   let load = document.createElement("div");
   load.classList.add("load");
   container.appendChild(load);
 
+  // let activeDelete = document.createElement("div")
+  // activeDelete.id="activedelete"
+  // bodyy.appendChild(activeDelete)
+  // let activeproduct = document.createElement("button")
+  // activeproduct.id = "activeproduct"
+  // activeproduct.innerText = "Active Products"
+  // let deleteproduct = document.createElement("button")
+  // deleteproduct.id = "deleteproduct"
+  // deleteproduct.innerText = "Delete Products"
+
+
+  // activeDelete.appendChild(activeproduct)
+  // activeDelete.appendChild(deleteproduct)
+      // deleteproduct.onclick=()=>{
+      //   container.innerHTML=""
+      //   console.log(prd_lis)
+      //   productsData = productsData.filter(prod => prd_id_lis.includes(prod.id));
+      //   console.log(prd_id_lis)
+      //   Sfunction(productsData);
+      // }
+  
+  
   await fetch("https://dummyjson.com/products")
     .then((res) => res.json())
     .then((obj) => {
       container.innerHTML = "";
       productsData = obj.products;
+      // let prd_lis=obj.products;
       productsData = obj.products.filter(prod => !prd_id_lis.includes(prod.id));
 
+      // deleteproduct.onclick=()=>{
+      //   container.innerHTML=""
+      //   console.log(prd_lis)
+      //   productsData = prd_lis.filter(prod => !prd_id_lis.includes(prod.id));
+      //   console.log(prd_id_lis)
+      //   Sfunction(prd_lis);
+      // }
       
       let productTitles = [];
       productsData.forEach((dataa) => {
@@ -38,7 +69,29 @@ async function fetchAllUsers() {
 function Sfunction(data) {
   let container = document.getElementsByClassName("container")[0];
   container.innerHTML = "";
+  // let activeDelete = document.createElement("div")
+  // activeDelete.id="activedelete"
+  // container.appendChild(activeDelete)
+  // let activeproduct = document.createElement("button")
+  // activeproduct.id = "activeproduct"
+  // activeproduct.innerText = "Active Products"
+  // let deleteproduct = document.createElement("button")
+  // deleteproduct.id = "deleteproduct"
+  // deleteproduct.innerText = "Delete Products"
 
+
+  // activeDelete.appendChild(activeproduct)
+  // activeDelete.appendChild(deleteproduct)
+  //       // let deleteproduct = document.getElementById("deleteproduct")
+  //     // deleteproduct.onclick=()=>{
+  //     //   container.innerHTML=""
+  //       // console.log(prd_lis)
+  //     //   productsData = productsData.filter(prod => prd_id_lis.includes(prod.id));
+  //     //   console.log(prd_id_lis)
+  //     //   Sfunction(productsData);
+  //     // }
+  
+  
   let sortpdctB = document.createElement("button");
   sortpdctB.textContent = "Sort By Title";
   sortpdctB.classList.add("sortpdctB");
@@ -81,6 +134,7 @@ buttonTop.onclick = () => {
       e.stopPropagation();
       prd_id_lis.push(prod.id)
       localStorage.setItem("prd_id_lis", JSON.stringify(prd_id_lis))
+      // console.log(prd_id_lis);
       del_func(prod.id)
     })
 
@@ -173,4 +227,4 @@ if (localStorage.getItem("darkMode") === "enabled") {
   document.body.classList.add("dark-mode");
 }
 
-////// localStorage.removeItem("prd_id_lis")      // don't touch it beacuse it re returns the deleted products.
+// localStorage.removeItem("prd_id_lis")      // don't touch it beacuse it re returns the deleted products.

@@ -1,17 +1,18 @@
-*{
+* {
     box-sizing: border-box;
-    margin: 0%;
-    padding: 0%;
+    margin: 0;
+    padding: 0;
 }
 
-#body_container{
+#body_container {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: rgb(21, 219, 245);
 }
-#login_cont2{
+
+#login_cont2 {
     padding: 10px;
     background: #ffffff;
     box-shadow: 5px 5px 5px rgb(142, 142, 142);
@@ -19,28 +20,30 @@
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-
 }
-#login_cont{
+
+#login_cont {
     padding: 10px;
     background: #ffffff;
     text-align: center;
     width: 400px;
 }
-.inp{
+
+.inp {
     height: 50px;
     width: 100%;
-    margin: 10px 0px;
+    margin: 10px 0;
     border-radius: 5px;
     padding: 10px;
     font-size: 18px;
-    
 }
-.inp::placeholder{
+
+.inp::placeholder {
     color: #9f9e9e;
     font-size: larger;
 }
-#login{
+
+#login {
     margin: 20px;
     height: 40px;
     width: 200px;
@@ -49,10 +52,12 @@
     border-radius: 10px;
     cursor: pointer;
 }
-#login:hover{
+
+#login:hover {
     background-color: #0033ff;
 }
-#register{
+
+#register {
     margin: 20px;
     height: 40px;
     width: 150px;
@@ -61,6 +66,30 @@
     border-radius: 10px;
     cursor: pointer;
 }
-#register:hover{ 
+
+#register:hover { 
     background-color: #50c502;
+}
+
+#captcha_section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#captcha_text {
+    font-weight: bold;
+    font-size: 20px;
+    background: #ddd;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#refresh_captcha {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
 }
