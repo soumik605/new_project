@@ -10,8 +10,8 @@ function generateCaptcha() {
 document.getElementById("refresh_captcha").onclick = generateCaptcha;
 
 let email_F = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-let m = localStorage.getItem("em");
-let mh = localStorage.getItem("ps");
+let m = JSON.parse(localStorage.getItem("em") || "[]");
+let mh = JSON.parse(localStorage.getItem("ps") || "[]");
 let login = document.getElementById("login");
 
 login.onclick = () => {
@@ -36,4 +36,3 @@ login.onclick = () => {
     }
 };
 generateCaptcha();
-
