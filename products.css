@@ -19,6 +19,7 @@ body {
   overflow: scroll;
   scroll-behavior: smooth;
   scrollbar-width: 1px;
+  margin-top: 60px;
 }
 .container::-webkit-scrollbar {
   display: none;
@@ -186,7 +187,7 @@ padding-left: 10PX;
   border-radius: 10px;
   position: absolute;
   margin-left: 65%;
-  margin-top: 10px;
+  margin-top: -50px;
 }
 
 #delete_btn{
@@ -225,3 +226,28 @@ padding-left: 10PX;
 .top-button:hover {
   background-color: darkblue;
 }
+
+/* #activedelete{
+  position: absolute;
+  left: 10%;
+  top: 10px;
+  z-index: 1;
+}
+
+#activeproduct{
+  height: 30px;
+  font-size: 20px;
+  background-color: #000a97;
+  margin-right: 10px;
+  color: white;
+  padding: 5px;
+  border-radius: 8px;
+}
+#deleteproduct{
+  height: 30px;
+  font-size: 20px;
+  background-color: #550000;
+  color: white;
+  padding: 5px;
+  border-radius: 8px;
+} */
