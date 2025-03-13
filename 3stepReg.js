@@ -116,12 +116,12 @@ finish.addEventListener("click",()=>{
         localStorage.setItem("sexx_lis", JSON.stringify(sexx_lis));
         localStorage.setItem("reg_ph_lis", JSON.stringify(reg_ph_lis));
         localStorage.setItem("pro_imges", JSON.stringify(pro_imges));
-        console.log(`Emails\n`,em_list);
-        console.log(`Passwords\n`,ps_list);
-        console.log(`Fullnames\n`,full_name_lis);
-        console.log(`Genders\n`,sexx_lis);
-        console.log(`Phone Numbers\n`,reg_ph_lis);
-        console.log(`Profile photos\n`,pro_imges);
+        // console.log(`Emails\n`,em_list);
+        // console.log(`Passwords\n`,ps_list);
+        // console.log(`Fullnames\n`,full_name_lis);
+        // console.log(`Genders\n`,sexx_lis);
+        // console.log(`Phone Numbers\n`,reg_ph_lis);
+        // console.log(`Profile photos\n`,pro_imges);
     }else{
         reg_ph_err.style.color="red"
         reg_ph_err.innerHTML="Ivalied Mobile number."
