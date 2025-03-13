@@ -5,8 +5,11 @@
 }
 body{
      background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59); 
-
 }
+html {
+  scroll-behavior: smooth;
+}
+
 #container{
     padding-left: 200px;
     width: 100%;
@@ -20,8 +23,6 @@ body{
   width: fit-content;
 }
 
-
-  
   .load{
     height: 100px;
     width: 100px;
@@ -78,9 +79,6 @@ body{
   margin-left: 5px;
 }
 
-
-
-
 .sorting-buttons {
   display: flex;
   justify-content: space-around;
@@ -102,9 +100,6 @@ body{
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
   
-
-
-
 #mainTable{
 width: 100%;
 margin-right: 20px;
@@ -136,4 +131,31 @@ margin-top: 5px;
 .checkbox{
   height: 30px;
   width: 100%;
+}
+
+
+.top-button {
+  width: 60px;
+  height: 60px;
+  background-color: blue;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.top-button:hover {
+  background-color: darkblue;
+}
+#users_num_select{
+  width: 100px;
+  border-radius: 10px;
+  padding: 5px;
 }

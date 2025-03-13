@@ -249,4 +249,27 @@ const search = () => {
     }
   }
 };
-	
+
+
+let buttonTop = document.createElement("div");
+
+buttonTop.classList.add("top-button");
+
+buttonTop.innerHTML = "⬆️";
+
+document.body.appendChild(buttonTop);
+
+window.onscroll = () => {
+    if (document.documentElement.scrollTop > 1 || document.body.scrollTop > 1) {
+        buttonTop.style.visibility = "visible";
+    } else {
+        buttonTop.style.visibility = "hidden";
+    }
+}
+
+buttonTop.onclick = () => {
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+}
+
+

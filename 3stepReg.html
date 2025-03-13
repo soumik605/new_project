@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+    <link rel="stylesheet" href="3stepReg.css">
+	<script defer src="3stepReg.js"></script>
+    <title>Register step-1</title>
+</head>
+<body>
+    <div id="main_cont">
+        <div id="main_cont2">
+            <div id="reg_cont">
+                <div id="head_reg">
+                    <h1>Create a new account</h1>
+                </div>
+                <hr>
+                <div id="register_cont2">
+                    <form onsubmit="return false">
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <h2 style="color: rgb(57, 57, 78);">New Email Address</h2>
+                        <div class="div4">
+                            <input placeholder="Email address" autocomplete="off" spellcheck="false" type="text" name="mb_Em" required class="mb_Em" id="login_Email">
+                            <h3 id="login_Email_err"></h3>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <button type="submit"  style="margin-left: 76%;" id="next1"><h2>Next</h2><i  class="fa-solid fa-chevron-right"></i></button type="submit">
+                    
+                    </form>
+                    
+                </div>
+            </div>
+            <div id="reg_cont2">
+                <div id="head_reg">
+                    <h1>Create a new account</h1>
+                </div>
+                <hr>
+                <div id="register_cont2">
+                    <form onsubmit="return false">
+                        <div class="div1">
+                            <div>
+                                <input required class="fst_name" type="text" placeholder="First name">
+                            </div>
+                            <div>
+                                <input class="sur_name" type="text" placeholder="surname">
+                            </div>
+                        </div>
+                        <br>
+                        
+                        <br>
+                        <div class="div5">
+                            <input placeholder="New Password" type="password" name="Pas" required class="mb_Em" id="login_pass">
+                            <h3 id="login_pass_err"></h3>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        
+                        <div style="display: flex;">
+                            <button type="button" id="back2"><i style="transform: rotate(180deg);"  class="fa-solid fa-chevron-right"></i><h2>Back</h2></button>
+                            <button style="margin-left: 52%;" type="submit" id="next2"><h2>Next</h2><i class="fa-solid fa-chevron-right"></i></button type="submit">
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
+
+                <div id="reg_cont3">
+                    <div id="head_reg">
+                        <h1>Create a new account</h1>
+                    </div>
+                    <hr>
+                    <div id="register_cont2">
+                        <form onsubmit="return false">
+                            <div class="profile-container" id="profileDiv">
+                                <img id="profileImage" src="" alt="Profile Picture">
+                            </div>
+                            <!-- <label for="imageUpload" class="custom-file-upload">Add File</label> -->
+                            <label for="imageUpload" class="custom-file-upload">Add Profile</label>
+
+                            <input type="file" id="imageUpload" accept="image/*">
+                        
+                            <br>
+
+                            <h3>Gender</h3>
+                            <div class="div3">
+                                <label for="female" class="sex" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 5px;">
+                                    <span>Female</span>
+                                    <input type="radio" name="sexx" id="female">
+                                </label>
+                            
+                                <label for="male" class="sex" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 5px;">
+                                    <span>Male</span>
+                                    <input required type="radio" name="sexx" id="male">
+                                </label>
+                            
+                                <label for="custom" class="sex" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 5px;">
+                                    <span>Custom</span>
+                                    <input type="radio" name="sexx" id="custom">
+                                </label>
+                            </div>
+                            
+                            <br>
+                            <br>
+                            
+                            <div class="div5">
+                                <input placeholder="Phone Number" type="number" name="Pas" required class="mb_Em" id="reg_ph">
+                                <h3 id="reg_ph_err"></h2>
+                            </div>
+                            <br>
+                            
+                            <div class="div6">
+                            <button type="button" style="margin-top: 10px;" id="back3"><i style="transform: rotate(180deg); "  class="fa-solid fa-chevron-right"></i><h2>Back</h2></button>
+                            <button style="margin-left: 52%; width: 110px; margin-top: 10px; background-color: #009808; color: white;" type="submit" id="finish"><h2>Finish</h2><i class="fa-solid fa-chevron-right"></i></button>
+                            </div>
+                            <br>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

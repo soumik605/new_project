@@ -25,7 +25,7 @@
                 <form onsubmit="return false">
                     <div class="div1">
                         <div>
-                            <input class="fst_name" type="text" placeholder="First name">
+                            <input required class="fst_name" type="text" placeholder="First name">
                         </div>
                         <div>
                             <input class="sur_name" type="text" placeholder="surname">
@@ -95,7 +95,7 @@
                     
                         <label for="male" class="sex" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 5px;">
                             <span>Male</span>
-                            <input type="radio" name="sexx" id="male">
+                            <input required type="radio" name="sexx" id="male">
                         </label>
                     
                         <label for="custom" class="sex" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 5px;">
@@ -106,11 +106,13 @@
                     
                     <br>
                     <div class="div4">
-                        <input placeholder="Mobile number or Email address" type="text" name="mb_Em" required class="mb_Em" id="login_Email">
+                        <input placeholder="Email address" type="text" name="mb_Em" required class="mb_Em" id="login_Email">
+                        <h3 id="login_Email_err"></h3>
                     </div>
                     <br>
                     <div class="div5">
                         <input placeholder=" New Password" type="password" name="Pas" required class="mb_Em" id="login_pass">
+                        <h3 id="login_pass_err"></h3>
                     </div>
                     <br>
                     <br>

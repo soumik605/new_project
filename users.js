@@ -14,7 +14,7 @@ window.onload = function () {
   load.classList.add("load");
   container.appendChild(load);
 
-let user_list_count = localStorage.getItem("user_list_count")
+let user_list_count = localStorage.getItem("user_list_count")||[10]
   let limit= user_list_count
   fetch(`https://dummyjson.com/users?limit=${limit}`)
     .then((call) => call.json())
@@ -54,22 +54,26 @@ let user_list_count = localStorage.getItem("user_list_count")
         }
         isFirstRender = false;
 
+        let users_num_select = document.createElement("select")
+        users_num_select.id="users_num_select"
+        let count = 0;
+        for (let i = 0; i < 208; i++) {
+          count++;
+          let users_num_op = document.createElement("option")
+          users_num_op.value=`${count}`
+          users_num_op.id=`${count}`
+          users_num_op.innerHTML=`${count}`
+          users_num_select.appendChild(users_num_op)
+        }
 
-        let users_num = document.createElement("input")
-        users_num.placeholder = "Number of users           ↲"
-        users_num.id = "users_num"
-        users_num.style.padding="10px"
-        users_num.style.borderRadius="10px"
-        users_num.style.fontSize="17px"
-        users_num.style.transform="translateY(4px)"
-
-        users_num.type = "number"
-        users_num.id="user_nu"
-        container.appendChild(users_num)
-        users_num.onchange=()=>{
-          if (users_num.value) {
-            localStorage.setItem("user_list_count",users_num.value)
-            console.log("d");
+        container.appendChild(users_num_select)
+        let users_num = users_num_select.value
+        let user_list_count2 = localStorage.getItem("user_list_count")||[10]
+        let users_num_op2 = document.getElementById(`${user_list_count2}`)
+        users_num_op2.selected=true
+        users_num_select.onchange=()=>{
+          if (users_num_select.value) {
+            localStorage.setItem("user_list_count",users_num_select.value)
           }
             window.location.href = "users.html";
         }
@@ -275,3 +279,21 @@ function exportToCSV(data) {
 
 
 
+let buttonTop = document.createElement("div");
+buttonTop.classList.add("top-button");
+
+buttonTop.innerHTML = "⬆️";
+document.body.appendChild(buttonTop);
+
+window.onscroll = () => {
+    if (document.documentElement.scrollTop > 1 || document.body.scrollTop > 1) {
+        buttonTop.style.visibility = "visible";
+    } else {
+        buttonTop.style.visibility = "hidden";
+    }
+}
+buttonTop.onclick = () => {
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+}
+///// localStorage.removeItem("user_list_count")
