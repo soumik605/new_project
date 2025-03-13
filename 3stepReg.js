@@ -87,14 +87,41 @@ function contfuncc2() {
 
 
 finish.addEventListener("click",()=>{
+    let fst_name = document.getElementsByClassName("fst_name")[0]
+    let sur_name = document.getElementsByClassName("sur_name")[0]
+    let sexx = document.querySelector('input[name="sexx"]:checked');
+    let reg_ph = document.getElementById("reg_ph")
+    let imgElement = document.getElementById("profileImage");
     if (phone_F.test(reg_ph.value)) {
         contfunc3() 
         let em_list = JSON.parse(localStorage.getItem("em")) || [];
         let ps_list = JSON.parse(localStorage.getItem("ps")) || [];
+        let full_name_lis = JSON.parse(localStorage.getItem("full_name_lis")) || [];
+        let sexx_lis = JSON.parse(localStorage.getItem("sexx_lis")) || [];
+        let reg_ph_lis = JSON.parse(localStorage.getItem("reg_ph_lis")) || [];
+        let pro_imges = JSON.parse(localStorage.getItem("pro_imges")) || [];
         em_list.push(login_Email.value);
         ps_list.push(login_pass.value);
+        full_name_lis.push(`${fst_name.value} ${sur_name.value}`);
+        sexx_lis.push(sexx.value);
+        reg_ph_lis.push(reg_ph.value);
+        if (imgElement.src!=="http://127.0.0.1:5500/3stepReg.html") {
+            pro_imges.push(imgElement.src);
+        }else{
+            pro_imges.push("No Profile");
+        }
         localStorage.setItem("em", JSON.stringify(em_list));
         localStorage.setItem("ps", JSON.stringify(ps_list));
+        localStorage.setItem("full_name_lis", JSON.stringify(full_name_lis));
+        localStorage.setItem("sexx_lis", JSON.stringify(sexx_lis));
+        localStorage.setItem("reg_ph_lis", JSON.stringify(reg_ph_lis));
+        localStorage.setItem("pro_imges", JSON.stringify(pro_imges));
+        console.log(`Emails\n`,em_list);
+        console.log(`Passwords\n`,ps_list);
+        console.log(`Fullnames\n`,full_name_lis);
+        console.log(`Genders\n`,sexx_lis);
+        console.log(`Phone Numbers\n`,reg_ph_lis);
+        console.log(`Profile photos\n`,pro_imges);
     }else{
         reg_ph_err.style.color="red"
         reg_ph_err.innerHTML="Ivalied Mobile number."
@@ -126,3 +153,7 @@ document.getElementById("imageUpload").addEventListener("change", function(event
 
 ///// localStorage.removeItem("em")
 ///// localStorage.removeItem("ps")
+///// localStorage.removeItem("full_name_lis")
+///// localStorage.removeItem("sexx_lis")
+///// localStorage.removeItem("reg_ph_lis")
+///// localStorage.removeItem("pro_imges")
