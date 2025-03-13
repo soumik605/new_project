@@ -1,4 +1,5 @@
 window.onload = function () {
+ 
   let body = document.body;
 
   let container = document.createElement("div");
@@ -127,6 +128,11 @@ let user_list_count = localStorage.getItem("user_list_count")
         table.style.width="100%"
         mainTable.id="mainTable"
         let tr = document.createElement("tr")
+        let checkbox= document.createElement("input")
+        checkbox.setAttribute("type", "checkbox");
+        checkbox.classList.add("checkbox")
+        let td0 = document.createElement("th")
+        
         let td1 = document.createElement("th")
         td1.innerHTML=`Fullname`
         let td2 = document.createElement("th")
@@ -139,7 +145,8 @@ let user_list_count = localStorage.getItem("user_list_count")
         td5.innerHTML=`Gender`
         let td6 = document.createElement("th")
         td6.innerHTML=`Email`
-  
+        
+        tr.appendChild(td0)
         tr.appendChild(td1)
         tr.appendChild(td2)
         tr.appendChild(td3)
@@ -150,14 +157,30 @@ let user_list_count = localStorage.getItem("user_list_count")
 
 
         userlist_2.forEach((user) => {
+          console.log(user);
+          
           let fullname = `${user.firstName} ${user.maidenName} ${user.lastName}`;
           let age = user.age;
           let gender = user.gender;
           let email = user.email;
           let username = user.username;
-          let image = user.image;
+          let image =`<img id="userimg" src=${user.image}></img>` ;
           let role = user.role;
+          let phone = user.phone;
+          let address= user.address.address;
+          let company=user.company.name;
           let tr = document.createElement("tr")
+          tr.classList.add("tr")
+          let trInfo = document.createElement("div")
+          trInfo.classList.add("trInfo")
+          let p = document.createElement("p")
+          p.innerText=`Ph-No: ${phone} \n Company: ${company} \n Address: ${address}`
+          trInfo.innerHTML=` ${image}`
+
+          let checkbox= document.createElement("input")
+          checkbox.setAttribute("type", "checkbox");
+          checkbox.classList.add("checkbox")
+          let td0= document.createElement("td")
           let td1 = document.createElement("td")
           td1.innerHTML=`${fullname}`
           let td2 = document.createElement("td")
@@ -171,6 +194,8 @@ let user_list_count = localStorage.getItem("user_list_count")
           let td6 = document.createElement("td")
           td6.innerHTML=`${email}`
 
+          tr.appendChild(td0)
+          td0.appendChild(checkbox)
           tr.appendChild(td1)
           tr.appendChild(td2)
           tr.appendChild(td3)
@@ -178,10 +203,13 @@ let user_list_count = localStorage.getItem("user_list_count")
           tr.appendChild(td5)
           tr.appendChild(td6)
           table.appendChild(tr)
+          trInfo.appendChild(p)
+          table.appendChild(trInfo)
           mainTable.appendChild(table)
           container.appendChild(mainTable)
-
+       
           table.style.marginTop="40px"
+
           td1.style.height="30px"
           td1.style.paddingLeft="50px"
           td2.style.height="30px"
@@ -201,6 +229,16 @@ let user_list_count = localStorage.getItem("user_list_count")
             gender: gender,
             role: role,
           });
+          tr.addEventListener("click", function () {
+            let trInfo = tr.nextElementSibling; 
+            if (trInfo && trInfo.classList.contains("trInfo")) {
+              if (trInfo.style.display === "block") {
+                trInfo.style.display = "none";
+              } else {
+                trInfo.style.display = "block";
+              }
+            }
+          });
         });
 
         searchInput.addEventListener("input", () => {
@@ -216,6 +254,7 @@ let user_list_count = localStorage.getItem("user_list_count")
 
       userbodyfunc(userlist); 
     });
+ 
 };
 
 function exportToCSV(data) {
@@ -231,4 +270,8 @@ function exportToCSV(data) {
   link.download = "users_data.csv";
   link.click();
 }
+
+
+
+
 

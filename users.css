@@ -107,8 +107,33 @@ body{
 
 #mainTable{
 width: 100%;
+margin-right: 20px;
+margin-top: 5px;
 }
 #table{
   border-collapse: collapse;
   border: 2px solid black;
+  cursor: pointer;
+}
+::-webkit-scrollbar{
+  display: none;
+}
+
+.trInfo{
+
+  padding: 10px;
+  background-color: #e8e8e8;
+  text-align: center;
+  display: flex;
+  display: none;
+  transition: 0.4s ease;
+}
+#userimg{
+  height: 60px;
+  width: 60px;
+  margin-right: 10px;
+}
+.checkbox{
+  height: 30px;
+  width: 100%;
 }
