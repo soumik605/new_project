@@ -23,7 +23,9 @@ login.onclick = () => {
     if (email_F.test(login_Email)) {
         if (m && m.includes(login_Email) && mh && mh.includes(login_pass)) {
             if (captcha_input === captcha_text) {
+             
                 window.location.href = "users.html";
+                
             } else {
                 alert("Incorrect CAPTCHA");
             }
@@ -36,3 +38,4 @@ login.onclick = () => {
     }
 };
 generateCaptcha();
+
