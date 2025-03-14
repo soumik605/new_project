@@ -102,11 +102,38 @@ html {
   
 #mainTable{
 width: 100%;
+margin-right: 20px;
+margin-top: 5px;
 }
 #table{
   border-collapse: collapse;
   border: 2px solid black;
+  cursor: pointer;
 }
+::-webkit-scrollbar{
+  display: none;
+}
+
+.trInfo{
+
+  padding: 10px;
+  background-color: #e8e8e8;
+  text-align: center;
+  display: flex;
+  display: none;
+  transition: 0.4s ease;
+}
+#userimg{
+  height: 60px;
+  width: 60px;
+  margin-right: 10px;
+}
+.accordion-content{
+  display: flex;
+  background-color: #fff;
+  justify-content: space-evenly ;
+}
+
 
 .top-button {
   width: 60px;
@@ -132,4 +159,9 @@ width: 100%;
   width: 100px;
   border-radius: 10px;
   padding: 5px;
+}
+.row-checkbox{
+  width:100%;
+  height: 40px;
+  cursor: pointer;
 }

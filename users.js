@@ -5,7 +5,7 @@ window.onload = function () {
   container.id = "container";
   body.appendChild(container);
 
-  if(localStorage.getItem("darkMode") === "enabled"){
+  if (localStorage.getItem("darkMode") === "enabled") {
     document.body.classList.add("dark-mode");
   }
 
@@ -13,12 +13,12 @@ window.onload = function () {
   load.classList.add("load");
   container.appendChild(load);
 
-let user_list_count = localStorage.getItem("user_list_count")||[10]
-  let limit= user_list_count
+  let user_list_count = localStorage.getItem("user_list_count") || [10];
+  let limit = user_list_count;
   fetch(`https://dummyjson.com/users?limit=${limit}`)
     .then((call) => call.json())
     .then((object) => {
-      container.innerHTML = ""; 
+      container.innerHTML = "";
       let userlist = object.users;
       let usersData = [];
       let isFirstRender = true;
@@ -53,29 +53,29 @@ let user_list_count = localStorage.getItem("user_list_count")||[10]
         }
         isFirstRender = false;
 
-        let users_num_select = document.createElement("select")
-        users_num_select.id="users_num_select"
+        let users_num_select = document.createElement("select");
+        users_num_select.id = "users_num_select";
         let count = 0;
         for (let i = 0; i < 208; i++) {
           count++;
-          let users_num_op = document.createElement("option")
-          users_num_op.value=`${count}`
-          users_num_op.id=`${count}`
-          users_num_op.innerHTML=`${count}`
-          users_num_select.appendChild(users_num_op)
+          let users_num_op = document.createElement("option");
+          users_num_op.value = `${count}`;
+          users_num_op.id = `${count}`;
+          users_num_op.innerHTML = `${count}`;
+          users_num_select.appendChild(users_num_op);
         }
 
-        container.appendChild(users_num_select)
-        let users_num = users_num_select.value
-        let user_list_count2 = localStorage.getItem("user_list_count")||[10]
-        let users_num_op2 = document.getElementById(`${user_list_count2}`)
-        users_num_op2.selected=true
-        users_num_select.onchange=()=>{
+        container.appendChild(users_num_select);
+        let users_num = users_num_select.value;
+        let user_list_count2 = localStorage.getItem("user_list_count") || [10];
+        let users_num_op2 = document.getElementById(`${user_list_count2}`);
+        users_num_op2.selected = true;
+        users_num_select.onchange = () => {
           if (users_num_select.value) {
-            localStorage.setItem("user_list_count",users_num_select.value)
+            localStorage.setItem("user_list_count", users_num_select.value);
           }
-            window.location.href = "users.html";
-        }
+          window.location.href = "users.html";
+        };
 
         let exportButton = document.createElement("button");
         exportButton.id = "exportButton";
@@ -106,12 +106,16 @@ let user_list_count = localStorage.getItem("user_list_count")||[10]
 
         container.appendChild(sortingButtons);
         sortbyassending.addEventListener("click", () => {
-          let sortedByName = userlist_2.sort((a, b) => a.firstName.localeCompare(b.firstName));
+          let sortedByName = userlist_2.sort((a, b) =>
+            a.firstName.localeCompare(b.firstName)
+          );
           userbodyfunc(sortedByName);
         });
 
         sortbydesending.addEventListener("click", () => {
-          let sortedByName = userlist_2.sort((a, b) => b.firstName.localeCompare(a.firstName));
+          let sortedByName = userlist_2.sort((a, b) =>
+            b.firstName.localeCompare(a.firstName)
+          );
           userbodyfunc(sortedByName);
         });
 
@@ -124,80 +128,119 @@ let user_list_count = localStorage.getItem("user_list_count")||[10]
           let sortedByAge = userlist_2.sort((a, b) => b.age - a.age);
           userbodyfunc(sortedByAge);
         });
-        let mainTable = document.createElement("div")
-        let table = document.createElement("table")
-        table.border="1";
-        table.id="table";
-        table.style.width="100%"
-        mainTable.id="mainTable"
-        let tr = document.createElement("tr")
-        let td1 = document.createElement("th")
-        td1.innerHTML=`Fullname`
-        let td2 = document.createElement("th")
-        td2.innerHTML=`Age`
-        let td3 = document.createElement("th")
-        td3.innerHTML=`Role`
-        let td4 = document.createElement("th")
-        td4.innerHTML=`Username`
-        let td5 = document.createElement("th")
-        td5.innerHTML=`Gender`
-        let td6 = document.createElement("th")
-        td6.innerHTML=`Email`
-  
-        tr.appendChild(td1)
-        tr.appendChild(td2)
-        tr.appendChild(td3)
-        tr.appendChild(td4)
-        tr.appendChild(td5)
-        tr.appendChild(td6)
-        table.appendChild(tr)
+        let mainTable = document.createElement("div");
+        let table = document.createElement("table");
+        table.border = "1";
+        table.id = "table";
+        table.style.width = "100%";
+        mainTable.id = "mainTable";
+        let tr = document.createElement("tr");
 
+        let th0 = document.createElement("th");
+        th0.innerHTML = "✓ Count";
+        let td1 = document.createElement("th");
+        td1.innerHTML = `Fullname`;
+        let td2 = document.createElement("th");
+        td2.innerHTML = `Age`;
+        let td3 = document.createElement("th");
+        td3.innerHTML = `Role`;
+        let td4 = document.createElement("th");
+        td4.innerHTML = `Username`;
+        let td5 = document.createElement("th");
+        td5.innerHTML = `Gender`;
+        let td6 = document.createElement("th");
+        td6.innerHTML = `Email`;
 
+        tr.appendChild(th0);
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        tr.appendChild(td4);
+        tr.appendChild(td5);
+        tr.appendChild(td6);
+        table.appendChild(tr);
+        let checkboxCount = 0;
         userlist_2.forEach((user) => {
+          console.log(user);
+
           let fullname = `${user.firstName} ${user.maidenName} ${user.lastName}`;
           let age = user.age;
           let gender = user.gender;
           let email = user.email;
           let username = user.username;
-          let image = user.image;
+          let image = `<img id="userimg" src=${user.image}></img>`;
           let role = user.role;
-          let tr = document.createElement("tr")
-          let td1 = document.createElement("td")
-          td1.innerHTML=`${fullname}`
-          let td2 = document.createElement("td")
-          td2.innerHTML=`${age}`
-          let td3 = document.createElement("td")
-          td3.innerHTML=`${role}`
-          let td4 = document.createElement("td")
-          td4.innerHTML=`${username}`
-          let td5 = document.createElement("td")
-          td5.innerHTML=`${gender}`
-          let td6 = document.createElement("td")
-          td6.innerHTML=`${email}`
+          let phone = user.phone;
+          let address = user.address.address;
+          let company = user.company.name;
+          let tr = document.createElement("tr");
+          tr.classList.add("tr");
 
-          tr.appendChild(td1)
-          tr.appendChild(td2)
-          tr.appendChild(td3)
-          tr.appendChild(td4)
-          tr.appendChild(td5)
-          tr.appendChild(td6)
-          table.appendChild(tr)
-          mainTable.appendChild(table)
-          container.appendChild(mainTable)
+          let td0 = document.createElement("td");
+          let checkbox = document.createElement("input");
+          checkbox.setAttribute("type", "checkbox");
+          checkbox.classList.add("row-checkbox");
+          checkbox.addEventListener("click", (event) => {
+            event.stopPropagation(); 
+          });
+          td0.appendChild(checkbox);
 
-          table.style.marginTop="40px"
-          td1.style.height="30px"
-          td1.style.paddingLeft="50px"
-          td2.style.height="30px"
-          td2.style.textAlign="center"
-          td3.style.height="30px"
-          td3.style.paddingLeft="50px"
-          td4.style.height="30px"
-          td4.style.paddingLeft="50px"
-          td5.style.height="30px"
-          td5.style.paddingLeft="50px"
-          td6.style.height="30px"
-          td6.style.paddingLeft="50px"
+          let td1 = document.createElement("td");
+          td1.innerHTML = `${fullname}`;
+          let td2 = document.createElement("td");
+          td2.innerHTML = `${age}`;
+          let td3 = document.createElement("td");
+          td3.innerHTML = `${role}`;
+          let td4 = document.createElement("td");
+          td4.innerHTML = `${username}`;
+          let td5 = document.createElement("td");
+          td5.innerHTML = `${gender}`;
+          let td6 = document.createElement("td");
+          td6.innerHTML = `${email}`;
+
+          let accordionRow = document.createElement("tr");
+          accordionRow.classList.add("accordion-row");
+          accordionRow.style.display = "none";
+
+          let accordionContent = document.createElement("td");
+          accordionContent.colSpan = 7;
+          accordionContent.innerHTML = `
+            <div class="accordion-content">
+              <img src="${user.image}" alt="User Image" style="width: 50px; height: 50px; border-radius: 50%;">
+              <p><strong>Phone:</strong> ${user.phone}</p>
+              <p><strong>Address:</strong> ${user.address.address}, ${user.address.city}</p>
+              <p><strong>Company:</strong> ${user.company.name}</p>
+            </div>
+          `;
+
+          tr.appendChild(td0);
+         
+          tr.appendChild(td1);
+          tr.appendChild(td2);
+          tr.appendChild(td3);
+          tr.appendChild(td4);
+          tr.appendChild(td5);
+          tr.appendChild(td6);
+          table.appendChild(tr);
+          accordionRow.appendChild(accordionContent);
+          table.appendChild(accordionRow);
+          mainTable.appendChild(table);
+          container.appendChild(mainTable);
+
+          table.style.marginTop = "40px";
+
+          td1.style.height = "30px";
+          td1.style.paddingLeft = "50px";
+          td2.style.height = "30px";
+          td2.style.textAlign = "center";
+          td3.style.height = "30px";
+          td3.style.paddingLeft = "50px";
+          td4.style.height = "30px";
+          td4.style.paddingLeft = "50px";
+          td5.style.height = "30px";
+          td5.style.paddingLeft = "50px";
+          td6.style.height = "30px";
+          td6.style.paddingLeft = "50px";
           usersData.push({
             Name: fullname,
             email: email,
@@ -205,6 +248,14 @@ let user_list_count = localStorage.getItem("user_list_count")||[10]
             gender: gender,
             role: role,
           });
+
+          tr.addEventListener("click", function () {
+            
+            accordionRow.style.display =
+            
+              accordionRow.style.display === "none" ? "table-row" : "none";
+          });
+          
         });
 
         searchInput.addEventListener("input", () => {
@@ -212,13 +263,15 @@ let user_list_count = localStorage.getItem("user_list_count")||[10]
           userbodyfunc.searchValue = searchText;
 
           let userlist_2 = userlist.filter((user) =>
-            `${user.firstName} ${user.lastName}`.toLowerCase().includes(searchText)
+            `${user.firstName} ${user.lastName}`
+              .toLowerCase()
+              .includes(searchText)
           );
           userbodyfunc(userlist_2);
         });
       }
 
-      userbodyfunc(userlist); 
+      userbodyfunc(userlist);
     });
 };
 
@@ -236,7 +289,6 @@ function exportToCSV(data) {
   link.click();
 }
 
-
 let buttonTop = document.createElement("div");
 buttonTop.classList.add("top-button");
 
@@ -244,14 +296,14 @@ buttonTop.innerHTML = "⬆️";
 document.body.appendChild(buttonTop);
 
 window.onscroll = () => {
-    if (document.documentElement.scrollTop > 1 || document.body.scrollTop > 1) {
-        buttonTop.style.visibility = "visible";
-    } else {
-        buttonTop.style.visibility = "hidden";
-    }
-}
+  if (document.documentElement.scrollTop > 1 || document.body.scrollTop > 1) {
+    buttonTop.style.visibility = "visible";
+  } else {
+    buttonTop.style.visibility = "hidden";
+  }
+};
 buttonTop.onclick = () => {
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-}
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+};
 ///// localStorage.removeItem("user_list_count")
