@@ -262,6 +262,7 @@ window.onload = function () {
             exportToCSV(selectedUsers);
           } else {
             exportToCSV(usersData);
+            
           }
         });
 
