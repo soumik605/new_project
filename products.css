@@ -21,13 +21,18 @@ body {
   scrollbar-width: 1px;
   margin-top: 60px;
 }
-.container::-webkit-scrollbar {
+*::-webkit-scrollbar {
   display: none;
 }
 #container2 {
   height: 100vh;
   padding: 10px;
+
 }
+body ::-webkit-scrollbar{
+  display: none;
+}
+
 #pdctInfo {
   border-radius: 10px;
   padding: 20px;
@@ -164,9 +169,10 @@ padding-left: 10PX;
   height: 30px;
   margin: 0px;
   margin-left: 70%;
-  padding: 5px;
+  padding: 2px;
   border-radius: 15px;
   cursor: pointer;
+
 }
 
 #prdctInfoimg {
@@ -180,11 +186,10 @@ padding-left: 10PX;
 }
 
 .sortpdctB{
-  background-color: #c33838;
-  color: #e5ff00;
+  background-color: orangered;
   height: 30px;
   width: 130px;
-  border-radius: 10px;
+  border-radius: 20px;
   position: absolute;
   margin-left: 65%;
   margin-top: -50px;
@@ -225,4 +230,45 @@ padding-left: 10PX;
 
 .top-button:hover {
   background-color: darkblue;
+}
+
+/* #activedelete{
+  position: absolute;
+  left: 10%;
+  top: 10px;
+  z-index: 1;
+}
+
+#activeproduct{
+  height: 30px;
+  font-size: 20px;
+  background-color: #000a97;
+  margin-right: 10px;
+  color: white;
+  padding: 5px;
+  border-radius: 8px;
+}
+#deleteproduct{
+  height: 30px;
+  font-size: 20px;
+  background-color: #550000;
+  color: white;
+  padding: 5px;
+  border-radius: 8px;
+} */
+#categoryContainer{
+margin-top: 40px;
+}
+.category-btn{
+  margin: 5px;
+  font-size: 16px;
+  padding: 2px;
+  background-color: orangered;
+  border-radius: 20px;
+  height: 30px;
+}
+.header1{
+  display: flex;
+  margin-top: -34px;
+  margin-left: 40px;
 }

@@ -95,6 +95,7 @@ finish.addEventListener("click",()=>{
     if (phone_F.test(reg_ph.value)) {
         contfunc3() 
         let em_list = JSON.parse(localStorage.getItem("em")) || [];
+        
         let ps_list = JSON.parse(localStorage.getItem("ps")) || [];
         let full_name_lis = JSON.parse(localStorage.getItem("full_name_lis")) || [];
         let sexx_lis = JSON.parse(localStorage.getItem("sexx_lis")) || [];
