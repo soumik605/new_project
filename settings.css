@@ -24,7 +24,7 @@ span {
 
 #setoptionDiv {
   height: 600px;
-  width: 800px;
+  width: 700px;
   padding: 10px;
   border-radius: 10px;
   margin-top: 10px;
@@ -103,14 +103,13 @@ span {
   height: 400px;
   width: 300px;
   background-color: #fff;
-  margin-left: 120px;
+  margin-left: 70px;
   border-radius: 20px;
   margin-top: 10px;
 }
 .upperCont{
   display: flex;
 }
-.hide{
-  display: none;
-}
-
+  .hide{
+    display: none;
+  }
