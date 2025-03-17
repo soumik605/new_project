@@ -226,28 +226,3 @@ padding-left: 10PX;
 .top-button:hover {
   background-color: darkblue;
 }
-
-/* #activedelete{
-  position: absolute;
-  left: 10%;
-  top: 10px;
-  z-index: 1;
-}
-
-#activeproduct{
-  height: 30px;
-  font-size: 20px;
-  background-color: #000a97;
-  margin-right: 10px;
-  color: white;
-  padding: 5px;
-  border-radius: 8px;
-}
-#deleteproduct{
-  height: 30px;
-  font-size: 20px;
-  background-color: #550000;
-  color: white;
-  padding: 5px;
-  border-radius: 8px;
-} */
