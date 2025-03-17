@@ -82,9 +82,6 @@ window.onload = function () {
         exportButton.innerText = "Export to CSV";
         container.appendChild(exportButton);
 
-        exportButton.addEventListener("click", () => {
-          exportToCSV(usersData);
-        });
         let sortingButtons = document.createElement("div");
         sortingButtons.classList.add("sorting-buttons");
 
@@ -180,10 +177,10 @@ window.onload = function () {
           let checkbox = document.createElement("input");
           checkbox.setAttribute("type", "checkbox");
           checkbox.classList.add("row-checkbox");
-          checkbox.addEventListener("click", (event) => {
-            event.stopPropagation(); 
-          });
           td0.appendChild(checkbox);
+          checkbox.addEventListener("click", () => {
+            checkbox.classList.toggle("checked");
+          });
 
           let td1 = document.createElement("td");
           td1.innerHTML = `${fullname}`;
@@ -214,7 +211,7 @@ window.onload = function () {
           `;
 
           tr.appendChild(td0);
-         
+
           tr.appendChild(td1);
           tr.appendChild(td2);
           tr.appendChild(td3);
@@ -250,12 +247,22 @@ window.onload = function () {
           });
 
           tr.addEventListener("click", function () {
-            
             accordionRow.style.display =
-            
               accordionRow.style.display === "none" ? "table-row" : "none";
           });
-          
+        });
+        exportButton.addEventListener("click", () => {
+          let selectedUsers = [];
+          document
+            .querySelectorAll(".row-checkbox:checked")
+            .forEach((checkbox, index) => {
+              selectedUsers.push(usersData[index]);
+            });
+          if (selectedUsers.length > 0) {
+            exportToCSV(selectedUsers);
+          } else {
+            exportToCSV(usersData);
+          }
         });
 
         searchInput.addEventListener("input", () => {
