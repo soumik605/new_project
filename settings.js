@@ -4,7 +4,8 @@ let setcont = document.getElementsByClassName("setcont");
 let changethemebtn = document.getElementById("changethemebtn");
 let setoptionDiv = document.getElementById("setoptionDiv");
 let logout = document.getElementById("logout");
-let maindiv=document.getElementById("maindiv");
+
+
 
 back.onclick = function () {
   location.href = "sidebar.html";
@@ -13,6 +14,7 @@ back.onclick = function () {
 changethemebtn.onclick = function () {
   document.body.classList.toggle("dark-mode");
   setoptionDiv.classList.toggle("inner_dark_mode");
+
 
   if (document.body.classList.contains("dark-mode")) {
     changethemebtn.innerText = "light";
