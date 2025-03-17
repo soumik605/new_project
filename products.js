@@ -21,7 +21,7 @@ async function fetchAllUsers() {
     .then((obj) => {
       container.innerHTML = "";
       productsData = obj.products;
-      // let prd_lis=obj.products;
+    
       productsData = obj.products.filter(
         (prod) => !prd_id_lis.includes(prod.id)
       );
