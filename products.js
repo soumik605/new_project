@@ -16,16 +16,15 @@ async function fetchAllUsers() {
   load.classList.add("load");
   container.appendChild(load);
 
+  
   await fetch("https://dummyjson.com/products")
     .then((res) => res.json())
     .then((obj) => {
       container.innerHTML = "";
       productsData = obj.products;
-    
-      productsData = obj.products.filter(
-        (prod) => !prd_id_lis.includes(prod.id)
-      );
+        productsData = obj.products.filter(prod => !prd_id_lis.includes(prod.id));
 
+    
       let productTitles = [];
       productsData.forEach((dataa) => {
         productTitles.push(dataa.title);
@@ -42,6 +41,7 @@ function Sfunction(data) {
   let container = document.getElementsByClassName("container")[0];
   container.innerHTML = "";
 
+  
   let sortpdctB = document.createElement("button");
   sortpdctB.textContent = "Sort By Title";
   sortpdctB.classList.add("sortpdctB");
@@ -84,11 +84,11 @@ function Sfunction(data) {
 
     delete_btn.addEventListener("click", (e) => {
       e.stopPropagation();
-      prd_id_lis.push(prod.id);
-      localStorage.setItem("prd_id_lis", JSON.stringify(prd_id_lis));
-      // console.log(prd_id_lis);
-      del_func(prod.id);
-    });
+      prd_id_lis.push(prod.id)
+      localStorage.setItem("prd_id_lis", JSON.stringify(prd_id_lis))
+      
+      del_func(prod.id)
+    })
 
     main_pdct.appendChild(hiddenDiv);
 
