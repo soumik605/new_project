@@ -22,7 +22,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
-
+window.addEventListener("storage", function (event) {
+    if (event.key === "darkModeUpdated") {
+        maindiv.classList.toggle("inner_dark_mode") 
+    }
+});
 
     if(localStorage.getItem("darkMode") === "enabled"){
         maindiv.classList.toggle("inner_dark_mode")

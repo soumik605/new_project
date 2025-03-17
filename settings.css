@@ -86,6 +86,8 @@ span {
 
 .far {
   font-size: 30px;
+  border-radius: 50%;
+
 }
 #userprofile {
   font-size: 40px;
@@ -93,6 +95,7 @@ span {
   background: none;
   border: none;
   padding-top: 20px;
+
 }
 .profile_icon {
   display: flex;
@@ -103,13 +106,26 @@ span {
   height: 400px;
   width: 300px;
   background-color: #fff;
-  margin-left: 70px;
-  border-radius: 20px;
+  margin-left: 120px;
   margin-top: 10px;
+ overflow: scroll;
+ padding-top: 10px;
+ padding-left: 5px;
+}
+#profile::-webkit-scrollbar{
+  display: none;
 }
 .upperCont{
   display: flex;
 }
-  .hide{
-    display: none;
-  }
+.hide{
+  display: none;
+}
+
+.proInfo{
+
+ padding: 5px;
+ justify-content:center;
+ align-items: center;
+
+}

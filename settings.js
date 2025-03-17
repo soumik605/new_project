@@ -4,15 +4,21 @@ let setcont = document.getElementsByClassName("setcont");
 let changethemebtn = document.getElementById("changethemebtn");
 let setoptionDiv = document.getElementById("setoptionDiv");
 let logout = document.getElementById("logout");
-let maindiv=document.getElementById("maindiv");
+let userprofile = document.getElementById("userprofile");
+let profile = document.getElementById("profile");
+let userEmail = localStorage.getItem("em");
+let emarray = JSON.parse(userEmail);
+let lastem = emarray[0];
+let loginTime = localStorage.getItem("loginTimestamp");
 
 back.onclick = function () {
-  location.href = "sidebar.html";
+  location.href = "users.html";
 };
 
 changethemebtn.onclick = function () {
   document.body.classList.toggle("dark-mode");
   setoptionDiv.classList.toggle("inner_dark_mode");
+  localStorage.setItem("darkModeUpdated", Date.now());
 
   if (document.body.classList.contains("dark-mode")) {
     changethemebtn.innerText = "light";
@@ -21,6 +27,8 @@ changethemebtn.onclick = function () {
     changethemebtn.innerText = "dark";
     localStorage.setItem("darkMode", "disabled");
   }
+
+
 };
 
 window.onload = function () {
@@ -33,14 +41,19 @@ window.onload = function () {
   }
 };
 
-let userprofile = document.getElementById("userprofile");
-let profile = document.getElementById("profile"); 
+profile.innerHTML = `
+ <div class="proInfo">
+              <p><strong>email:</strong> ${lastem}</p>
+              <p><strong> Last Login :</strong> ${loginTime}</p>
+            </div>
+`;
 
 userprofile.onclick = function () {
- profile.classList.toggle("hide")
+  profile.classList.toggle("hide");
 };
 
-logout.onclick= function(){
-    window.location.href="login.html"
-}
-
+logout.onclick = function () {
+  localStorage.removeItem("loginTimestamp");
+  localStorage.setItem("logoutTime", new Date().getTime());
+  window.location.href = "login.html";
+};
