@@ -85,6 +85,7 @@
     background: #ddd;
     padding: 10px;
     border-radius: 5px;
+    user-select: none;
 }
 
 #refresh_captcha {
