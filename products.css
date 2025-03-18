@@ -6,7 +6,7 @@
 body {
   background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
   display: grid;
-  grid-template-columns: 70% 30%;
+  grid-template-columns: 68% 32%;
   margin: 0;
   padding: 0;
 }
@@ -38,7 +38,7 @@ body ::-webkit-scrollbar{
   padding: 20px;
   background-color: #c471ed;
   width: 90%;
-  margin-top: 30px;
+  margin-top: 60px;
   margin-right: 10px;
   margin-left: 20px;
   overflow: hidden;
@@ -168,10 +168,11 @@ padding-left: 10PX;
   width: 100px;
   height: 30px;
   margin: 0px;
-  margin-left: 70%;
+  margin-left: 48%;
   padding: 2px;
   border-radius: 15px;
   cursor: pointer;
+  margin-top: -45px;
 
 }
 
@@ -191,7 +192,7 @@ padding-left: 10PX;
   width: 130px;
   border-radius: 20px;
   position: absolute;
-  margin-left: 65%;
+  margin-left: 60%;
   margin-top: -50px;
 }
 

@@ -32,6 +32,15 @@ window.addEventListener("storage", function (event) {
         maindiv.classList.toggle("inner_dark_mode")
 
       }
-
-
+  
+      window.addEventListener("storage", function (e) {
+        if (e.key == "sidebartype") {
+            let sidebarvalue = localStorage.getItem("sidebartype")
+          console.log(sidebarvalue);
+          maindiv.classList=""
+          maindiv.classList.toggle(sidebarvalue)
+            
+        }
+    });
+    
 

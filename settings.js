@@ -95,3 +95,7 @@ logout.onclick = function () {
   autoLogout();
 };
 
+
+sidebar_type.addEventListener("change",function(){
+  localStorage.setItem("sidebartype",sidebar_type.value)
+})
