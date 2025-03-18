@@ -95,7 +95,6 @@ finish.addEventListener("click",()=>{
     if (phone_F.test(reg_ph.value)) {
         contfunc3() 
         let em_list = JSON.parse(localStorage.getItem("em")) || [];
-        
         let ps_list = JSON.parse(localStorage.getItem("ps")) || [];
         let full_name_lis = JSON.parse(localStorage.getItem("full_name_lis")) || [];
         let sexx_lis = JSON.parse(localStorage.getItem("sexx_lis")) || [];
@@ -138,6 +137,8 @@ function contfunc3() {
     reg_cont3.innerHTML=""
     reg_cont3.innerHTML="<div><pre><h1>         Congratulations</h1></br><h2>             Process Successfully</h2></pre></div>"
     setTimeout(() => {
+        localStorage.setItem("loginTime", new Date().toLocaleString());
+        localStorage.setItem("is_Login", "yes");
         window.location.href = "users.html";
     }, 2000);
     
@@ -158,3 +159,5 @@ document.getElementById("imageUpload").addEventListener("change", function(event
 ///// localStorage.removeItem("sexx_lis")
 ///// localStorage.removeItem("reg_ph_lis")
 ///// localStorage.removeItem("pro_imges")
+
+///// localStorage.removeItem("is_Login")

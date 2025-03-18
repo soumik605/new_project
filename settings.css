@@ -24,13 +24,12 @@ span {
 
 #setoptionDiv {
   height: 600px;
-  width: 700px;
+  width: 800px;
   padding: 10px;
   border-radius: 10px;
   margin-top: 10px;
   margin-left: 10%;
-  background-color: rgba(224, 255, 253, 0.61);
-  backdrop-filter: blur(10px);
+  background-color: white;
 }
 
 .sidebarsetDiv {
@@ -106,14 +105,12 @@ span {
 #profile{
   height: 400px;
   width: 300px;
-  background-color: rgba(223, 238, 237, 0.61);
+  background-color: #fff;
   margin-left: 120px;
   margin-top: 10px;
  overflow: scroll;
  padding-top: 10px;
  padding-left: 5px;
- border-radius: 10px;
- backdrop-filter: blur(10px);
 }
 #profile::-webkit-scrollbar{
   display: none;
@@ -130,20 +127,5 @@ span {
  padding: 5px;
  justify-content:center;
  align-items: center;
-color: black;
-}
-.pro_imge{
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-  border: solid;
-  margin-bottom: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 30%;
-  margin-bottom: 20px;
-}
-.exinfo{
-margin-left: 10px;
+
 }
