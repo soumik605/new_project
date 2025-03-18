@@ -55,5 +55,6 @@ userprofile.onclick = function () {
 logout.onclick = function () {
   localStorage.removeItem("loginTimestamp");
   localStorage.setItem("logoutTime", new Date().getTime());
+  localStorage.setItem("is_Login", "no");
   window.location.href = "login.html";
 };

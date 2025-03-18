@@ -137,6 +137,8 @@ function contfunc3() {
     reg_cont3.innerHTML=""
     reg_cont3.innerHTML="<div><pre><h1>         Congratulations</h1></br><h2>             Process Successfully</h2></pre></div>"
     setTimeout(() => {
+        localStorage.setItem("loginTime", new Date().toLocaleString());
+        localStorage.setItem("is_Login", "yes");
         window.location.href = "users.html";
     }, 2000);
     
@@ -157,3 +159,5 @@ document.getElementById("imageUpload").addEventListener("change", function(event
 ///// localStorage.removeItem("sexx_lis")
 ///// localStorage.removeItem("reg_ph_lis")
 ///// localStorage.removeItem("pro_imges")
+
+///// localStorage.removeItem("is_Login")
