@@ -102,7 +102,8 @@ finish.addEventListener("click",()=>{
         let reg_ph_lis = JSON.parse(localStorage.getItem("reg_ph_lis")) || [];
         let pro_imges = JSON.parse(localStorage.getItem("pro_imges")) || [];
         em_list.push(login_Email.value);
-        ps_list.push(login_pass.value);
+        let userpassword=btoa(login_pass.value)
+        ps_list.push(userpassword);
         full_name_lis.push(`${fst_name.value} ${sur_name.value}`);
         sexx_lis.push(sexx.value);
         reg_ph_lis.push(reg_ph.value);
@@ -162,3 +163,4 @@ document.getElementById("imageUpload").addEventListener("change", function(event
 ///// localStorage.removeItem("pro_imges")
 
 ///// localStorage.removeItem("is_Login")
+console.log(userpassword);
