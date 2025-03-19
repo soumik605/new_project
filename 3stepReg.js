@@ -148,9 +148,13 @@ function contfunc3() {
 document.getElementById("imageUpload").addEventListener("change", function(event) {
     const file = event.target.files[0];
     if (file) {
-        const imgElement = document.getElementById("profileImage");
-        imgElement.src = URL.createObjectURL(file);
-        imgElement.style.display = "block";
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            profileImage.src = e.target.result;
+            profileImage.style.display = "block";
+            localStorage.setItem("profileImage", e.target.result);
+        };
+        reader.readAsDataURL(file);
     }
 });
 

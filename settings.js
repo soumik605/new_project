@@ -16,7 +16,7 @@ let phoneNO = pharrey[pharrey.length - 1];
 let full_name_lis = localStorage.getItem("full_name_lis");
 let namearrey = JSON.parse(full_name_lis);
 let lastfullName = namearrey[namearrey.length - 1];
-let pro_pic = JSON.parse(localStorage.getItem("pro_imges") || '""');
+let pro_pic = JSON.parse(localStorage.getItem("profileImage") || '""');
 if (!pro_pic || pro_pic == "null") {
   console.log('pic nahi ha koi')
   pro_pic = "https://img.freepik.com/premium-vector/social-media-logo_1305298-29989.jpg";
