@@ -25,7 +25,7 @@
     position: fixed;
     left: 0;
     top: 0;
-    width: 150px;
+    /* width: 150px; */
     transition: width 0.3s ease;
     height: 100vh;
     background-color: rgb(10, 255, 255);
@@ -49,14 +49,10 @@
     color: black;
     top: 9px;
     left: 40%; 
-    
+    opacity: 0;
 }
 
 
-#maindiv:hover .tooltip {
-    opacity: 1; 
-    pointer-events: auto;
-}
 
 #mode{
     background-color: orangered;
@@ -81,9 +77,38 @@
 
 .active {
     background-color:#695CFE;
-    border-radius: 10px;
+    border-radius: 20px;
   
 }
 .fa{
     color: black;
+ }
+
+ .expande {
+    width: 150px;
+    transition: o.3s ease;
+
 }
+
+.wrap {
+    width: 50px;
+}
+.expand_onhover{
+    width: 50px;
+}
+
+#maindiv.wrap .tooltip {
+    opacity: 0;
+}
+#maindiv.expande .tooltip {
+    opacity: 1;
+}
+
+.expand_onhover:hover {
+    width: 150px;
+}
+
+.expand_onhover:hover .tooltip {
+    opacity: 1;
+}
+

@@ -1,3 +1,8 @@
+let is_Login = localStorage.getItem("is_Login")||"no"
+if (is_Login=="no") {
+  window.location.href = "login.html"
+}
+
 // window onload function
 window.onload = function () {
   if (localStorage.getItem("darkMode") === "enabled") {

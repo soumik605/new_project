@@ -24,6 +24,8 @@ login.onclick = () => {
         if (m && m.includes(login_Email) && mh && mh.includes(login_pass)) {
             if (captcha_input === captcha_text) {
              
+                localStorage.setItem("loginTime", new Date().toLocaleString());
+                localStorage.setItem("is_Login", "yes");
                 window.location.href = "users.html";
                 
             } else {

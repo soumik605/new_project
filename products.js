@@ -1,6 +1,11 @@
+let is_Login = localStorage.getItem("is_Login")||"no"
+if (is_Login=="no") {
+  window.location.href = "login.html"
+}
 window.onload = async function () {
   await fetchAllUsers();
   await pdctDetails();
+  await catagory();
 };
 
 let productsData = [];
@@ -26,10 +31,10 @@ async function fetchAllUsers() {
     
       let productTitles = [];
       productsData.forEach((dataa) => {
-        productTitles.push(dataa.title)
-      })
-      productTitles.sort()
-      productsData2 = productTitles.map((title) => 
+        productTitles.push(dataa.title);
+      });
+      productTitles.sort();
+      productsData2 = productTitles.map((title) =>
         productsData.find((prod) => prod.title === title)
       );
       Sfunction(productsData);
@@ -39,6 +44,7 @@ async function fetchAllUsers() {
 function Sfunction(data) {
   let container = document.getElementsByClassName("container")[0];
   container.innerHTML = "";
+
   
   let sortpdctB = document.createElement("button");
   sortpdctB.textContent = "Sort By Title";
@@ -46,8 +52,10 @@ function Sfunction(data) {
   container.appendChild(sortpdctB);
 
   sortpdctB.addEventListener("click", () => {
-    productsData2 = productsData2.filter(prod => !prd_id_lis.includes(prod.id));
-    Sfunction(productsData2)
+    productsData2 = productsData2.filter(
+      (prod) => !prd_id_lis.includes(prod.id)
+    );
+    Sfunction(productsData2);
   });
   let buttonTop = document.createElement("div");
   buttonTop.classList.add("top-button");
@@ -56,14 +64,14 @@ function Sfunction(data) {
   let productData = [];
   container.onscroll = () => {
     if (container.scrollTop > 1) {
-        buttonTop.style.visibility = "visible";
+      buttonTop.style.visibility = "visible";
     } else {
-        buttonTop.style.visibility = "hidden";
+      buttonTop.style.visibility = "hidden";
     }
-}
-buttonTop.onclick = () => {
+  };
+  buttonTop.onclick = () => {
     container.scrollTop = 0;
-}
+  };
 
   data.forEach((prod) => {
     let main_pdct = document.createElement("div");
@@ -73,10 +81,10 @@ buttonTop.onclick = () => {
     let hiddenDiv = document.createElement("div");
     hiddenDiv.classList.add("hiddenDiv");
     hiddenDiv.innerHTML = `<img id="prdctimg" src="${prod.thumbnail}"></img>`;
-    let delete_btn = document.createElement("span")
-    delete_btn.innerHTML = `<i class="fa-solid fa-trash-can"></i>`
-    delete_btn.id = "delete_btn"
-    hiddenDiv.appendChild(delete_btn)
+    let delete_btn = document.createElement("span");
+    delete_btn.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
+    delete_btn.id = "delete_btn";
+    hiddenDiv.appendChild(delete_btn);
 
     delete_btn.addEventListener("click", (e) => {
       e.stopPropagation();
@@ -116,13 +124,11 @@ buttonTop.onclick = () => {
 }
 
 function del_func(id) {
-  productsData = productsData.filter(
-    function (itm) {
-      return itm.id !== id
-    }
-  )
+  productsData = productsData.filter(function (itm) {
+    return itm.id !== id;
+  });
 
-  Sfunction(productsData)
+  Sfunction(productsData);
   let pdctInfo = document.getElementById("pdctInfo");
   if (pdctInfo.style.display === "block") {
     pdctInfo.style.display = "none";
@@ -131,7 +137,13 @@ function del_func(id) {
 }
 
 function exportToCSV(data) {
-  const csvHeaders = ["Title", "Price", "Rating", "Warranty Information", "Tags"];
+  const csvHeaders = [
+    "Title",
+    "Price",
+    "Rating",
+    "Warranty Information",
+    "Tags",
+  ];
   const csvRows = data.map((item) => {
     return `${item.title},${item.price},${item.rating},${item.warrantyInformation},${item.tags}`;
   });
@@ -152,8 +164,9 @@ function pdctDetails() {
       pdctInfo.innerHTML = "";
       pdctInfo.style.display = "block";
 
-      let product = await fetch(`https://dummyjson.com/products/${div.getAttribute("product_id")}`)
-        .then((response) => response.json());
+      let product = await fetch(
+        `https://dummyjson.com/products/${div.getAttribute("product_id")}`
+      ).then((response) => response.json());
 
       let p = document.createElement("p");
       p.id = "infoP";
@@ -175,4 +188,37 @@ if (localStorage.getItem("darkMode") === "enabled") {
   document.body.classList.add("dark-mode");
 }
 
-// localStorage.removeItem("prd_id_lis")      // don't touch it beacuse it re returns the deleted products.
+async function catagory() {
+  let response = await fetch("https://dummyjson.com/products");
+  let data = await response.json();
+
+let container2= document.getElementById("container2")
+  let categories = [...new Set(data.products.map(product => product.category))];
+
+
+  let categoryContainer = document.createElement("div");
+  categoryContainer.id = "categoryContainer";
+  categoryContainer.innerHTML = `<button class="category-btn" data-category="all">All</button>`;
+
+  categories.forEach(category => {
+      let btn = document.createElement("button");
+      btn.classList.add("category-btn");
+      btn.textContent = category;
+      btn.setAttribute("data-category", category);
+      categoryContainer.appendChild(btn);
+  });
+
+ 
+  
+  container2.prepend(categoryContainer);
+
+
+  document.querySelectorAll(".category-btn").forEach(button => {
+      button.addEventListener("click", function () {
+          let selectedCategory = this.getAttribute("data-category");
+          let filteredProducts = selectedCategory === "all"? productsData: productsData.filter(prod => prod.category === selectedCategory);
+          Sfunction(filteredProducts);
+      });
+  });
+}
+

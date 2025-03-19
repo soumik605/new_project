@@ -95,13 +95,15 @@ finish.addEventListener("click",()=>{
     if (phone_F.test(reg_ph.value)) {
         contfunc3() 
         let em_list = JSON.parse(localStorage.getItem("em")) || [];
+        
         let ps_list = JSON.parse(localStorage.getItem("ps")) || [];
         let full_name_lis = JSON.parse(localStorage.getItem("full_name_lis")) || [];
         let sexx_lis = JSON.parse(localStorage.getItem("sexx_lis")) || [];
         let reg_ph_lis = JSON.parse(localStorage.getItem("reg_ph_lis")) || [];
         let pro_imges = JSON.parse(localStorage.getItem("pro_imges")) || [];
         em_list.push(login_Email.value);
-        ps_list.push(login_pass.value);
+        let userpassword=btoa(login_pass.value)
+        ps_list.push(userpassword);
         full_name_lis.push(`${fst_name.value} ${sur_name.value}`);
         sexx_lis.push(sexx.value);
         reg_ph_lis.push(reg_ph.value);
@@ -137,6 +139,8 @@ function contfunc3() {
     reg_cont3.innerHTML=""
     reg_cont3.innerHTML="<div><pre><h1>         Congratulations</h1></br><h2>             Process Successfully</h2></pre></div>"
     setTimeout(() => {
+        localStorage.setItem("loginTime", new Date().toLocaleString());
+        localStorage.setItem("is_Login", "yes");
         window.location.href = "users.html";
     }, 2000);
     
@@ -144,9 +148,13 @@ function contfunc3() {
 document.getElementById("imageUpload").addEventListener("change", function(event) {
     const file = event.target.files[0];
     if (file) {
-        const imgElement = document.getElementById("profileImage");
-        imgElement.src = URL.createObjectURL(file);
-        imgElement.style.display = "block";
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            profileImage.src = e.target.result;
+            profileImage.style.display = "block";
+            localStorage.setItem("profileImage", e.target.result);
+        };
+        reader.readAsDataURL(file);
     }
 });
 
@@ -157,3 +165,6 @@ document.getElementById("imageUpload").addEventListener("change", function(event
 ///// localStorage.removeItem("sexx_lis")
 ///// localStorage.removeItem("reg_ph_lis")
 ///// localStorage.removeItem("pro_imges")
+
+///// localStorage.removeItem("is_Login")
+console.log(userpassword);
