@@ -156,7 +156,7 @@ function exportToCSV(data) {
   link.click();
 }
 
-function pdctDetails() {
+async function pdctDetails() {
   let pdctInfo = document.getElementById("pdctInfo");
   document.addEventListener("click", async function (event) {
     if (event.target.closest(".main_pdct")) {

@@ -33,14 +33,17 @@ window.addEventListener("storage", function (event) {
 
       }
   
-      window.addEventListener("storage", function (e) {
+window.onload= function(){
+    window.addEventListener("storage", function (e) {
         if (e.key == "sidebartype") {
+               maindiv.classList=""
             let sidebarvalue = localStorage.getItem("sidebartype")
           console.log(sidebarvalue);
-          maindiv.classList=""
           maindiv.classList.toggle(sidebarvalue)
             
         }
     });
+}
+  
     
 
