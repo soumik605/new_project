@@ -15,6 +15,23 @@ let back3 = document.getElementById("back3")
 let main_cont2 = document.getElementById("main_cont2")
 let reg_ph = document.getElementById("reg_ph")
 let reg_ph_err = document.getElementById("reg_ph_err")
+document.getElementById("imageUpload").addEventListener("change", function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            // let profileImage = document.getElementById("profileImage");
+            profileImage.src = e.target.result;
+            profileImage.style.display = "block";
+            let profileImages = JSON.parse(localStorage.getItem("profileImages") || "[]");
+            profileImages.push(e.target.result)
+            localStorage.setItem("profileImages", JSON.stringify(profileImages));
+            localStorage.setItem("profileImage", e.target.result);
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
 next1.addEventListener("click", ()=>{
     let m = localStorage.getItem("em")|| []
     let mh = JSON.parse(localStorage.getItem("ps")) || [];
@@ -91,7 +108,8 @@ finish.addEventListener("click",()=>{
     let sur_name = document.getElementsByClassName("sur_name")[0]
     let sexx = document.querySelector('input[name="sexx"]:checked');
     let reg_ph = document.getElementById("reg_ph")
-    let imgElement = document.getElementById("profileImage");
+    // let imgElement = document.getElementById("profileImage");
+    // imgElement.style.margin="100px"
     if (phone_F.test(reg_ph.value)) {
         contfunc3() 
         let em_list = JSON.parse(localStorage.getItem("em")) || [];
@@ -100,18 +118,18 @@ finish.addEventListener("click",()=>{
         let full_name_lis = JSON.parse(localStorage.getItem("full_name_lis")) || [];
         let sexx_lis = JSON.parse(localStorage.getItem("sexx_lis")) || [];
         let reg_ph_lis = JSON.parse(localStorage.getItem("reg_ph_lis")) || [];
-        let pro_imges = JSON.parse(localStorage.getItem("pro_imges")) || [];
+        // let pro_imges = JSON.parse(localStorage.getItem("pro_imges")) || [];
         em_list.push(login_Email.value);
         let userpassword=btoa(login_pass.value)
         ps_list.push(userpassword);
         full_name_lis.push(`${fst_name.value} ${sur_name.value}`);
         sexx_lis.push(sexx.value);
         reg_ph_lis.push(reg_ph.value);
-        if (imgElement.src!=="http://127.0.0.1:5500/3stepReg.html") {
-            pro_imges.push(imgElement.src);
-        }else{
-            pro_imges.push("No Profile");
-        }
+        // if (imgElement.src!=="http://127.0.0.1:5500/3stepReg.html") {
+        //     pro_imges.push(imgElement.src);
+        // }else{
+        //     pro_imges.push("No Profile");
+        // }
         localStorage.setItem("em", JSON.stringify(em_list));
         localStorage.setItem("ps", JSON.stringify(ps_list));
         localStorage.setItem("full_name_lis", JSON.stringify(full_name_lis));
@@ -145,14 +163,22 @@ function contfunc3() {
     }, 2000);
     
 }
-document.getElementById("imageUpload").addEventListener("change", function(event) {
-    const file = event.target.files[0];
-    if (file) {
-        const imgElement = document.getElementById("profileImage");
-        imgElement.src = URL.createObjectURL(file);
-        imgElement.style.display = "block";
-    }
-});
+// document.getElementById("imageUpload").addEventListener("change", function(event) {
+//     const file = event.target.files[0];
+//     if (file) {
+//         const reader = new FileReader();
+//         reader.onload = function(e) {
+//             // let profileImage = document.getElementById("profileImage");
+//             profileImage.src = e.target.result;
+//             profileImage.style.display = "block";
+//             let profileImages = JSON.parse(localStorage.getItem("profileImages") || "[]");
+//             profileImages.push(e.target.result)
+//             localStorage.setItem("profileImages", JSON.stringify(profileImages));
+//             localStorage.setItem("profileImage", e.target.result);
+//         };
+//         reader.readAsDataURL(file);
+//     }
+// });
 
 
 ///// localStorage.removeItem("em")
@@ -163,4 +189,7 @@ document.getElementById("imageUpload").addEventListener("change", function(event
 ///// localStorage.removeItem("pro_imges")
 
 ///// localStorage.removeItem("is_Login")
-console.log(userpassword);
+// console.log(userpassword);
+
+///// localStorage.removeItem("profileImage")
+///// localStorage.removeItem("profileImages")

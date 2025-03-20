@@ -1,3 +1,7 @@
+ is_Login = localStorage.getItem("is_Login")||"no"
+if (is_Login=="no") {
+  window.location.href = "login.html"
+}
 let back = document.getElementById("back");
 let sidebar_type = document.getElementById("sidebar_type");
 let setcont = document.getElementsByClassName("setcont");
@@ -16,7 +20,7 @@ let phoneNO = pharrey[pharrey.length - 1];
 let full_name_lis = localStorage.getItem("full_name_lis");
 let namearrey = JSON.parse(full_name_lis);
 let lastfullName = namearrey[namearrey.length - 1];
-let pro_pic = JSON.parse(localStorage.getItem("pro_imges") || '""');
+let pro_pic = localStorage.getItem("profileImage") || [];
 if (!pro_pic || pro_pic == "null") {
   console.log('pic nahi ha koi')
   pro_pic = "https://img.freepik.com/premium-vector/social-media-logo_1305298-29989.jpg";
@@ -53,7 +57,7 @@ window.onload = function () {
 
 profile.innerHTML = `
  <div class="proInfo">
-       <div class="pro_imge"><img src="${pro_pic}"></div>
+       <div class="pro_imge"><img id="pro_imge_id" src="${pro_pic}"></div>
               <div class="exinfo">
               <p><strong>User Name:</strong> ${lastfullName}</p>
               <p><strong>email:</strong> ${lastem}</p>
