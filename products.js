@@ -3,6 +3,9 @@ if (is_Login=="no") {
   window.location.href = "login.html"
 }
 window.onload = async function () {
+  if (localStorage.getItem("darkMode") === "enabled") {
+    document.body.classList.toggle("dark-mode");
+  }
   await fetchAllUsers();
   await pdctDetails();
   await catagory();
@@ -184,9 +187,7 @@ async function pdctDetails() {
   });
 }
 
-if (localStorage.getItem("darkMode") === "enabled") {
-  document.body.classList.add("dark-mode");
-}
+
 
 async function catagory() {
   let response = await fetch("https://dummyjson.com/products");
