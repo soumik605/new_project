@@ -16,14 +16,15 @@ let login = document.getElementById("login");
 
 login.onclick = () => {
     let login_Email = document.getElementById("login_Email").value;
-    let login_pass = document.getElementById("login_pass").value;
+    let login_pass = btoa(document.getElementById("login_pass").value);
     let captcha_input = document.getElementById("captcha_input").value;
     let captcha_text = document.getElementById("captcha_text").textContent;
 
     if (email_F.test(login_Email)) {
         if (m && m.includes(login_Email) && mh && mh.includes(login_pass)) {
             if (captcha_input === captcha_text) {
-                // let 
+                localStorage.setItem("fromlogin", "yes")
+                localStorage.setItem("loginEmail", login_Email) 
                 localStorage.setItem("loginTime", new Date().toLocaleString());
                 localStorage.setItem("is_Login", "yes");
                 window.location.href = "users.html";

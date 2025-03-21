@@ -12,15 +12,37 @@ let userprofile = document.getElementById("userprofile");
 let profile = document.getElementById("profile");
 let userEmail = localStorage.getItem("em");
 let emarray = JSON.parse(userEmail);
-let lastem = emarray[emarray.length - 1];
-let loginTime = localStorage.getItem("loginTime");
-let reg_ph_lis = localStorage.getItem("reg_ph_lis");
-let pharrey = JSON.parse(reg_ph_lis);
-let phoneNO = pharrey[pharrey.length - 1];
-let full_name_lis = localStorage.getItem("full_name_lis");
-let namearrey = JSON.parse(full_name_lis);
-let lastfullName = namearrey[namearrey.length - 1];
-let pro_pic = localStorage.getItem("profileImage") || [];
+let fromlogin = localStorage.getItem("fromlogin")||"no";
+let loginEmail = localStorage.getItem("loginEmail");
+let idx = emarray.indexOf(loginEmail)
+  
+let lastem, loginTime, phoneNO, lastfullName, pro_pic;
+if (fromlogin==="no") {
+  lastem = emarray[emarray.length - 1];
+  loginTime = localStorage.getItem("loginTime");
+  let reg_ph_lis = localStorage.getItem("reg_ph_lis");
+  let pharrey = JSON.parse(reg_ph_lis);
+  phoneNO = pharrey[pharrey.length - 1];
+  let full_name_lis = localStorage.getItem("full_name_lis");
+  let namearrey = JSON.parse(full_name_lis);
+  lastfullName = namearrey[namearrey.length - 1];
+  pro_pic = localStorage.getItem("profileImage") || [];
+}
+else{
+  lastem = emarray[idx];
+  loginTime = localStorage.getItem("loginTime");
+  let reg_ph_lis = localStorage.getItem("reg_ph_lis");
+  let pharrey = JSON.parse(reg_ph_lis);
+  phoneNO = pharrey[idx];
+  let full_name_lis = localStorage.getItem("full_name_lis");
+  let namearrey = JSON.parse(full_name_lis);
+  lastfullName = namearrey[idx];
+  let profileImages = JSON.parse(localStorage.getItem("profileImages")) || [];
+  console.log(profileImages);
+  localStorage.setItem("profileImage",profileImages[idx])
+  pro_pic = localStorage.getItem("profileImage") || [];
+}
+
 if (!pro_pic || pro_pic == "null") {
   console.log('pic nahi ha koi')
   pro_pic = "https://img.freepik.com/premium-vector/social-media-logo_1305298-29989.jpg";

@@ -159,6 +159,7 @@ function contfunc3() {
     setTimeout(() => {
         localStorage.setItem("loginTime", new Date().toLocaleString());
         localStorage.setItem("is_Login", "yes");
+        localStorage.setItem("fromlogin", "no")
         window.location.href = "users.html";
     }, 2000);
     
