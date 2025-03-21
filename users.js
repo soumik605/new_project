@@ -1,6 +1,6 @@
-let is_Login = localStorage.getItem("is_Login")||"no"
-if (is_Login=="no") {
-  window.location.href = "login.html"
+let is_Login = localStorage.getItem("is_Login") || "no";
+if (is_Login == "no") {
+  window.location.href = "login.html";
 }
 window.onload = function () {
   let body = document.body;
@@ -186,18 +186,45 @@ window.onload = function () {
             checkbox.classList.toggle("checked");
           });
 
+          let selectrole = document.createElement("select");
+          selectrole.classList.add("selectrole");
+          let options = [
+            { value: "Super-Admin", text: "Super-Admin" },
+            { value: "Admin", text: "Admin" },
+            { value: "Member", text: "Member" },
+          ];
+          options.forEach((optionData) => {
+            let option = document.createElement("option");
+            option.value = optionData.value;
+            option.textContent = optionData.text;
+            selectrole.appendChild(option);
+          });
+          
+
+          let storedRole = localStorage.getItem(`user_role_${user.id}`);
+          if (storedRole) {
+            selectrole.value = storedRole; 
+          } else {
+            selectrole.value = "Member";
+          }
+
           let td1 = document.createElement("td");
           td1.innerHTML = `${fullname}`;
           let td2 = document.createElement("td");
           td2.innerHTML = `${age}`;
           let td3 = document.createElement("td");
-          td3.innerHTML = `${role}`;
+          td3.appendChild(selectrole);
           let td4 = document.createElement("td");
           td4.innerHTML = `${username}`;
           let td5 = document.createElement("td");
           td5.innerHTML = `${gender}`;
           let td6 = document.createElement("td");
           td6.innerHTML = `${email}`;
+
+          selectrole.addEventListener("change", () => {
+            localStorage.setItem(`user_role_${user.id}`, selectrole.value);
+          });
+         
 
           let accordionRow = document.createElement("tr");
           accordionRow.classList.add("accordion-row");
@@ -266,7 +293,6 @@ window.onload = function () {
             exportToCSV(selectedUsers);
           } else {
             exportToCSV(usersData);
-            
           }
         });
 
