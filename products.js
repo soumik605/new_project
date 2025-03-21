@@ -221,3 +221,13 @@ async function catagory() {
 if (localStorage.getItem("darkMode") === "enabled") {
   document.body.classList.toggle("dark-mode");
 }
+
+let maindiv = document.getElementById("maindiv");
+window.addEventListener("storage", function (e) {
+  if (e.key == "sidebartype") {
+    maindiv.classList = "";
+    let sidebarvalue = localStorage.getItem("sidebartype");
+    console.log(sidebarvalue);
+    maindiv.classList.toggle(sidebarvalue);
+  }
+});
