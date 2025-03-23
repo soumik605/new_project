@@ -1,6 +1,6 @@
-let is_Login = localStorage.getItem("is_Login")||"no"
-if (is_Login=="no") {
-  window.location.href = "login.html"
+let is_Login = localStorage.getItem("is_Login") || "no";
+if (is_Login == "no") {
+  window.location.href = "login.html";
 }
 window.onload = async function () {
   await fetchAllUsers();
@@ -20,15 +20,15 @@ async function fetchAllUsers() {
   load.classList.add("load");
   container.appendChild(load);
 
-  
   await fetch("https://dummyjson.com/products")
     .then((res) => res.json())
     .then((obj) => {
       container.innerHTML = "";
       productsData = obj.products;
-        productsData = obj.products.filter(prod => !prd_id_lis.includes(prod.id));
+      productsData = obj.products.filter(
+        (prod) => !prd_id_lis.includes(prod.id)
+      );
 
-    
       let productTitles = [];
       productsData.forEach((dataa) => {
         productTitles.push(dataa.title);
@@ -45,7 +45,6 @@ function Sfunction(data) {
   let container = document.getElementsByClassName("container")[0];
   container.innerHTML = "";
 
-  
   let sortpdctB = document.createElement("button");
   sortpdctB.textContent = "Sort By Title";
   sortpdctB.classList.add("sortpdctB");
@@ -88,11 +87,11 @@ function Sfunction(data) {
 
     delete_btn.addEventListener("click", (e) => {
       e.stopPropagation();
-      prd_id_lis.push(prod.id)
-      localStorage.setItem("prd_id_lis", JSON.stringify(prd_id_lis))
-      
-      del_func(prod.id)
-    })
+      prd_id_lis.push(prod.id);
+      localStorage.setItem("prd_id_lis", JSON.stringify(prd_id_lis));
+
+      del_func(prod.id);
+    });
 
     main_pdct.appendChild(hiddenDiv);
 
@@ -156,7 +155,7 @@ function exportToCSV(data) {
   link.click();
 }
 
-function pdctDetails() {
+async function pdctDetails() {
   let pdctInfo = document.getElementById("pdctInfo");
   document.addEventListener("click", async function (event) {
     if (event.target.closest(".main_pdct")) {
@@ -184,41 +183,51 @@ function pdctDetails() {
   });
 }
 
-if (localStorage.getItem("darkMode") === "enabled") {
-  document.body.classList.add("dark-mode");
-}
-
 async function catagory() {
   let response = await fetch("https://dummyjson.com/products");
   let data = await response.json();
 
-let container2= document.getElementById("container2")
-  let categories = [...new Set(data.products.map(product => product.category))];
-
+  let container2 = document.getElementById("container2");
+  let categories = [
+    ...new Set(data.products.map((product) => product.category)),
+  ];
 
   let categoryContainer = document.createElement("div");
   categoryContainer.id = "categoryContainer";
   categoryContainer.innerHTML = `<button class="category-btn" data-category="all">All</button>`;
 
-  categories.forEach(category => {
-      let btn = document.createElement("button");
-      btn.classList.add("category-btn");
-      btn.textContent = category;
-      btn.setAttribute("data-category", category);
-      categoryContainer.appendChild(btn);
+  categories.forEach((category) => {
+    let btn = document.createElement("button");
+    btn.classList.add("category-btn");
+    btn.textContent = category;
+    btn.setAttribute("data-category", category);
+    categoryContainer.appendChild(btn);
   });
 
- 
-  
   container2.prepend(categoryContainer);
 
-
-  document.querySelectorAll(".category-btn").forEach(button => {
-      button.addEventListener("click", function () {
-          let selectedCategory = this.getAttribute("data-category");
-          let filteredProducts = selectedCategory === "all"? productsData: productsData.filter(prod => prod.category === selectedCategory);
-          Sfunction(filteredProducts);
-      });
+  document.querySelectorAll(".category-btn").forEach((button) => {
+    button.addEventListener("click", function () {
+      let selectedCategory = this.getAttribute("data-category");
+      let filteredProducts =
+        selectedCategory === "all"
+          ? productsData
+          : productsData.filter((prod) => prod.category === selectedCategory);
+      Sfunction(filteredProducts);
+    });
   });
 }
 
+if (localStorage.getItem("darkMode") === "enabled") {
+  document.body.classList.toggle("dark-mode");
+}
+
+let maindiv = document.getElementById("maindiv");
+window.addEventListener("storage", function (e) {
+  if (e.key == "sidebartype") {
+    maindiv.classList = "";
+    let sidebarvalue = localStorage.getItem("sidebartype");
+    console.log(sidebarvalue);
+    maindiv.classList.toggle(sidebarvalue);
+  }
+});
