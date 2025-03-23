@@ -81,7 +81,7 @@ profile.innerHTML = `
  <div class="proInfo">
        <div class="pro_imge"><img id="pro_imge_id" src="${pro_pic}"></div>
               <div class="exinfo">
-              <p><strong>User Name:</strong> ${lastfullName}</p>
+              <p ><strong id="uname">User Name:</strong> ${lastfullName}</p>
               <p><strong>email:</strong> ${lastem}</p>
               <p><strong> Last Login :</strong> ${loginTime}</p>
               <p><strong> Phone No:</strong> ${phoneNO}</p>

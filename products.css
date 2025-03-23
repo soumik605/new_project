@@ -38,7 +38,7 @@ body ::-webkit-scrollbar{
   padding: 20px;
   background-color: #c471ed;
   width: 90%;
-  margin-top: 60px;
+  margin-top: 70px;
   margin-right: 10px;
   margin-left: 20px;
   overflow: hidden;
@@ -134,7 +134,7 @@ padding-left: 10PX;
   height: -webkit-fill-available;
 }
 
-.load {
+/* .load {
   height: 100px;
   width: 100px;
   border: 10px solid transparent;
@@ -152,7 +152,7 @@ padding-left: 10PX;
   animation-delay: 0.5s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-}
+} */
 
 @keyframes loadingAnimation {
   from {
@@ -168,7 +168,8 @@ padding-left: 10PX;
   width: 100px;
   height: 30px;
   margin: 0px;
-  margin-left: 48%;
+  margin-left: 50%;
+  margin-top: -46px;
   padding: 2px;
   border-radius: 15px;
   cursor: pointer;
@@ -179,6 +180,7 @@ padding-left: 10PX;
 #prdctInfoimg {
   height: 200px;
   width: 200px;
+ 
 }
 
 #infoP {
@@ -212,7 +214,7 @@ padding-left: 10PX;
   scale: 2;
 }
 
-.top-button {
+/* .top-button {
   width: 60px;
   height: 60px;
   background-color: blue;
@@ -231,7 +233,7 @@ padding-left: 10PX;
 
 .top-button:hover {
   background-color: darkblue;
-}
+} */
 
 /* #activedelete{
   position: absolute;
