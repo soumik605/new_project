@@ -110,7 +110,7 @@ html {
   width: fit-content;
 }
 
-.load {
+/* .load {
   height: 100px;
   width: 100px;
   border: 10px solid transparent;
@@ -128,7 +128,7 @@ html {
   animation-delay: 0.5s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-}
+} */
 
 @keyframes loadingAnimation {
   from {
@@ -163,7 +163,7 @@ html {
   color: #12c2e9;
 }
 
-.searchIcon{
+/* .searchIcon{
   height: 20px;
   width: 20px;
   margin-left: 5px;
@@ -193,7 +193,7 @@ html {
   width: 300px;
   margin-left: 45%;
   margin-bottom: 20px;
-}
+} */
 
 ::-webkit-scrollbar{
   display: none ;
@@ -204,7 +204,7 @@ html {
  margin-top: 50px;
 }
 
-.top-button {
+/* .top-button {
   width: 60px;
   height: 60px;
   background-color: blue;
@@ -223,4 +223,4 @@ html {
 
 .top-button:hover {
   background-color: darkblue;
-}
+} */
