@@ -12,9 +12,11 @@ let login_pass_err = document.getElementById("login_pass_err")
 let fst_name = document.getElementsByClassName("fst_name")[0]
 let back2 = document.getElementById("back2")
 let back3 = document.getElementById("back3")
+let main_cont = document.getElementById("main_cont")
 let main_cont2 = document.getElementById("main_cont2")
 let reg_ph = document.getElementById("reg_ph")
 let reg_ph_err = document.getElementById("reg_ph_err")
+let imgg= "no img";
 document.getElementById("imageUpload").addEventListener("change", function(event) {
     const file = event.target.files[0];
     if (file) {
@@ -23,9 +25,10 @@ document.getElementById("imageUpload").addEventListener("change", function(event
             // let profileImage = document.getElementById("profileImage");
             profileImage.src = e.target.result;
             profileImage.style.display = "block";
-            let profileImages = JSON.parse(localStorage.getItem("profileImages") || "[]");
-            profileImages.push(e.target.result)
-            localStorage.setItem("profileImages", JSON.stringify(profileImages));
+            imgg = e.target.result
+            // let profileImages = JSON.parse(localStorage.getItem("profileImages") || "[]");
+            // profileImages.push(e.target.result)
+            // localStorage.setItem("profileImages", JSON.stringify(profileImages));
             localStorage.setItem("profileImage", e.target.result);
         };
         reader.readAsDataURL(file);
@@ -35,9 +38,11 @@ document.getElementById("imageUpload").addEventListener("change", function(event
 next1.addEventListener("click", ()=>{
     let m = localStorage.getItem("em")|| []
     let mh = JSON.parse(localStorage.getItem("ps")) || [];
+    let userlist = JSON.parse(localStorage.getItem("userList")) || [];
     if (login_Email.value!=="") {
         if (email_F.test(login_Email.value)) {
-            if (!m.includes(login_Email.value)) {
+            // if (!m.includes(login_Email.value)) {
+            if (!userlist.some(user => user.email === login_Email.value)){
                 login_Email_err.style.color="green"
                 login_Email_err.innerHTML="Valied Email address"
                 contfunc()   
@@ -50,7 +55,7 @@ next1.addEventListener("click", ()=>{
             login_Email_err.innerHTML="Invalied Email Format"
         }
     }
-
+    
 })
 next2.addEventListener("click", ()=>{
     if (login_pass.value.length>3 && fst_name.value!=="") {
@@ -112,36 +117,61 @@ finish.addEventListener("click",()=>{
     // imgElement.style.margin="100px"
     if (phone_F.test(reg_ph.value)) {
         contfunc3() 
-        let em_list = JSON.parse(localStorage.getItem("em")) || [];
+        // let em_list = JSON.parse(localStorage.getItem("em")) || [];
         
-        let ps_list = JSON.parse(localStorage.getItem("ps")) || [];
-        let full_name_lis = JSON.parse(localStorage.getItem("full_name_lis")) || [];
-        let sexx_lis = JSON.parse(localStorage.getItem("sexx_lis")) || [];
-        let reg_ph_lis = JSON.parse(localStorage.getItem("reg_ph_lis")) || [];
-        // let pro_imges = JSON.parse(localStorage.getItem("pro_imges")) || [];
-        em_list.push(login_Email.value);
-        let userpassword=btoa(login_pass.value)
-        ps_list.push(userpassword);
-        full_name_lis.push(`${fst_name.value} ${sur_name.value}`);
-        sexx_lis.push(sexx.value);
-        reg_ph_lis.push(reg_ph.value);
-        // if (imgElement.src!=="http://127.0.0.1:5500/3stepReg.html") {
-        //     pro_imges.push(imgElement.src);
-        // }else{
-        //     pro_imges.push("No Profile");
-        // }
-        localStorage.setItem("em", JSON.stringify(em_list));
-        localStorage.setItem("ps", JSON.stringify(ps_list));
-        localStorage.setItem("full_name_lis", JSON.stringify(full_name_lis));
-        localStorage.setItem("sexx_lis", JSON.stringify(sexx_lis));
-        localStorage.setItem("reg_ph_lis", JSON.stringify(reg_ph_lis));
-        localStorage.setItem("pro_imges", JSON.stringify(pro_imges));
-        // console.log(`Emails\n`,em_list);
-        // console.log(`Passwords\n`,ps_list);
-        // console.log(`Fullnames\n`,full_name_lis);
-        // console.log(`Genders\n`,sexx_lis);
-        // console.log(`Phone Numbers\n`,reg_ph_lis);
-        // console.log(`Profile photos\n`,pro_imges);
+        // let ps_list = JSON.parse(localStorage.getItem("ps")) || [];
+        // let full_name_lis = JSON.parse(localStorage.getItem("full_name_lis")) || [];
+        // let sexx_lis = JSON.parse(localStorage.getItem("sexx_lis")) || [];
+        // let reg_ph_lis = JSON.parse(localStorage.getItem("reg_ph_lis")) || [];
+        // // let pro_imges = JSON.parse(localStorage.getItem("pro_imges")) || [];
+        // em_list.push(login_Email.value);
+        // let userpassword=btoa(login_pass.value)
+        // ps_list.push(userpassword);
+        // full_name_lis.push(`${fst_name.value} ${sur_name.value}`);
+        // sexx_lis.push(sexx.value);
+        // reg_ph_lis.push(reg_ph.value);
+        // // if (imgElement.src!=="http://127.0.0.1:5500/3stepReg.html") {
+        // //     pro_imges.push(imgElement.src);
+        // // }else{
+        // //     pro_imges.push("No Profile");
+        // // }
+        // localStorage.setItem("em", JSON.stringify(em_list));
+        // localStorage.setItem("ps", JSON.stringify(ps_list));
+        // localStorage.setItem("full_name_lis", JSON.stringify(full_name_lis));
+        // localStorage.setItem("sexx_lis", JSON.stringify(sexx_lis));
+        // localStorage.setItem("reg_ph_lis", JSON.stringify(reg_ph_lis));
+        // localStorage.setItem("pro_imges", JSON.stringify(pro_imges));
+        // // console.log(`Emails\n`,em_list);
+        // // console.log(`Passwords\n`,ps_list);
+        // // console.log(`Fullnames\n`,full_name_lis);
+        // // console.log(`Genders\n`,sexx_lis);
+        // // console.log(`Phone Numbers\n`,reg_ph_lis);
+        // // console.log(`Profile photos\n`,pro_imges);
+        
+        let userList = JSON.parse(localStorage.getItem("userList")) || [];
+        console.log(userList);
+        let lasUseId = 0;
+        if (userList.at(-1)) {
+            lasUseId=Number(userList.at(-1).id)+1;
+            }
+            let user = {
+                id: `${lasUseId}`,
+                email: login_Email.value,
+                password: btoa(login_pass.value),
+                fulname: `${fst_name.value} ${sur_name.value}`,
+                gender: sexx.value,
+                phone: reg_ph.value,
+                Image: `${imgg}`
+            }
+            // let profileImages = JSON.parse(localStorage.getItem("profileImages") || "[]");
+            // profileImages.push(e.target.result)
+            // localStorage.setItem("profileImages", JSON.stringify(profileImages));
+            localStorage.setItem("profileImage", imgg);
+
+            // console.log(user);
+            userList.push(user);
+            localStorage.setItem("userList", JSON.stringify(userList));
+
     }else{
         reg_ph_err.style.color="red"
         reg_ph_err.innerHTML="Ivalied Mobile number."
@@ -152,6 +182,7 @@ function contfunc3() {
     reg_cont3.style.display="flex"
     reg_cont3.style.color="green"
     main_cont2.style.scale="1.5"
+    main_cont.style.scrollbarWidth = "none"
     reg_cont3.style.justifyContent="center"
     reg_cont3.style.alignItems="center"
     reg_cont3.innerHTML=""
@@ -194,3 +225,4 @@ function contfunc3() {
 
 ///// localStorage.removeItem("profileImage")
 ///// localStorage.removeItem("profileImages")
+// localStorage.clear()
