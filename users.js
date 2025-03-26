@@ -17,13 +17,17 @@ window.onload = function () {
   load.classList.add("load");
   container.appendChild(load);
 
-  let user_list_count = localStorage.getItem("user_list_count") || [10];
+  let user_list_count = localStorage.getItem("user_list_count") || 1;
   let limit = user_list_count;
-  fetch(`https://dummyjson.com/users?limit=${limit}`)
-    .then((call) => call.json())
-    .then((object) => {
-      container.innerHTML = "";
-      let userlist = object.users;
+  // fetch(`https://dummyjson.com/users?limit=${limit}`)
+  // .then((call) => call.json())
+  // .then((object) => {
+    // container.innerHTML = "";
+    // let userlist = object.users;
+    let userlist = JSON.parse(localStorage.getItem("userList")) || [];
+    console.log(userlist);
+    let userlen = userlist.length
+    userlist=userlist.slice(0,limit)
       let usersData = [];
       let isFirstRender = true;
 
@@ -58,10 +62,12 @@ window.onload = function () {
         }
         isFirstRender = false;
 
+        let em = JSON.parse(localStorage.getItem("userList") || "[]");
+        console.log(em.length);
         let users_num_select = document.createElement("select");
         users_num_select.id = "users_num_select";
         let count = 0;
-        for (let i = 0; i < 208; i++) {
+        for (let i = 0; i < userlen; i++) {
           count++;
           let users_num_op = document.createElement("option");
           users_num_op.value = `${count}`;
@@ -72,7 +78,7 @@ window.onload = function () {
 
         container.appendChild(users_num_select);
         let users_num = users_num_select.value;
-        let user_list_count2 = localStorage.getItem("user_list_count") || [10];
+        let user_list_count2 = localStorage.getItem("user_list_count") || [1];
         let users_num_op2 = document.getElementById(`${user_list_count2}`);
         users_num_op2.selected = true;
         users_num_select.onchange = () => {
@@ -99,36 +105,38 @@ window.onload = function () {
         sortingButtons.appendChild(sortbydesending);
 
         let sortByAgeAsc = document.createElement("button");
-        sortByAgeAsc.innerText = "Sort by Age Ascending";
+        sortByAgeAsc.innerText = "Sort by Gender Ascending";
         sortingButtons.appendChild(sortByAgeAsc);
 
         let sortByAgeDesc = document.createElement("button");
-        sortByAgeDesc.innerText = "Sort by Age Descending";
+        sortByAgeDesc.innerText = "Sort by Gender Descending";
         sortingButtons.appendChild(sortByAgeDesc);
-
         container.appendChild(sortingButtons);
+        
         sortbyassending.addEventListener("click", () => {
           let sortedByName = userlist_2.sort((a, b) =>
-            a.firstName.localeCompare(b.firstName)
-          );
-          userbodyfunc(sortedByName);
-        });
-
-        sortbydesending.addEventListener("click", () => {
-          let sortedByName = userlist_2.sort((a, b) =>
-            b.firstName.localeCompare(a.firstName)
+            a.fulname.localeCompare(b.fulname)
+        );
+        userbodyfunc(sortedByName);
+      });
+      
+      sortbydesending.addEventListener("click", () => {
+        let sortedByName = userlist_2.sort((a, b) =>
+          b.fulname.localeCompare(a.fulname)
           );
           userbodyfunc(sortedByName);
         });
 
         sortByAgeAsc.addEventListener("click", () => {
-          let sortedByAge = userlist_2.sort((a, b) => a.age - b.age);
-          userbodyfunc(sortedByAge);
+          let sortedByGenderAsc = userlist_2.sort((a, b) => 
+            a.gender.localeCompare(b.gender));
+          userbodyfunc(sortedByGenderAsc);
         });
-
+        
         sortByAgeDesc.addEventListener("click", () => {
-          let sortedByAge = userlist_2.sort((a, b) => b.age - a.age);
-          userbodyfunc(sortedByAge);
+          let sortedByGenderDesc = userlist_2.sort((a, b) => 
+            b.gender.localeCompare(a.gender));
+          userbodyfunc(sortedByGenderDesc);
         });
         let mainTable = document.createElement("div");
         let table = document.createElement("table");
@@ -143,13 +151,13 @@ window.onload = function () {
         let td1 = document.createElement("th");
         td1.innerHTML = `Fullname`;
         let td2 = document.createElement("th");
-        td2.innerHTML = `Age`;
+        td2.innerHTML = `gender`;
         let td3 = document.createElement("th");
         td3.innerHTML = `Role`;
         let td4 = document.createElement("th");
-        td4.innerHTML = `Username`;
+        td4.innerHTML = `pass`;
         let td5 = document.createElement("th");
-        td5.innerHTML = `Gender`;
+        td5.innerHTML = `address`;
         let td6 = document.createElement("th");
         td6.innerHTML = `Email`;
 
@@ -163,26 +171,159 @@ window.onload = function () {
         table.appendChild(tr);
         let checkboxCount = 0;
         userlist_2.forEach((user) => {
-          console.log(user);
+          // console.log(user);
 
-          let fullname = `${user.firstName} ${user.maidenName} ${user.lastName}`;
-          let age = user.age;
-          let gender = user.gender;
-          let email = user.email;
-          let username = user.username;
-          let image = `<img id="userimg" src=${user.image}></img>`;
-          let role = user.role;
-          let phone = user.phone;
-          let address = user.address.address;
-          let company = user.company.name;
-          let tr = document.createElement("tr");
-          tr.classList.add("tr");
+          // let fullname = `${user.firstName} `;
+          // let age = user.age;
+          // let gender = user.gender;
+          // let email = user.email;
+          // let username = user.username;
+          // let image = `<img id="userimg" src=${user.image}></img>`;
+          // let role = user.role;
+          // let phone = user.phone;
+          // let address = user.address.address;
+          // let company = user.company.name;
+          // let tr = document.createElement("tr");
+          // tr.classList.add("tr");
 
-          let td0 = document.createElement("td");
-          let checkbox = document.createElement("input");
-          checkbox.setAttribute("type", "checkbox");
-          checkbox.classList.add("row-checkbox");
-          td0.appendChild(checkbox);
+          // let td0 = document.createElement("td");
+          // let checkbox = document.createElement("input");
+          // checkbox.setAttribute("type", "checkbox");
+          // checkbox.classList.add("row-checkbox");
+          // td0.appendChild(checkbox);
+          // checkbox.addEventListener("click", () => {
+          //   checkbox.classList.toggle("checked");
+          // });
+          
+          // let selectrole = document.createElement("select");
+          // selectrole.classList.add("selectrole");
+          // let options = [
+          //   { value: "Super-Admin", text: "Super-Admin" },
+          //   { value: "Admin", text: "Admin" },
+          //   { value: "Member", text: "Member" },
+          // ];
+          // options.forEach((optionData) => {
+          //   let option = document.createElement("option");
+          //   option.value = optionData.value;
+          //   option.textContent = optionData.text;
+          //   selectrole.appendChild(option);
+          // });
+          
+
+          // let storedRole = localStorage.getItem(`user_role_${user.id}`);
+          // if (storedRole) {
+          //   selectrole.value = storedRole; 
+          // } else {
+          //   selectrole.value = "Member";
+          // }
+
+          // let td1 = document.createElement("td");
+          // td1.innerHTML = `${fullname}`;
+          // let td2 = document.createElement("td");
+          // td2.innerHTML = `${age}`;
+          // let td3 = document.createElement("td");
+          // td3.appendChild(selectrole);
+          // let td4 = document.createElement("td");
+          // td4.innerHTML = `${username}`;
+          // let td5 = document.createElement("td");
+          // td5.innerHTML = `${gender}`;
+          // let td6 = document.createElement("td");
+          // td6.innerHTML = `${email}`;
+
+          // selectrole.addEventListener("change", () => {
+            //   localStorage.setItem(`user_role_${user.id}`, selectrole.value);
+          // });
+         
+
+          // let accordionRow = document.createElement("tr");
+          // accordionRow.classList.add("accordion-row");
+          // accordionRow.style.display = "none";
+
+          // let accordionContent = document.createElement("td");
+          // accordionContent.colSpan = 7;
+          // accordionContent.innerHTML = `
+          //   <div class="accordion-content">
+          //     <img src="${user.image}" alt="User Image" style="width: 50px; height: 50px; border-radius: 50%;">
+          //     <p><strong>Phone:</strong> ${user.phone}</p>
+          //     <p><strong>Address:</strong> ${user.address.address}, ${user.address.city}</p>
+          //     <p><strong>Company:</strong> ${user.company.name}</p>
+          //   </div>
+          // `;
+          
+          // tr.appendChild(td0);
+
+          // tr.appendChild(td1);
+          // tr.appendChild(td2);
+          // tr.appendChild(td3);
+          // tr.appendChild(td4);
+          // tr.appendChild(td5);
+          // tr.appendChild(td6);
+          // table.appendChild(tr);
+          // accordionRow.appendChild(accordionContent);
+          // table.appendChild(accordionRow);
+          // mainTable.appendChild(table);
+          // container.appendChild(mainTable);
+          
+          // table.style.marginTop = "40px";
+          
+          // td1.style.height = "30px";
+          // td1.style.paddingLeft = "50px";
+          // td2.style.height = "30px";
+          // td2.style.textAlign = "center";
+          // td3.style.height = "30px";
+          // td3.style.paddingLeft = "50px";
+          // td4.style.height = "30px";
+          // td4.style.paddingLeft = "50px";
+          // td5.style.height = "30px";
+          // td5.style.paddingLeft = "50px";
+          // td6.style.height = "30px";
+          // td6.style.paddingLeft = "50px";
+          // usersData.push({
+            //   Name: fullname,
+            //   email: email,
+            //   username: username,
+            //   gender: gender,
+            //   role: role,
+            // });
+            
+            // tr.addEventListener("click", function () {
+              //   accordionRow.style.display =
+              //     accordionRow.style.display === "none" ? "table-row" : "none";
+              // });
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+
+
+
+              let fullname = `${user.fulname}`;
+              let email = user.email;
+              let gender = user.gender;
+              let password = user.password;
+              // let image = `<img id="userimg" src=${user.image}></img>`;
+              let role = user.role;
+              let phone = user.phone;
+              let address = "address";
+              // console.log(user.Image);
+              // let company = user.company.name;
+              let tr = document.createElement("tr");
+              tr.classList.add("tr");
+              
+              let td0 = document.createElement("td");
+              let checkbox = document.createElement("input");
+              checkbox.setAttribute("type", "checkbox");
+              checkbox.classList.add("row-checkbox");
+              td0.appendChild(checkbox);
           checkbox.addEventListener("click", () => {
             checkbox.classList.toggle("checked");
           });
@@ -200,7 +341,6 @@ window.onload = function () {
             option.textContent = optionData.text;
             selectrole.appendChild(option);
           });
-          
 
           let storedRole = localStorage.getItem(`user_role_${user.id}`);
           if (storedRole) {
@@ -212,38 +352,36 @@ window.onload = function () {
           let td1 = document.createElement("td");
           td1.innerHTML = `${fullname}`;
           let td2 = document.createElement("td");
-          td2.innerHTML = `${age}`;
+          td2.innerHTML = `${gender}`;
           let td3 = document.createElement("td");
           td3.appendChild(selectrole);
           let td4 = document.createElement("td");
-          td4.innerHTML = `${username}`;
+          td4.innerHTML = `${password}`;
           let td5 = document.createElement("td");
-          td5.innerHTML = `${gender}`;
+          td5.innerHTML = `${address}`;
           let td6 = document.createElement("td");
           td6.innerHTML = `${email}`;
 
           selectrole.addEventListener("change", () => {
             localStorage.setItem(`user_role_${user.id}`, selectrole.value);
           });
-         
-
+          
+          
           let accordionRow = document.createElement("tr");
           accordionRow.classList.add("accordion-row");
           accordionRow.style.display = "none";
-
+// console.log(user.image);
           let accordionContent = document.createElement("td");
           accordionContent.colSpan = 7;
           accordionContent.innerHTML = `
             <div class="accordion-content">
-              <img src="${user.image}" alt="User Image" style="width: 50px; height: 50px; border-radius: 50%;">
+              <img src="${user.Image}" alt="User Image" style="width: 50px; height: 50px; border-radius: 50%;">
               <p><strong>Phone:</strong> ${user.phone}</p>
-              <p><strong>Address:</strong> ${user.address.address}, ${user.address.city}</p>
-              <p><strong>Company:</strong> ${user.company.name}</p>
             </div>
           `;
-
+          
           tr.appendChild(td0);
-
+          
           tr.appendChild(td1);
           tr.appendChild(td2);
           tr.appendChild(td3);
@@ -271,9 +409,9 @@ window.onload = function () {
           td6.style.height = "30px";
           td6.style.paddingLeft = "50px";
           usersData.push({
-            Name: fullname,
-            email: email,
-            username: username,
+              Name: fullname,
+              email: email,
+            password: password,
             gender: gender,
             role: role,
           });
@@ -291,7 +429,7 @@ window.onload = function () {
               selectedUsers.push(usersData[index]);
             });
           if (selectedUsers.length > 0) {
-            exportToCSV(selectedUsers);
+              exportToCSV(selectedUsers);
           } else {
             exportToCSV(usersData);
           }
@@ -302,7 +440,7 @@ window.onload = function () {
           userbodyfunc.searchValue = searchText;
 
           let userlist_2 = userlist.filter((user) =>
-            `${user.firstName} ${user.lastName}`
+            `${user.fulname}`
               .toLowerCase()
               .includes(searchText)
           );
@@ -311,13 +449,13 @@ window.onload = function () {
       }
 
       userbodyfunc(userlist);
-    });
+    // });
 };
 
 function exportToCSV(data) {
-  const csvHeaders = ["Name", "Email", "Username", "Gender", "Role"];
+  const csvHeaders = ["Name", "Email", "pass", "Gender", "Role"];
   const csvRows = data.map((item) => {
-    return `${item.Name},${item.email},${item.username},${item.gender},${item.role}`;
+    return `${item.Name},${item.email},${item.password},${item.gender},${item.role}`;
   });
 
   const csvContent = [csvHeaders.join(","), ...csvRows].join("\n");
@@ -345,4 +483,6 @@ buttonTop.onclick = () => {
   document.documentElement.scrollTop = 0;
   document.body.scrollTop = 0;
 };
+console.log("llllllllllllllllllllllllllllllllllllllllllllll");
 ///// localStorage.removeItem("user_list_count")
+// localStorage.clear()
