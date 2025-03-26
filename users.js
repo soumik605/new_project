@@ -35,7 +35,8 @@ window.onload = function () {
         container.innerHTML = "";
 
         let searchUser = document.createElement("div");
-        searchUser.classList.add("searchUser");
+        searchUser.classList.add ("searchUser");
+        searchUser.id ="searchUser";
 
         let searchIcon = document.createElement("div");
         searchIcon.classList.add("searchIcon");
