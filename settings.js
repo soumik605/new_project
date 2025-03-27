@@ -1,40 +1,62 @@
-// Check if the user is logged in
-let isLogin = localStorage.getItem("is_Login") || "no";
-if (isLogin === "no") {
-  window.location.href = "login.html";
+is_Login = localStorage.getItem("is_Login")||"no"
+if (is_Login=="no") {
+  window.location.href = "login.html"
+}
+let back = document.getElementById("back");
+let sidebar_type = document.getElementById("sidebar_type");
+let setcont = document.getElementsByClassName("setcont");
+let changethemebtn = document.getElementById("changethemebtn");
+let setoptionDiv = document.getElementById("setoptionDiv");
+let logout = document.getElementById("logout");
+let userprofile = document.getElementById("userprofile");
+let profile = document.getElementById("profile");
+let userEmail = localStorage.getItem("em");
+let emarray = JSON.parse(userEmail);
+let fromlogin = localStorage.getItem("fromlogin")||"no";
+let loginEmail = localStorage.getItem("loginEmail");
+let userlist = JSON.parse(localStorage.getItem("userList"))||[];
+let idx = 0;
+userlist.forEach(user => {
+  if (user.email===loginEmail) {
+    idx = user.id
+  }
+});
+
+let lastem, loginTime, phoneNO, lastfullName, pro_pic;
+if (fromlogin==="no") {
+  lastem = userlist.at(-1);
+  loginTime = localStorage.getItem("loginTime");
+  let reg_ph_lis = localStorage.getItem("reg_ph_lis");
+  let pharrey = JSON.parse(reg_ph_lis);
+  phoneNO = userlist.at(-1).phone;
+  // let full_name_lis = localStorage.getItem("full_name_lis");
+  // let namearrey = JSON.parse(full_name_lis);
+  lastfullName =  userlist.at(-1).fulname;
+  pro_pic = localStorage.getItem("profileImage") || [];
+}
+else{
+  lastem = userlist.at(idx);
+  // console.log(lastem);
+  loginTime = localStorage.getItem("loginTime");
+  let reg_ph_lis = localStorage.getItem("reg_ph_lis");
+  let pharrey = JSON.parse(reg_ph_lis);
+  phoneNO = userlist.at(idx).phone;
+  
+  // let full_name_lis = localStorage.getItem("full_name_lis");
+  // let namearrey = JSON.parse(full_name_lis);
+  lastfullName =  userlist.at(idx).fulname;
+  // let profileImages = JSON.parse(localStorage.getItem("profileImages")) || [];
+  console.log(userlist);
+  localStorage.setItem("profileImage",userlist.at(idx).Image)
+  // console.log(userlist.at(idx).Image);
+  pro_pic = localStorage.getItem("profileImage") || [];
 }
 
-// Get DOM elements
-const back = document.getElementById("back");
-const sidebarType = document.getElementById("sidebar_type");
-const setoptionDiv = document.getElementById("setoptionDiv");
-const changethemebtn = document.getElementById("changethemebtn");
-const logout = document.getElementById("logout");
-const userprofile = document.getElementById("userprofile");
-const profile = document.getElementById("profile");
-
-// Retrieve user details from localStorage
-let userEmail = localStorage.getItem("em") || "[]";
-let emArray = JSON.parse(userEmail);
-let fromLogin = localStorage.getItem("fromlogin") || "no";
-let loginEmail = localStorage.getItem("loginEmail"); // Currently logged-in user
-let idx = emArray.indexOf(loginEmail);
-
-let lastEmail, loginTime, phoneNo, lastFullName;
-let regPhoneList = JSON.parse(localStorage.getItem("reg_ph_lis")) || [];
-let fullNameList = JSON.parse(localStorage.getItem("full_name_lis")) || [];
-let profileImages = JSON.parse(localStorage.getItem("profileImages")) || {}; // Store per user
-
-// If user exists, fetch details
-if (fromLogin === "no") {
-  lastEmail = emArray[emArray.length - 1] || "N/A";
-  phoneNo = regPhoneList[regPhoneList.length - 1] || "N/A";
-  lastFullName = fullNameList[fullNameList.length - 1] || "N/A";
-} else {
-  lastEmail = loginEmail || "N/A";
-  phoneNo = regPhoneList[idx] || "N/A";
-  lastFullName = fullNameList[idx] || "N/A";
+if (!pro_pic || pro_pic == "no img") {
+  console.log('pic nahi ha koi')
+  pro_pic = "https://img.freepik.com/premium-vector/social-media-logo_1305298-29989.jpg";
 }
+// console.log(lastfullName);
 
 // Retrieve the profile image for the logged-in user
 let profilePic = profileImages[loginEmail] || "https://img.freepik.com/premium-vector/social-media-logo_1305298-29989.jpg";
@@ -105,6 +127,7 @@ userprofile.onclick = () => {
 back.onclick = () => {
   location.href = "users.html";
 };
+console.log("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 
 // Theme change functionality
 changethemebtn.onclick = function () {
@@ -112,7 +135,7 @@ changethemebtn.onclick = function () {
   profile.classList.toggle("inner_dark_mode");
   setoptionDiv.classList.toggle("inner_dark_mode");
   localStorage.setItem("darkModeUpdated", Date.now());
-
+  
   if (document.body.classList.contains("dark-mode")) {
     changethemebtn.innerText = "light";
     localStorage.setItem("darkMode", "enabled");
@@ -123,7 +146,9 @@ changethemebtn.onclick = function () {
 
 // Set theme on page load
 window.onload = function () {
-  if (localStorage.getItem("light") === "enabled") {
+  let sidebarvalue = localStorage.getItem("sidebartype");
+  sidebar_type.value=sidebarvalue;
+  if (localStorage.getItem("darkMode") === "enabled") {
     document.body.classList.add("dark-mode");
     setoptionDiv.classList.add("inner_dark_mode");
     changethemebtn.innerText = "light";
@@ -131,6 +156,24 @@ window.onload = function () {
     changethemebtn.innerText = "dark";
   }
 };
+
+console.log(lastem);
+profile.innerHTML = `
+ <div class="proInfo">
+       <div class="pro_imge"><img id="pro_imge_id" src="${pro_pic}"></div>
+              <div class="exinfo">
+              <p><strong>User Name:</strong> ${lastfullName}</p>
+              <p><strong>email:</strong> ${lastem.email}</p>
+              <p><strong> Last Login :</strong> ${loginTime}</p>
+              <p><strong> Phone No:</strong> ${phoneNO}</p>
+              </div>
+  </div>
+`;
+
+userprofile.onclick = function () {
+  profile.classList.toggle("hide");
+};
+
 function checkAutoLogout() {
   let loginTime = localStorage.getItem("loginTimestamp");
   if (!loginTime) return;

@@ -29,6 +29,11 @@ if (localStorage.getItem("darkMode") === "enabled") {
   maindiv.classList.toggle("inner_dark_mode");
 }
 
+maindiv.classList = "";
+let sidebarvalue = localStorage.getItem("sidebartype");
+console.log(sidebarvalue);
+maindiv.classList.toggle(sidebarvalue);
+
 window.addEventListener("storage", function (e) {
   if (e.key == "sidebartype") {
     maindiv.classList = "";
@@ -36,4 +41,13 @@ window.addEventListener("storage", function (e) {
     console.log(sidebarvalue);
     maindiv.classList.toggle(sidebarvalue);
   }
+  if (localStorage.getItem("darkMode") === "enabled") {
+    maindiv.classList.toggle("inner_dark_mode");
+  }
 });
+
+window.onload = () =>{
+  if (localStorage.getItem("darkMode") === "enabled") {
+    maindiv.classList.toggle("inner_dark_mode");
+  }
+}
