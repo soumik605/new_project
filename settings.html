@@ -3,13 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>settings page</title>
+    <title>Settings Page</title>
     <link rel="stylesheet" href="settings.css" />
     <link rel="stylesheet" href="mode.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -17,12 +13,7 @@
   </head>
   <body>
     <div id="sidebar-cont">
-      <object
-        type="text/html"
-        data="sidebar.html"
-        height="100%"
-        width="150px"
-      ></object>
+      <object type="text/html" data="sidebar.html" height="100%" width="150px"></object>
     </div>
 
     <div class="setcont">
@@ -42,15 +33,30 @@
           <div class="sidebarsetDiv">
             Sidebar type :
             <select id="sidebar_type">
-              <option value="expande">expande</option>
-              <option value="expand_onhover">expand_onhover</option>
-              <option value="wrap">wrap</option>
+              <option value="expande">Expande</option>
+              <option value="expand_onhover">Expand on Hover</option>
+              <option value="wrap">Wrap</option>
             </select>
           </div>
 
-          <button id="back">back</button>
+          <button id="back">Back</button>
         </div>
-        <div id="profile" class="hide"></div>
+        <div id="profile" class="hide">
+          <div class="proInfo">
+            <div class="pro_imge">
+              <img id="pro_imge_id" src="" alt="Profile Image">
+            </div>
+            <div class="exinfo">
+              <p><strong>User Name:</strong> <span id="userName"></span></p>
+              <p><strong>Email:</strong> <span id="userEmail"></span></p>
+              <p><strong>Last Login:</strong> <span id="loginTime"></span></p>
+              <p><strong>Phone No:</strong> <span id="phoneNo"></span></p>
+            </div>
+            <button id="setProfilePic">Set Profile Picture</button>
+            <button id="removeProfilePic">Remove Profile Picture</button>
+            <input type="file" id="uploadProfilePic" accept="image/*" style="display: none;">
+          </div>
+        </div>
       </div>
     </div>
     <script src="settings.js"></script>
