@@ -18,7 +18,7 @@ h1 {
   padding: 10px;
   font-size: 40px;
 }
-span {
+span{
   color: red;
 }
 
@@ -126,7 +126,6 @@ span {
 }
 
 .proInfo{
-
  padding: 5px;
  justify-content:center;
  align-items: center;
@@ -157,7 +156,36 @@ margin-left: 10px;
 font-size: 18px;
 }
 
-
 #uname{
   color: red;
+}
+
+#setProfilePic, #removeProfilePic {
+  display: block;
+  width: 160px;
+  height: 14px;
+  margin: 10px auto;
+  font-size: 14px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+#setProfilePic {
+  background-color: #28a745;
+  color: white;
+}
+
+#setProfilePic:hover {
+  background-color: #218838;
+}
+
+#removeProfilePic {
+  background-color: #dc3545;
+  color: white;
+}
+
+#removeProfilePic:hover {
+  background-color: #c82333;
 }

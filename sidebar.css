@@ -33,15 +33,14 @@
 }
 
 
-
-.icons {
+.icons{
     width: 40px;
     height: 40px;
     cursor: pointer;
     color: rgb(0, 136, 255);
 }
 
-.tooltip {
+.tooltip{
     font-size: 15px;
     padding: 10px 0px;
     border-radius: 25px;
@@ -81,7 +80,7 @@
     border-radius: 20px;
   
 }
- .fa{
+.fa{
     color: black;
  }
 
