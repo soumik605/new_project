@@ -58,78 +58,12 @@ if (!pro_pic || pro_pic == "no img") {
 }
 // console.log(lastfullName);
 
-// Retrieve the profile image for the logged-in user
-let profilePic = profileImages[loginEmail] || "https://img.freepik.com/premium-vector/social-media-logo_1305298-29989.jpg";
-loginTime = localStorage.getItem("loginTime") || "Unknown";
 
-// Add profile details in HTML
-profile.innerHTML = `
-  <div class="proInfo">
-    <div class="pro_imge">
-      <img id="pro_imge_id" src="${profilePic}" alt="Profile Image">
-    </div>
-    <input type="file" id="uploadProfilePic" accept="image/*" style="display: none;">
-    <div class="exinfo">
-      <p><strong>User Name:</strong> ${lastFullName}</p>
-      <p><strong>Email:</strong> ${lastEmail}</p>
-      <p><strong>Last Login:</strong> ${loginTime}</p>
-      <p><strong>Phone No:</strong> ${phoneNo}</p>
-    </div>
-    <button id="setProfilePic">Set Profile Picture</button>
-    <button id="removeProfilePic">Remove Profile Picture</button>
-  </div>
-`;
-
-// Get elements
-const profileImageElement = document.getElementById("pro_imge_id");
-const setProfilePicBtn = document.getElementById("setProfilePic");
-const removeProfilePicBtn = document.getElementById("removeProfilePic");
-const uploadProfilePic = document.getElementById("uploadProfilePic");
-
-// Open file selector when clicking "Set Profile Picture"
-setProfilePicBtn.addEventListener("click", () => {
-  uploadProfilePic.click();
-});
-
-// Handle file selection and set profile picture
-uploadProfilePic.addEventListener("change", (event) => {
-  const file = event.target.files[0];
-
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      const imageUrl = e.target.result;
-      profileImageElement.src = imageUrl;
-
-      // Store the profile image per user
-      profileImages[loginEmail] = imageUrl;
-      localStorage.setItem("profileImages", JSON.stringify(profileImages));
-    };
-    reader.readAsDataURL(file);
-  }
-});
-
-// Remove profile picture
-removeProfilePicBtn.addEventListener("click", () => {
-  profileImageElement.src = "https://img.freepik.com/premium-vector/social-media-logo_1305298-29989.jpg";
-
-  // Remove the profile picture from localStorage
-  delete profileImages[loginEmail];
-  localStorage.setItem("profileImages", JSON.stringify(profileImages));
-});
-
-// Toggle profile section
-userprofile.onclick = () => {
-  profile.classList.toggle("hide");
-};
-
-// Back button navigation
-back.onclick = () => {
+back.onclick = function () {
   location.href = "users.html";
 };
 console.log("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 
-// Theme change functionality
 changethemebtn.onclick = function () {
   document.body.classList.toggle("dark-mode");
   profile.classList.toggle("inner_dark_mode");
@@ -141,10 +75,12 @@ changethemebtn.onclick = function () {
     localStorage.setItem("darkMode", "enabled");
   } else {
     changethemebtn.innerText = "dark";
+    localStorage.setItem("darkMode", "disabled");
   }
 };
 
-// Set theme on page load
+
+
 window.onload = function () {
   let sidebarvalue = localStorage.getItem("sidebartype");
   sidebar_type.value=sidebarvalue;
@@ -155,20 +91,58 @@ window.onload = function () {
   } else {
     changethemebtn.innerText = "dark";
   }
-};
+  let savedProfilePic = localStorage.getItem("profileImage");
+  if (savedProfilePic && savedProfilePic !== "no img") {
+    profileImageElement.src = savedProfilePic;
+  } else {
+    profileImageElement.src = "https://img.freepik.com/premium-vector/social-media-logo_1305298-29989.jpg";
+  }};
 
 console.log(lastem);
 profile.innerHTML = `
  <div class="proInfo">
        <div class="pro_imge"><img id="pro_imge_id" src="${pro_pic}"></div>
+            <input type="file" id="uploadProfilePic" accept="image/*" style="display: none;">
               <div class="exinfo">
+              <button id="setProfilePic">Set Profile Picture</button>
+             <button id="removeProfilePic">Remove Profile Picture</button>
               <p><strong>User Name:</strong> ${lastfullName}</p>
               <p><strong>email:</strong> ${lastem.email}</p>
               <p><strong> Last Login :</strong> ${loginTime}</p>
               <p><strong> Phone No:</strong> ${phoneNO}</p>
               </div>
+
   </div>
 `;
+
+
+let profileImageElement = document.getElementById("pro_imge_id");
+let setProfilePicBtn = document.getElementById("setProfilePic");
+let removeProfilePicBtn = document.getElementById("removeProfilePic");
+let uploadProfilePic = document.getElementById("uploadProfilePic");
+
+setProfilePicBtn.addEventListener("click", () => {
+  uploadProfilePic.click();
+});
+uploadProfilePic.addEventListener("change", function () {
+  let file = this.files[0];
+  if (file) {
+    let reader = new FileReader();
+    reader.onload = function (e) {
+      let newProfilePic = e.target.result;
+      profileImageElement.src = newProfilePic;
+      localStorage.setItem("profileImage", newProfilePic);
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+removeProfilePicBtn.addEventListener("click", () => {
+  let defaultImage = "https://img.freepik.com/premium-vector/social-media-logo_1305298-29989.jpg";
+  profileImageElement.src = defaultImage;
+  localStorage.setItem("profileImage", defaultImage);
+});
+
 
 userprofile.onclick = function () {
   profile.classList.toggle("hide");
@@ -201,12 +175,8 @@ setInterval(checkAutoLogout, 1 * 60 * 1000);
 logout.onclick = function () {
   autoLogout();
 };
-// Logout button click event
-logout.onclick = autoLogout;
-
-// Sidebar type selection
-sidebar_type.addEventListener("change", function () {
-  localStorage.setItem("sidebartype", sidebar_type.value);
-});
 
 
+sidebar_type.addEventListener("change",function(){
+  localStorage.setItem("sidebartype",sidebar_type.value)
+})
